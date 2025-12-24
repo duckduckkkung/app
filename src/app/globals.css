@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "p-black";
+    src: url("/fonts/Paperlogy-9Black.ttf");
+}
+
+@font-face {
+    font-family: "p-bold";
+    src: url("/fonts/Paperlogy-7Bold.ttf");
+}
+
+@font-face {
+    font-family: "p-extrabold";
+    src: url("/fonts/Paperlogy-8ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "p-extralight";
+    src: url("/fonts/Paperlogy-2ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: "p-light";
+    src: url("/fonts/Paperlogy-3Light.ttf");
+}
+
+@font-face {
+    font-family: "p-medium";
+    src: url("/fonts/Paperlogy-5Medium.ttf");
+}
+
+@font-face {
+    font-family: "p-regular";
+    src: url("/fonts/Paperlogy-4Regular.ttf");
+}
+
+@font-face {
+    font-family: "p-semibold";
+    src: url("/fonts/Paperlogy-6SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "p-thin";
+    src: url("/fonts/Paperlogy-1Thin.ttf");
+}
+
+@font-face {
+    font-family: "GMarketSansLight";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff")
+        format("woff");
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "GMarketSansMedium";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+        format("woff");
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "GMarketSansBold";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff")
+        format("woff");
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "GyeonggiMillenniumBackground";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2410-3@1.0/Batang_Regular.woff")
+        format("woff");
+    font-weight: 400;
+    font-display: swap;
+}
+
+@theme {
+    --color-c-primary: #313e97;
+
+    --font-p-black: "p-black";
+    --font-p-bold: "p-bold";
+    --font-p-extrabold: "p-extrabold";
+    --font-p-extralight: "p-extralight";
+    --font-p-light: "p-light";
+    --font-p-medium: "p-medium";
+    --font-p-regular: "p-regular";
+    --font-p-semibold: "p-semibold";
+    --font-p-thin: "p-thin";
+
+    --font-p-gmsl: "GMarketSansLight";
+    --font-p-gmsm: "GMarketSansMedium";
+    --font-p-gmsb: "GMarketSansBold";
+
+    --font-p-mj: "GyeonggiMillenniumBackground";
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #aaaaaa;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
