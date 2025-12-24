@@ -1,3 +1,18 @@
+"use client";
+
+import { useBar } from "@/stores/bar.zustand";
+
 export default function Home() {
-    return <p>asdf</p>;
+    const bar = useBar();
+
+    return (
+        <div
+            style={{
+                paddingTop: `${bar.top}px`,
+                paddingBottom: `${bar.bottom}px`,
+            }}
+        >
+            엄..
+        </div>
+    );
 }
