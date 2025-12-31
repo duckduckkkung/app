@@ -3,8 +3,13 @@
 import { LayoutRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 
 import { useBar } from "@/stores/bar.zustand";
+
+import SignalIcon from "@/assets/icons/Mobile Signal.png";
+import WifiIcon from "@/assets/icons/Wifi.png";
+import BatteryFullIcon from "@/assets/icons/Battery.png";
 
 export const FrozenRoute = ({
     children,
@@ -52,19 +57,84 @@ export const FrozenRoute = ({
         []
     );
 
+    const MODE = process.env.NEXT_PUBLIC_MODE;
+
     return (
-        <LayoutRouterContext.Provider value={frozen}>
-            <AnimatePresence mode="popLayout" initial={false}>
-                <motion.div
-                    variants={containerVariants}
-                    initial="initial"
-                    animate="animate"
-                    exit="exit"
-                    className="relative flex-1 w-full min-h-full md:overflow-y-auto h-full"
+        <>
+            {MODE === "test" && (
+                <>
+                    <div
+                        className="z-[100] absolute top-0 left-0 w-full flex items-center px-[60px]"
+                        style={{
+                            height: `${bar.top}px`,
+                        }}
+                    >
+                        <span className="font-[Pretendard] font-medium text-[18px] text-black">
+                            9:41
+                        </span>
+                    </div>
+
+                    <div
+                        className="z-[100] absolute top-0 left-0 w-full flex justify-end items-center px-[48px] gap-[8px]"
+                        style={{
+                            height: `${bar.top}px`,
+                        }}
+                    >
+                        <Image
+                            src={SignalIcon}
+                            alt="Signal Icon"
+                            width={18}
+                            height={13}
+                        />
+                        <Image
+                            src={WifiIcon}
+                            alt="Wifi Icon"
+                            width={18}
+                            height={13}
+                        />
+                        <Image
+                            src={BatteryFullIcon}
+                            alt="Battery Full Icon"
+                            width={28}
+                            height={14}
+                        />
+                    </div>
+
+                    <div
+                        className="z-[100] absolute top-0 left-0 w-full flex justify-center items-center"
+                        style={{
+                            height: `${bar.top}px`,
+                        }}
+                    >
+                        <div className="bg-black w-[120px] h-[36px] rounded-[100px]" />
+                    </div>
+                </>
+            )}
+
+            <LayoutRouterContext.Provider value={frozen}>
+                <AnimatePresence mode="popLayout" initial={false}>
+                    <motion.div
+                        variants={containerVariants}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        className="relative w-full h-full"
+                    >
+                        {children}
+                    </motion.div>
+                </AnimatePresence>
+            </LayoutRouterContext.Provider>
+
+            {MODE === "test" && (
+                <div
+                    className="z-[100] absolute bottom-0 left-0 w-full flex justify-center items-center pt-[10px]"
+                    style={{
+                        height: `${bar.bottom}px`,
+                    }}
                 >
-                    {children}
-                </motion.div>
-            </AnimatePresence>
-        </LayoutRouterContext.Provider>
+                    <div className="bg-black w-[160px] h-[6px] rounded-[100px]" />
+                </div>
+            )}
+        </>
     );
 };

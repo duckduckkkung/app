@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="ko">
-            <body>
+            <body className="w-dvw h-dvh">
                 <Suspense>
                     <Provider>{children}</Provider>
                 </Suspense>
