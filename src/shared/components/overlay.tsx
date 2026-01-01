@@ -65,7 +65,7 @@ const Parent = ({ children }: { children: React.ReactNode }) => {
                 x: isOpen ? parentX : 0,
                 transition: isDragging ? undefined : "all 0.25s ease-out",
             }}
-            className="fixed inset-0 z-30"
+            className="fixed inset-0 z-100"
         >
             {children}
         </motion.div>
@@ -95,7 +95,7 @@ const Children = ({ children }: { children: React.ReactNode }) => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 0.5 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black z-40"
+                        className="fixed inset-0 bg-black z-200"
                         onClick={onClose}
                     />
 
@@ -143,11 +143,11 @@ const Children = ({ children }: { children: React.ReactNode }) => {
                         onDragEnd={handleDragEnd}
                         onDragStart={() => setIsDragging(true)}
                         style={{ x }}
-                        className="fixed top-0 right-0 w-full h-full bg-white shadow-2xl z-50 overflow-hidden"
+                        className="fixed top-0 right-0 w-full h-full bg-white shadow-2xl z-300 overflow-hidden"
                     >
                         <div
                             onPointerDown={(e) => dragControls.start(e)}
-                            className="absolute left-0 top-0 bottom-0 w-10 z-[60] cursor-grab active:cursor-grabbing"
+                            className="absolute left-0 top-0 bottom-0 w-10 z-100 cursor-grab active:cursor-grabbing"
                             style={{ touchAction: "none" }}
                         />
 

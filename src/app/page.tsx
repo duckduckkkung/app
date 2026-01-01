@@ -1,59 +1,100 @@
 "use client";
 
-import { useState } from "react";
+import { ChevronLeftIcon } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
 
+import { BottomNavigator } from "@/shared/components/bottom-navigator";
+import { OverlayHeader } from "@/shared/components/overlay-header";
 import { Overlay } from "@/shared/components/overlay";
 import { Screen } from "@/shared/components/screen";
+import { Loader } from "@/shared/components/loader";
+import { Empty } from "@/shared/components/empty";
 
-import { useBar } from "@/stores/bar.zustand";
-import { ChevronLeftIcon } from "lucide-react";
+import { fans as MockFans } from "@/mocks/fans";
+
+import { TypeFan } from "@/shared/types/types";
 
 export default function Home() {
-    const bar = useBar();
-
     const [isOpen, setIsOpen] = useState(false);
+
+    const [fans, setFans] = useState<{ isFetching: boolean; data: TypeFan[] }>({
+        isFetching: true,
+        data: [],
+    });
+    useEffect(() => {
+        setTimeout(() => setFans({ isFetching: false, data: MockFans }), 500);
+    }, []);
+
+    const containerVariants = useMemo(
+        () => ({
+            initial: { opacity: 0 },
+            animate: { opacity: 1, transition: { duration: 0.1 } },
+            exit: { opacity: 0, transition: { duration: 0.1 } },
+        }),
+        []
+    );
 
     return (
         <Overlay isOpen={isOpen} onClose={() => setIsOpen(false)}>
             <Overlay.Parent>
                 <Screen>
-                    <div className="h-full p-[48px_16px] overflow-y-scroll flex flex-col gap-[64px]">
-                        <p className="font-p-medium text-[24px] text-gray-900">
-                            안녕하세요, <b className="font-p-semibold">ICe1</b>
-                            님.
-                        </p>
+                    <AnimatePresence mode="popLayout">
+                        <motion.div
+                            key={fans.isFetching ? "fetching" : "fetched"}
+                            variants={containerVariants}
+                            initial="initial"
+                            animate="animate"
+                            exit="exit"
+                            className="relative w-full h-full overflow-y-scroll"
+                        >
+                            {fans.isFetching ? (
+                                <Loader />
+                            ) : fans.data.length > 0 ? (
+                                <div className="p-[48px_16px] flex flex-col gap-[48px]">
+                                    <div className="flex flex-col gap-[8px]">
+                                        <div className="w-fit p-[2px_8px] bg-red-50 border border-red-300 rounded-[8px]">
+                                            <span className="font-p-medium text-[14px] text-red-700">
+                                                🔥 6일 연속 덕질 중
+                                            </span>
+                                        </div>
 
-                        <div className="grid grid-cols-2 gap-[16px]">
-                            {Array(42)
-                                .fill(0)
-                                .map((_, index) => (
-                                    <div
-                                        key={`item-${index}`}
-                                        className="bg-gray-200 rounded-[8px] aspect-1/1"
-                                        onClick={() => setIsOpen(true)}
-                                    />
-                                ))}
-                        </div>
-                    </div>
+                                        <p className="font-p-medium text-[24px] text-gray-900">
+                                            좋은 저녁 입니다,{" "}
+                                            <b className="font-p-semibold">
+                                                ICe1
+                                            </b>
+                                            님.
+                                        </p>
+                                    </div>
+
+                                    <div onClick={() => setIsOpen(true)}>
+                                        이거 눌러보셈
+                                    </div>
+                                </div>
+                            ) : (
+                                <Empty
+                                    title="Not Found"
+                                    text="결과를 찾지 못했습니다."
+                                />
+                            )}
+                        </motion.div>
+                    </AnimatePresence>
+
+                    <BottomNavigator theme="white" focus="home" />
                 </Screen>
             </Overlay.Parent>
 
             <Overlay.Children>
                 <Screen>
                     <div className="h-full overflow-y-scroll">
-                        <div className="sticky top-0 z-[100] bg-white px-[16px] w-full h-[60px] flex justify-between items-center">
-                            <ChevronLeftIcon
-                                size={24}
-                                className="stroke-gray-900"
-                                onClick={() => setIsOpen(false)}
-                            />
-
-                            <span className="font-p-semibold text-[18px] text-gray-900">
-                                상세
-                            </span>
-
-                            <div className="size-[24px]" />
-                        </div>
+                        <OverlayHeader
+                            title="상세"
+                            left={{
+                                Component: ChevronLeftIcon,
+                                onClick: () => setIsOpen(false),
+                            }}
+                        />
 
                         <div className="p-[16px] pb-[16px] flex flex-col gap-[24px]">
                             <div className="flex flex-col gap-[8px]">

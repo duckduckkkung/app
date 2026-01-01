@@ -1,8 +1,7 @@
 "use client";
 
-import { LayoutRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import React, { useContext, useEffect, useMemo, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import React, { useEffect } from "react";
 import Image from "next/image";
 
 import { useBar } from "@/stores/bar.zustand";
@@ -11,14 +10,16 @@ import SignalIcon from "@/assets/icons/Mobile Signal.png";
 import WifiIcon from "@/assets/icons/Wifi.png";
 import BatteryFullIcon from "@/assets/icons/Battery.png";
 
+import SignalWhiteIcon from "@/assets/icons/Mobile Signal White.png";
+import WifiWhiteIcon from "@/assets/icons/Wifi White.png";
+import BatteryFullWhiteIcon from "@/assets/icons/Battery White.png";
+
 export const FrozenRoute = ({
     children,
 }: {
     children: Readonly<React.ReactNode>;
 }) => {
-    const context = useContext(LayoutRouterContext);
-    const frozen = useRef(context).current;
-
+    const pathname = usePathname();
     const bar = useBar();
 
     useEffect(() => {
@@ -48,15 +49,6 @@ export const FrozenRoute = ({
         }
     }, []);
 
-    const containerVariants = useMemo(
-        () => ({
-            initial: { opacity: 0 },
-            animate: { opacity: 1, transition: { duration: 0.3 } },
-            exit: { opacity: 0, transition: { duration: 0.3 } },
-        }),
-        []
-    );
-
     const MODE = process.env.NEXT_PUBLIC_MODE;
 
     return (
@@ -64,75 +56,100 @@ export const FrozenRoute = ({
             {MODE === "test" && (
                 <>
                     <div
-                        className="z-[100] absolute top-0 left-0 w-full flex items-center px-[60px]"
+                        className="z-1000 absolute top-0 left-0 w-full flex items-center px-[60px]"
                         style={{
                             height: `${bar.top}px`,
                         }}
                     >
-                        <span className="font-[Pretendard] font-medium text-[18px] text-black">
+                        <span
+                            className="font-[Pretendard] font-medium text-[18px]"
+                            style={{
+                                color:
+                                    pathname === "/moment" ? "white" : "black",
+                            }}
+                        >
                             9:41
                         </span>
                     </div>
 
                     <div
-                        className="z-[100] absolute top-0 left-0 w-full flex justify-end items-center px-[48px] gap-[8px]"
+                        className="z-1000 absolute top-0 left-0 w-full flex justify-end items-center px-[48px] gap-[8px]"
                         style={{
                             height: `${bar.top}px`,
                         }}
                     >
-                        <Image
-                            src={SignalIcon}
-                            alt="Signal Icon"
-                            width={18}
-                            height={13}
-                        />
-                        <Image
-                            src={WifiIcon}
-                            alt="Wifi Icon"
-                            width={18}
-                            height={13}
-                        />
-                        <Image
-                            src={BatteryFullIcon}
-                            alt="Battery Full Icon"
-                            width={28}
-                            height={14}
-                        />
+                        {pathname === "/moment" ? (
+                            <>
+                                <Image
+                                    src={SignalWhiteIcon}
+                                    alt="Signal Icon"
+                                    width={18}
+                                    height={13}
+                                />
+                                <Image
+                                    src={WifiWhiteIcon}
+                                    alt="Wifi Icon"
+                                    width={18}
+                                    height={13}
+                                />
+                                <Image
+                                    src={BatteryFullWhiteIcon}
+                                    alt="Battery Full Icon"
+                                    width={28}
+                                    height={14}
+                                />
+                            </>
+                        ) : (
+                            <>
+                                <Image
+                                    src={SignalIcon}
+                                    alt="Signal Icon"
+                                    width={18}
+                                    height={13}
+                                />
+                                <Image
+                                    src={WifiIcon}
+                                    alt="Wifi Icon"
+                                    width={18}
+                                    height={13}
+                                />
+                                <Image
+                                    src={BatteryFullIcon}
+                                    alt="Battery Full Icon"
+                                    width={28}
+                                    height={14}
+                                />
+                            </>
+                        )}
                     </div>
 
                     <div
-                        className="z-[100] absolute top-0 left-0 w-full flex justify-center items-center"
+                        className="z-1000 absolute top-0 left-0 w-full flex justify-center items-center"
                         style={{
                             height: `${bar.top}px`,
                         }}
                     >
-                        <div className="bg-black w-[120px] h-[36px] rounded-[100px]" />
+                        <div className="w-[120px] h-[36px] rounded-[100px] bg-black" />
                     </div>
                 </>
             )}
 
-            <LayoutRouterContext.Provider value={frozen}>
-                <AnimatePresence mode="popLayout" initial={false}>
-                    <motion.div
-                        variants={containerVariants}
-                        initial="initial"
-                        animate="animate"
-                        exit="exit"
-                        className="relative w-full h-full"
-                    >
-                        {children}
-                    </motion.div>
-                </AnimatePresence>
-            </LayoutRouterContext.Provider>
+            {children}
 
             {MODE === "test" && (
                 <div
-                    className="z-[100] absolute bottom-0 left-0 w-full flex justify-center items-center pt-[10px]"
+                    className="z-1000 absolute bottom-0 left-0 w-full flex justify-center items-center pt-[10px]"
                     style={{
                         height: `${bar.bottom}px`,
                     }}
                 >
-                    <div className="bg-black w-[160px] h-[6px] rounded-[100px]" />
+                    <div
+                        className="w-[160px] h-[4px] rounded-[100px]"
+                        style={{
+                            background:
+                                pathname === "/moment" ? "white" : "black",
+                        }}
+                    />
                 </div>
             )}
         </>
