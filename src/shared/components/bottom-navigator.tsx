@@ -28,7 +28,7 @@ export const BottomNavigator = ({
             id: "feed",
             name: "피드",
             Icon: MessageSquareDotIcon,
-            location: "/",
+            location: "/feed",
         },
         {
             id: "moment",

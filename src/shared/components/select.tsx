@@ -1,24 +1,29 @@
-import { ChevronDownIcon } from "lucide-react";
+import { CheckIcon, ChevronDownIcon } from "lucide-react";
+import { useState } from "react";
+import { BottomSheet } from "./bottom-sheet";
 
 export enum SelectTypes {
     default = "flex justify-between items-center transition-all duration-100 active:scale-95",
 
-    sm = `${SelectTypes.default} gap-[6px] p-[2px_8px] rounded-[6px] *:font-p-regular *:text-[14px]`,
-    md = `${SelectTypes.default} gap-[10px] p-[6px_16px] rounded-[8px] *:font-p-medium *:text-[16px]`,
-    lg = `${SelectTypes.default} gap-[16px] p-[10px_18px] rounded-[10px] *:font-p-medium *:text-[18px]`,
+    md = `${SelectTypes.default} gap-[10px] p-[14px_16px] rounded-[8px] *:font-p-medium *:text-[16px]`,
 }
 
 export enum SelectVariants {
-    outline = "bg-gray-100 border border-gray-300 *:text-gray-600",
+    outline = "bg-white border border-gray-300 *:text-gray-900",
+}
+
+export interface SelectOption {
+    value: string;
+    label: string;
 }
 
 interface SelectProps {
     type: keyof typeof SelectTypes;
     variants: keyof typeof SelectVariants;
 
-    value: string;
-    options: string[];
-    onChange: (value: string) => void;
+    value: SelectOption;
+    options: SelectOption[];
+    onChange: (value: SelectOption) => void;
     placeholder?: string;
 }
 
@@ -30,11 +35,44 @@ export const Select = ({
     onChange,
     placeholder = "",
 }: SelectProps) => {
-    return (
-        <div className={`${SelectTypes[type]} ${SelectVariants[variants]}`}>
-            <span>{value || placeholder}</span>
+    const [isOpen, setIsOpen] = useState(false);
 
-            <ChevronDownIcon size={14} className="stroke-gray-500" />
-        </div>
+    return (
+        <>
+            <div
+                className={`${SelectTypes[type]} ${SelectVariants[variants]}`}
+                onClick={() => setIsOpen(true)}
+            >
+                <span>{value.label || placeholder}</span>
+
+                <ChevronDownIcon size={14} className="stroke-gray-500" />
+            </div>
+
+            <BottomSheet isOpen={isOpen} onClose={() => setIsOpen(false)}>
+                <div className="flex flex-col">
+                    {options.map((option) => (
+                        <div
+                            key={option.value}
+                            className="w-full py-[10px] flex gap-[8px] items-center"
+                            onClick={() => {
+                                setIsOpen(false);
+                                onChange(option);
+                            }}
+                        >
+                            {option.value === value.value && (
+                                <CheckIcon
+                                    size={16}
+                                    className="stroke-gray-900"
+                                />
+                            )}
+
+                            <span className="font-p-medium text-[16px] text-gray-900">
+                                {option.label}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            </BottomSheet>
+        </>
     );
 };

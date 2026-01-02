@@ -65,11 +65,11 @@ export const BottomSheet = ({
                                 opacity: 1,
                                 transition: {
                                     y: {
-                                        type: "spring",
-                                        damping: 30,
-                                        stiffness: 300,
+                                        type: "tween",
+                                        duration: 0.25,
+                                        ease: "easeOut",
                                     },
-                                    opacity: { duration: 0.2 },
+                                    opacity: { duration: 0, delay: 0 },
                                 },
                             },
                             exit: {
@@ -79,9 +79,9 @@ export const BottomSheet = ({
                                     y: {
                                         type: "tween",
                                         duration: 0.25,
-                                        ease: "easeOut",
+                                        ease: "easeIn",
                                     },
-                                    opacity: { duration: 0.15 },
+                                    opacity: { duration: 0.05, delay: 0.2 },
                                 },
                             },
                         }}
