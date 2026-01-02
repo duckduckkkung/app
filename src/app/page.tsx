@@ -281,15 +281,50 @@ export default function Feed() {
                                             명예의 전당
                                         </p>
 
-                                        <div className="grid grid-cols-3 gap-[8px]">
-                                            {Array(12)
-                                                .fill(0)
-                                                .map((_, i) => (
-                                                    <div
-                                                        key={`img-${i}`}
-                                                        className="bg-gray-200 aspect-1/1 rounded-[8px]"
-                                                    />
-                                                ))}
+                                        <div className="flex flex-col gap-[16px]">
+                                            <div className="flex flex-col gap-[8px]">
+                                                <p className="truncate flex-1 font-p-medium text-[20px] text-gray-900">
+                                                    송하영
+                                                </p>
+
+                                                <div className="grid grid-cols-3 gap-[8px]">
+                                                    {Array(16)
+                                                        .fill(0)
+                                                        .map((_, i) => (
+                                                            <div
+                                                                key={`img-${i}`}
+                                                                className="bg-gray-200 aspect-1/1 rounded-[8px] transition-all duration-250 active:scale-95"
+                                                                onClick={() =>
+                                                                    setIsOpen(
+                                                                        true
+                                                                    )
+                                                                }
+                                                            />
+                                                        ))}
+                                                </div>
+                                            </div>
+
+                                            <div className="flex flex-col gap-[8px]">
+                                                <p className="truncate flex-1 font-p-medium text-[20px] text-gray-900">
+                                                    이세계아이돌
+                                                </p>
+
+                                                <div className="grid grid-cols-3 gap-[8px]">
+                                                    {Array(15)
+                                                        .fill(0)
+                                                        .map((_, i) => (
+                                                            <div
+                                                                key={`img-${i}`}
+                                                                className="bg-gray-200 aspect-1/1 rounded-[8px] transition-all duration-250 active:scale-95"
+                                                                onClick={() =>
+                                                                    setIsOpen(
+                                                                        true
+                                                                    )
+                                                                }
+                                                            />
+                                                        ))}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
