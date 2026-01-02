@@ -12,8 +12,11 @@ import { fans as MockFans } from "@/mocks/fans";
 
 import { TypeFan } from "@/shared/types/types";
 import { OverlayHeader } from "@/shared/components/overlay-header";
+import { BottomSheet } from "@/shared/components/bottom-sheet";
 
 export default function Moment() {
+    const [isOpen, setIsOpen] = useState(true);
+
     const [fans, setFans] = useState<{ isFetching: boolean; data: TypeFan[] }>({
         isFetching: true,
         data: [],
@@ -49,6 +52,47 @@ export default function Moment() {
                             <OverlayHeader theme="dark" title="모먼트" />
 
                             <div className="p-[48px_16px]"></div>
+
+                            <BottomSheet
+                                isOpen={isOpen}
+                                onClose={() => setIsOpen(false)}
+                            >
+                                <div className="flex flex-col gap-[24px]">
+                                    <p className="font-p-semibold text-[20px] text-gray-900">
+                                        댓글
+                                    </p>
+
+                                    <p className="font-p-mj text-[16px] text-gray-900">
+                                        Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit. Sed cursus, nisl vitae
+                                        sagittis mollis, magna urna posuere
+                                        ipsum, non aliquet massa nisl nec dui.
+                                        Curabitur vitae nunc molestie, vehicula
+                                        odio sed, gravida lacus. Donec ac urna
+                                        libero. Suspendisse sit amet sapien et
+                                        mi commodo elementum. Phasellus vitae
+                                        mauris vitae ex faucibus hendrerit in
+                                        vitae ipsum. Ut malesuada lectus ut erat
+                                        iaculis, et pellentesque nibh molestie.
+                                        Vestibulum porttitor eros tellus. Nam
+                                        volutpat magna erat, quis iaculis massa
+                                        sagittis sit amet. Pellentesque habitant
+                                        morbi tristique senectus et netus et
+                                        malesuada fames ac turpis egestas.
+                                        Pellentesque vestibulum diam lacinia
+                                        ultrices egestas. Orci varius natoque
+                                        penatibus et magnis dis parturient
+                                        montes, nascetur ridiculus mus. Ut
+                                        maximus ipsum vel mauris congue
+                                        scelerisque a quis dolor. Duis molestie,
+                                        metus sit amet convallis sodales, ante
+                                        tellus suscipit nulla, vitae aliquet
+                                        purus metus non risus. Vivamus viverra
+                                        urna libero, sed maximus nunc tristique
+                                        vitae.
+                                    </p>
+                                </div>
+                            </BottomSheet>
                         </>
                     ) : (
                         <Empty
