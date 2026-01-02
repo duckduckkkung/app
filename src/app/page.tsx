@@ -1,6 +1,12 @@
 "use client";
 
-import { ChevronLeftIcon } from "lucide-react";
+import {
+    ChevronLeftIcon,
+    ClapperboardIcon,
+    Layers2Icon,
+    StickyNoteIcon,
+    UserRoundIcon,
+} from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 
@@ -15,7 +21,7 @@ import { fans as MockFans } from "@/mocks/fans";
 
 import { TypeFan } from "@/shared/types/types";
 
-export default function Home() {
+export default function Feed() {
     const [isOpen, setIsOpen] = useState(false);
 
     const [fans, setFans] = useState<{ isFetching: boolean; data: TypeFan[] }>({
@@ -52,24 +58,239 @@ export default function Home() {
                                 <Loader />
                             ) : fans.data.length > 0 ? (
                                 <div className="p-[48px_16px] flex flex-col gap-[48px]">
-                                    <div className="flex flex-col gap-[8px]">
-                                        <div className="w-fit p-[2px_8px] bg-red-50 border border-red-300 rounded-[8px]">
-                                            <span className="font-p-medium text-[14px] text-red-700">
-                                                🔥 6일 연속 덕질 중
-                                            </span>
-                                        </div>
+                                    <p className="font-p-medium text-[24px] text-gray-900">
+                                        피드
+                                    </p>
 
-                                        <p className="font-p-medium text-[24px] text-gray-900">
-                                            좋은 저녁 입니다,{" "}
-                                            <b className="font-p-semibold">
-                                                ICe1
-                                            </b>
-                                            님.
+                                    <div className="flex flex-col gap-[8px]">
+                                        <p className="font-p-regular text-[16px] text-gray-400">
+                                            덕질 최신 정보
                                         </p>
+
+                                        <div className="flex flex-col gap-[16px]">
+                                            <div
+                                                className="flex flex-col gap-[4px] transition-all duration-250 active:scale-95"
+                                                onClick={() => setIsOpen(true)}
+                                            >
+                                                <div className="flex justify-between items-center">
+                                                    <p className="truncate flex-1 font-p-medium text-[20px] text-gray-900">
+                                                        송하영
+                                                    </p>
+
+                                                    <div className="shrink-0 flex items-center gap-[24px] flex-wrap">
+                                                        <div className="flex items-center gap-[8px]">
+                                                            <UserRoundIcon
+                                                                size={16}
+                                                                className="stroke-gray-900"
+                                                            />
+
+                                                            <span className="font-p-gmsm text-[14px] text-gray-900">
+                                                                + 1,192
+                                                            </span>
+                                                        </div>
+
+                                                        <div className="flex items-center gap-[8px]">
+                                                            <StickyNoteIcon
+                                                                size={16}
+                                                                className="stroke-gray-900"
+                                                            />
+
+                                                            <span className="font-p-gmsm text-[14px] text-gray-900">
+                                                                + 34
+                                                            </span>
+                                                        </div>
+
+                                                        <div className="flex items-center gap-[8px]">
+                                                            <ClapperboardIcon
+                                                                size={16}
+                                                                className="stroke-gray-900"
+                                                            />
+
+                                                            <span className="font-p-gmsm text-[14px] text-gray-900">
+                                                                + 812
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="w-full overflow-x-scroll">
+                                                    <div className="flex gap-[8px]">
+                                                        <div className="shrink-0 w-fit p-[2px_8px] bg-gray-100 rounded-[4px] flex items-center gap-[4px]">
+                                                            <span className="font-p-medium text-[14px] text-gray-600">
+                                                                새로운 굿즈
+                                                            </span>
+                                                        </div>
+
+                                                        <div className="shrink-0 w-fit p-[2px_8px] bg-gray-100 rounded-[4px] flex items-center gap-[4px]">
+                                                            <span className="font-p-medium text-[14px] text-gray-600">
+                                                                인기 7% 상승
+                                                            </span>
+                                                        </div>
+
+                                                        <div className="shrink-0 w-fit p-[2px_8px] bg-gray-100 rounded-[4px] flex items-center gap-[4px]">
+                                                            <span className="font-p-medium text-[14px] text-gray-600">
+                                                                업데이트된 정보
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div
+                                                className="flex flex-col gap-[4px] transition-all duration-250 active:scale-95"
+                                                onClick={() => setIsOpen(true)}
+                                            >
+                                                <div className="flex justify-between items-center">
+                                                    <p className="truncate font-p-medium text-[20px] text-gray-900">
+                                                        이세계아이돌
+                                                    </p>
+
+                                                    <div className="shrink-0 flex items-center gap-[24px] flex-wrap">
+                                                        <div className="flex items-center gap-[8px]">
+                                                            <UserRoundIcon
+                                                                size={16}
+                                                                className="stroke-gray-900"
+                                                            />
+
+                                                            <span className="font-p-gmsm text-[14px] text-gray-900">
+                                                                + 310
+                                                            </span>
+                                                        </div>
+
+                                                        <div className="flex items-center gap-[8px]">
+                                                            <StickyNoteIcon
+                                                                size={16}
+                                                                className="stroke-gray-900"
+                                                            />
+
+                                                            <span className="font-p-gmsm text-[14px] text-gray-900">
+                                                                + 4,312
+                                                            </span>
+                                                        </div>
+
+                                                        <div className="flex items-center gap-[8px]">
+                                                            <ClapperboardIcon
+                                                                size={16}
+                                                                className="stroke-gray-900"
+                                                            />
+
+                                                            <span className="font-p-gmsm text-[14px] text-gray-900">
+                                                                + 106
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="w-full overflow-x-scroll">
+                                                    <div className="flex gap-[8px]">
+                                                        <div className="shrink-0 w-fit p-[2px_8px] bg-gray-100 rounded-[4px] flex items-center gap-[4px]">
+                                                            <span className="font-p-medium text-[14px] text-gray-600">
+                                                                새로운 공연 일정
+                                                            </span>
+                                                        </div>
+
+                                                        <div className="shrink-0 w-fit p-[2px_8px] bg-gray-100 rounded-[4px] flex items-center gap-[4px]">
+                                                            <span className="font-p-medium text-[14px] text-gray-600">
+                                                                인기 4% 상승
+                                                            </span>
+                                                        </div>
+
+                                                        <div className="shrink-0 w-fit p-[2px_8px] bg-gray-100 rounded-[4px] flex items-center gap-[4px]">
+                                                            <span className="font-p-medium text-[14px] text-gray-600">
+                                                                업데이트된 정보
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div onClick={() => setIsOpen(true)}>
-                                        이거 눌러보셈
+                                    <div className="flex flex-col gap-[8px]">
+                                        <p className="font-p-regular text-[16px] text-gray-400">
+                                            ICe1님의 덕질 출석률
+                                        </p>
+
+                                        <div className="flex flex-col gap-[16px]">
+                                            <div
+                                                className="flex flex-col gap-[4px] transition-all duration-250 active:scale-95"
+                                                onClick={() => setIsOpen(true)}
+                                            >
+                                                <div className="flex justify-between items-center">
+                                                    <p className="truncate flex-1 font-p-medium text-[20px] text-gray-900">
+                                                        송하영
+                                                    </p>
+
+                                                    <div className="shrink-0 flex items-center gap-[24px] flex-wrap">
+                                                        <div className="flex items-center gap-[8px]">
+                                                            <Layers2Icon
+                                                                size={16}
+                                                                className="stroke-gray-900"
+                                                            />
+
+                                                            <span className="font-p-gmsm text-[14px] text-gray-900">
+                                                                + 30
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="shrink-0 w-fit p-[2px_8px] bg-gray-100 rounded-[4px] flex items-center gap-[4px]">
+                                                    <span className="font-p-medium text-[14px] text-gray-600">
+                                                        지난 달 보다 방문 횟수가
+                                                        40% 증가했어요.
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div
+                                                className="flex flex-col gap-[4px] transition-all duration-250 active:scale-95"
+                                                onClick={() => setIsOpen(true)}
+                                            >
+                                                <div className="flex justify-between items-center">
+                                                    <p className="truncate flex-1 font-p-medium text-[20px] text-gray-900">
+                                                        이세계아이돌
+                                                    </p>
+
+                                                    <div className="shrink-0 flex items-center gap-[24px] flex-wrap">
+                                                        <div className="flex items-center gap-[8px]">
+                                                            <Layers2Icon
+                                                                size={16}
+                                                                className="stroke-gray-900"
+                                                            />
+
+                                                            <span className="font-p-gmsm text-[14px] text-gray-900">
+                                                                + 29
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="shrink-0 w-fit p-[2px_8px] bg-gray-100 rounded-[4px] flex items-center gap-[4px]">
+                                                    <span className="font-p-medium text-[14px] text-gray-600">
+                                                        지난 달 보다 방문 횟수가
+                                                        3% 감소했어요.
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex flex-col gap-[8px]">
+                                        <p className="font-p-regular text-[16px] text-gray-400">
+                                            명예의 전당
+                                        </p>
+
+                                        <div className="grid grid-cols-3 gap-[8px]">
+                                            {Array(12)
+                                                .fill(0)
+                                                .map((_, i) => (
+                                                    <div
+                                                        key={`img-${i}`}
+                                                        className="bg-gray-200 aspect-1/1 rounded-[8px]"
+                                                    />
+                                                ))}
+                                        </div>
                                     </div>
                                 </div>
                             ) : (
@@ -81,7 +302,7 @@ export default function Home() {
                         </motion.div>
                     </AnimatePresence>
 
-                    <BottomNavigator theme="white" focus="home" />
+                    <BottomNavigator theme="white" focus="feed" />
                 </Screen>
             </Overlay.Parent>
 

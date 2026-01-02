@@ -1,18 +1,23 @@
 "use client";
 
-import { ClapperboardIcon, CogIcon, HomeIcon, SearchIcon } from "lucide-react";
+import {
+    ClapperboardIcon,
+    CogIcon,
+    MessageSquareDotIcon,
+    SearchIcon,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import { useBar } from "@/stores/bar.zustand";
 
 interface BottomNavigatorProps {
     theme?: "white" | "dark";
-    focus?: "home" | "moment" | "search" | "settings";
+    focus?: "feed" | "moment" | "search" | "settings";
 }
 
 export const BottomNavigator = ({
     theme = "white",
-    focus = "home",
+    focus = "feed",
 }: BottomNavigatorProps) => {
     const router = useRouter();
 
@@ -20,9 +25,9 @@ export const BottomNavigator = ({
 
     const menus = [
         {
-            id: "home",
-            name: "홈",
-            Icon: HomeIcon,
+            id: "feed",
+            name: "피드",
+            Icon: MessageSquareDotIcon,
             location: "/",
         },
         {
