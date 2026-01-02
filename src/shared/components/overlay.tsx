@@ -82,7 +82,7 @@ const Children = ({ children }: { children: React.ReactNode }) => {
     ) => {
         setIsDragging(false);
 
-        if (info.offset.x > 150 || info.velocity.x > 500) onClose();
+        if (info.offset.x > 50 || info.velocity.x > 500) onClose();
         else x.set(0);
     };
 
