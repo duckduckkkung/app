@@ -31,7 +31,7 @@ export default function Search() {
     );
 
     return (
-        <Screen>
+        <Screen bn>
             <AnimatePresence mode="popLayout">
                 <motion.div
                     key={fans.isFetching ? "fetching" : "fetched"}

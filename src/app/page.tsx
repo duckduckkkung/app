@@ -20,6 +20,7 @@ import { Empty } from "@/shared/components/empty";
 import { fans as MockFans } from "@/mocks/fans";
 
 import { TypeFan } from "@/shared/types/types";
+import { Tag } from "@/shared/components/tag";
 
 export default function Feed() {
     const [isOpen, setIsOpen] = useState(false);
@@ -44,7 +45,7 @@ export default function Feed() {
     return (
         <Overlay isOpen={isOpen} onClose={() => setIsOpen(false)}>
             <Overlay.Parent>
-                <Screen>
+                <Screen bn>
                     <AnimatePresence mode="popLayout">
                         <motion.div
                             key={fans.isFetching ? "fetching" : "fetched"}
@@ -115,23 +116,11 @@ export default function Feed() {
 
                                                 <div className="w-full overflow-x-scroll">
                                                     <div className="flex gap-[8px]">
-                                                        <div className="shrink-0 w-fit p-[2px_8px] bg-gray-100 rounded-[4px] flex items-center gap-[4px]">
-                                                            <span className="font-p-medium text-[14px] text-gray-600">
-                                                                새로운 굿즈
-                                                            </span>
-                                                        </div>
+                                                        <Tag text="새로운 굿즈" />
 
-                                                        <div className="shrink-0 w-fit p-[2px_8px] bg-gray-100 rounded-[4px] flex items-center gap-[4px]">
-                                                            <span className="font-p-medium text-[14px] text-gray-600">
-                                                                인기 7% 상승
-                                                            </span>
-                                                        </div>
+                                                        <Tag text="인기 7% 상승" />
 
-                                                        <div className="shrink-0 w-fit p-[2px_8px] bg-gray-100 rounded-[4px] flex items-center gap-[4px]">
-                                                            <span className="font-p-medium text-[14px] text-gray-600">
-                                                                업데이트된 정보
-                                                            </span>
-                                                        </div>
+                                                        <Tag text="업데이트된 정보" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -183,23 +172,11 @@ export default function Feed() {
 
                                                 <div className="w-full overflow-x-scroll">
                                                     <div className="flex gap-[8px]">
-                                                        <div className="shrink-0 w-fit p-[2px_8px] bg-gray-100 rounded-[4px] flex items-center gap-[4px]">
-                                                            <span className="font-p-medium text-[14px] text-gray-600">
-                                                                새로운 공연 일정
-                                                            </span>
-                                                        </div>
+                                                        <Tag text="새로운 공연 일정" />
 
-                                                        <div className="shrink-0 w-fit p-[2px_8px] bg-gray-100 rounded-[4px] flex items-center gap-[4px]">
-                                                            <span className="font-p-medium text-[14px] text-gray-600">
-                                                                인기 4% 상승
-                                                            </span>
-                                                        </div>
+                                                        <Tag text="인기 4% 상승" />
 
-                                                        <div className="shrink-0 w-fit p-[2px_8px] bg-gray-100 rounded-[4px] flex items-center gap-[4px]">
-                                                            <span className="font-p-medium text-[14px] text-gray-600">
-                                                                업데이트된 정보
-                                                            </span>
-                                                        </div>
+                                                        <Tag text="업데이트된 정보" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -235,12 +212,10 @@ export default function Feed() {
                                                     </div>
                                                 </div>
 
-                                                <div className="shrink-0 w-fit p-[2px_8px] bg-gray-100 rounded-[4px] flex items-center gap-[4px]">
-                                                    <span className="font-p-medium text-[14px] text-gray-600">
-                                                        지난 달 보다 방문 횟수가
-                                                        40% 증가했어요.
-                                                    </span>
-                                                </div>
+                                                <Tag
+                                                    text="지난 달 보다 방문 횟수가
+                                                        40% 증가했어요."
+                                                />
                                             </div>
 
                                             <div
@@ -266,12 +241,10 @@ export default function Feed() {
                                                     </div>
                                                 </div>
 
-                                                <div className="shrink-0 w-fit p-[2px_8px] bg-gray-100 rounded-[4px] flex items-center gap-[4px]">
-                                                    <span className="font-p-medium text-[14px] text-gray-600">
-                                                        지난 달 보다 방문 횟수가
-                                                        3% 감소했어요.
-                                                    </span>
-                                                </div>
+                                                <Tag
+                                                    text="지난 달 보다 방문 횟수가
+                                                        3% 감소했어요."
+                                                />
                                             </div>
                                         </div>
                                     </div>
@@ -364,23 +337,11 @@ export default function Feed() {
                             </div>
 
                             <div className="flex flex-wrap gap-[8px]">
-                                <div className="p-[2px_8px] bg-gray-100 rounded-[4px]">
-                                    <span className="font-p-medium text-[14px] text-gray-600">
-                                        태그하나만
-                                    </span>
-                                </div>
+                                <Tag text="태그하나만" />
 
-                                <div className="p-[2px_8px] bg-gray-100 rounded-[4px]">
-                                    <span className="font-p-medium text-[14px] text-gray-600">
-                                        태그두개
-                                    </span>
-                                </div>
+                                <Tag text="태그두개" />
 
-                                <div className="p-[2px_8px] bg-gray-100 rounded-[4px]">
-                                    <span className="font-p-medium text-[14px] text-gray-600">
-                                        tag셋
-                                    </span>
-                                </div>
+                                <Tag text="tag셋" />
                             </div>
                         </div>
 
