@@ -60,9 +60,9 @@ export default function Register() {
                         <>
                             <div className="p-[48px_16px] flex flex-col gap-[48px]">
                                 <div className="flex justify-center">
-                                    <div className="size-[128px] bg-gray-100 rounded-[16px] flex justify-center items-center">
+                                    <div className="size-[100px] bg-gray-100 rounded-[16px] flex justify-center items-center">
                                         <ImageUpIcon
-                                            size={64}
+                                            size={48}
                                             className="stroke-gray-400"
                                         />
                                     </div>
@@ -225,7 +225,7 @@ export default function Register() {
                                                 setIsOpen(false);
                                                 setTimeout(
                                                     () => setIsOtpOpen(true),
-                                                    300
+                                                    500
                                                 );
                                             }}
                                         >

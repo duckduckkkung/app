@@ -44,8 +44,24 @@ export const BottomSheet = ({
                     <motion.div
                         key="bottomsheet-backdrop"
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.5 }}
-                        exit={{ opacity: 0 }}
+                        animate={{
+                            opacity: 0.5,
+                            transition: {
+                                opacity: {
+                                    duration: 0.25,
+                                    delay: 0,
+                                },
+                            },
+                        }}
+                        exit={{
+                            opacity: 0,
+                            transition: {
+                                opacity: {
+                                    duration: 0.25,
+                                    delay: 0.2,
+                                },
+                            },
+                        }}
                         className="fixed inset-0 bg-black z-100"
                         onClick={onClose}
                     />
@@ -59,29 +75,50 @@ export const BottomSheet = ({
                             initial: {
                                 y: "100%",
                                 opacity: 0,
+                                scale: 0.75,
                             },
                             animate: {
                                 y: 0,
                                 opacity: 1,
+                                scale: 1,
                                 transition: {
                                     y: {
                                         type: "tween",
-                                        duration: 0.25,
-                                        ease: "easeOut",
+                                        duration: 0.4,
+                                        ease: "circOut",
                                     },
-                                    opacity: { duration: 0, delay: 0 },
+                                    scale: {
+                                        type: "tween",
+                                        duration: 0.4,
+                                        delay: 0.1,
+                                        ease: "backInOut",
+                                    },
+                                    opacity: {
+                                        duration: 0,
+                                        delay: 0,
+                                    },
                                 },
                             },
                             exit: {
                                 y: "100%",
                                 opacity: 0,
+                                scale: 0.75,
                                 transition: {
                                     y: {
                                         type: "tween",
-                                        duration: 0.25,
-                                        ease: "easeIn",
+                                        duration: 0.4,
+                                        ease: "circIn",
                                     },
-                                    opacity: { duration: 0.05, delay: 0.2 },
+                                    scale: {
+                                        type: "tween",
+                                        duration: 0.4,
+                                        delay: 0,
+                                        ease: "circIn",
+                                    },
+                                    opacity: {
+                                        duration: 0,
+                                        delay: 0.4,
+                                    },
                                 },
                             },
                         }}

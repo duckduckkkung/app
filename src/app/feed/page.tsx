@@ -261,7 +261,7 @@ export default function Feed() {
                                                 </p>
 
                                                 <div className="grid grid-cols-3 gap-[8px]">
-                                                    {Array(16)
+                                                    {Array(15)
                                                         .fill(0)
                                                         .map((_, i) => (
                                                             <div
