@@ -7,10 +7,10 @@ import { Button } from "@/shared/components/button";
 import { Screen } from "@/shared/components/screen";
 import { Footer } from "@/shared/components/footer";
 
-import Start from "@/assets/icons/start.svg";
+import Start from "@/assets/icons/start.png";
 
-import GoogleIcon from "@/assets/icons/google.svg";
-import KakaoIcon from "@/assets/icons/kakao.svg";
+import GoogleIcon from "@/assets/icons/google.png";
+import KakaoIcon from "@/assets/icons/kakao.png";
 
 export default function SignIn() {
     const router = useRouter();

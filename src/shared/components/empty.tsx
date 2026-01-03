@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import NotFoundIcon from "@/assets/icons/not-found.svg";
+import NotFoundIcon from "@/assets/icons/not-found.png";
 
 interface EmptyProps {
     title: string;
