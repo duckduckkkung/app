@@ -2,9 +2,13 @@ export enum ButtonTypes {
     default = "outline-none",
 
     md = `${ButtonTypes.default} w-full p-[16px_24px] rounded-[12px] font-p-medium text-[16px] flex justify-center items-center gap-[8px] transition-all duration-100 active:scale-95 *:transition-all *:duration-100`,
+    sm_icon = `${ButtonTypes.md} !p-[12px] !rounded-[6px] !aspect-square`,
+    md_icon = `${ButtonTypes.md} !p-[16px] !rounded-[8px] !aspect-square`,
+    lg_icon = `${ButtonTypes.md} !p-[20px] !rounded-[12px] !aspect-square`,
 }
 
 export enum ButtonVariants {
+    ghost = "bg-white text-gray-900",
     outline = "bg-white border border-gray-300 text-gray-900",
     black = "bg-gray-900 text-white",
     primary = "bg-c-primary text-white",

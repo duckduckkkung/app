@@ -266,7 +266,7 @@ export default function Feed() {
                                                         .map((_, i) => (
                                                             <div
                                                                 key={`img-${i}`}
-                                                                className="bg-gray-200 aspect-1/1 rounded-[8px] transition-all duration-100 active:scale-95"
+                                                                className="bg-gray-200 aspect-square rounded-[8px] transition-all duration-100 active:scale-95"
                                                                 onClick={() =>
                                                                     setIsOpen(
                                                                         true
@@ -288,7 +288,7 @@ export default function Feed() {
                                                         .map((_, i) => (
                                                             <div
                                                                 key={`img-${i}`}
-                                                                className="bg-gray-200 aspect-1/1 rounded-[8px] transition-all duration-100 active:scale-95"
+                                                                className="bg-gray-200 aspect-square rounded-[8px] transition-all duration-100 active:scale-95"
                                                                 onClick={() =>
                                                                     setIsOpen(
                                                                         true
@@ -325,7 +325,7 @@ export default function Feed() {
                             }}
                         />
 
-                        <div className="p-[16px] pb-[16px] flex flex-col gap-[24px]">
+                        <div className="p-[16px] flex flex-col gap-[24px]">
                             <div className="flex flex-col gap-[8px]">
                                 <p className="font-p-semibold text-[24px] text-gray-900">
                                     내 아내임.
@@ -347,7 +347,7 @@ export default function Feed() {
 
                         <div className="w-full h-[8px] bg-gray-100" />
 
-                        <div className="p-[16px] pb-[16px] overflow-y-scroll flex flex-col gap-[36px]">
+                        <div className="p-[16px] overflow-y-scroll flex flex-col gap-[36px]">
                             <p className="font-p-semibold text-[18px] text-gray-900">
                                 댓글
                             </p>

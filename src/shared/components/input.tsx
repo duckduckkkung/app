@@ -1,7 +1,7 @@
 export enum InputTypes {
-    default = "flex justify-between items-center transition-all duration-100 outline-none",
+    default = "w-full flex justify-between items-center transition-all duration-100 outline-none",
 
-    md = `${InputTypes.default} p-[12px_14px] rounded-[8px] font-p-medium text-[16px]`,
+    md = `${InputTypes.default} p-[12px_14px] rounded-[12px] font-p-medium text-[16px]`,
 }
 
 export enum InputVariants {
