@@ -1,7 +1,7 @@
 import { ForwardRefExoticComponent, RefAttributes } from "react";
 import { LucideProps } from "lucide-react";
 
-export interface Icon {
+export interface TypeIcon {
     Component: ForwardRefExoticComponent<
         Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
     >;
@@ -10,8 +10,8 @@ export interface Icon {
 
 interface OverlayHeaderProps {
     theme?: "white" | "dark";
-    left?: Icon;
-    right?: Icon;
+    left?: TypeIcon;
+    right?: TypeIcon;
     title: string;
 }
 

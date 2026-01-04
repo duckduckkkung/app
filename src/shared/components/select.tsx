@@ -12,7 +12,7 @@ export enum SelectVariants {
     outline = "bg-white border border-gray-300 *:text-gray-900",
 }
 
-export interface SelectOption {
+export interface TypeSelectOption {
     value: string;
     label: string;
 }
@@ -21,9 +21,9 @@ interface SelectProps {
     type: keyof typeof SelectTypes;
     variants: keyof typeof SelectVariants;
 
-    value: SelectOption;
-    options: SelectOption[];
-    onChange: (value: SelectOption) => void;
+    value: TypeSelectOption;
+    options: TypeSelectOption[];
+    onChange: (value: TypeSelectOption) => void;
     placeholder?: string;
 }
 

@@ -134,7 +134,7 @@ export const BottomSheet = ({
                             bottom: `${bar.bottom}px`,
                             touchAction: "none",
                         }}
-                        className="rounded-[24px] fixed left-[16px] right-[16px] bg-white z-200 overflow-hidden max-h-[90vh] p-[16px] pt-[8px] flex flex-col gap-[24px]"
+                        className="rounded-[24px] fixed left-[16px] right-[16px] bg-white z-200 overflow-hidden max-h-[70vh] pt-[8px] flex flex-col gap-[24px]"
                     >
                         <div
                             className="absolute top-0 left-0 w-full h-[80px] z-100"
@@ -151,7 +151,7 @@ export const BottomSheet = ({
                             <div className="w-[40px] h-[6px] bg-gray-200 rounded-[100px]" />
                         </div>
 
-                        <div className="w-full h-full overflow-y-auto">
+                        <div className="p-[16px] w-full h-full overflow-y-auto">
                             {children}
                         </div>
                     </motion.div>

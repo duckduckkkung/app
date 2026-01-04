@@ -1,9 +1,17 @@
 "use client";
 
+import {
+    HeartIcon,
+    MessageCircleMoreIcon,
+    MessageCircleWarningIcon,
+} from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 
 import { BottomNavigator } from "@/shared/components/bottom-navigator";
+import { OverlayHeader } from "@/shared/components/overlay-header";
+import { BottomSheet } from "@/shared/components/bottom-sheet";
+import { Comments } from "@/shared/components/comments";
 import { Screen } from "@/shared/components/screen";
 import { Loader } from "@/shared/components/loader";
 import { Empty } from "@/shared/components/empty";
@@ -11,13 +19,6 @@ import { Empty } from "@/shared/components/empty";
 import { fans as MockFans } from "@/mocks/fans";
 
 import { TypeFan } from "@/shared/types/types";
-import { OverlayHeader } from "@/shared/components/overlay-header";
-import { BottomSheet } from "@/shared/components/bottom-sheet";
-import {
-    HeartIcon,
-    MessageCircleMoreIcon,
-    MessageCircleWarningIcon,
-} from "lucide-react";
 
 export default function Moment() {
     const [isOpen, setIsOpen] = useState(false);
@@ -38,6 +39,70 @@ export default function Moment() {
         }),
         []
     );
+
+    const comments = [
+        {
+            id: "asdf",
+            writer: {
+                name: "엄준식",
+                profileImage: "",
+            },
+            heartCount: 71,
+            content: "너무 이ㅃ",
+            subComment: [
+                {
+                    id: "asdfgh",
+                    writer: {
+                        name: "극악무도한하영사랑꾼",
+                        profileImage: "",
+                    },
+                    heartCount: 28,
+                    content: "이분 끝내 돌아가셨습니다.",
+                    subComment: [],
+                },
+                {
+                    id: "asdfghj",
+                    writer: {
+                        name: "이야이",
+                        profileImage: "",
+                    },
+                    heartCount: 2,
+                    content: "ㅋㅋㅋㅋㅋㅋㅋㅋ",
+                    subComment: [],
+                },
+            ],
+        },
+        {
+            id: "asdfghjk",
+            writer: {
+                name: "극악무도한하영사랑꾼",
+                profileImage: "",
+            },
+            heartCount: 6,
+            content: "와 진짜 귀엽다",
+            subComment: [],
+        },
+        {
+            id: "asdfghjkl",
+            writer: {
+                name: "피융",
+                profileImage: "",
+            },
+            heartCount: 0,
+            content: "이분머임???",
+            subComment: [],
+        },
+        {
+            id: "asdfghjkl;",
+            writer: {
+                name: "오이거는첨봄",
+                profileImage: "",
+            },
+            heartCount: 0,
+            content: "밍끼야아아아악",
+            subComment: [],
+        },
+    ];
 
     return (
         <Screen className="bg-gray-900">
@@ -121,39 +186,17 @@ export default function Moment() {
                                 onClose={() => setIsOpen(false)}
                             >
                                 <div className="flex flex-col gap-[24px]">
-                                    <p className="font-p-semibold text-[20px] text-gray-900">
-                                        댓글
-                                    </p>
+                                    <div className="flex items-center gap-[8px]">
+                                        <span className="font-p-semibold text-[20px] text-gray-900">
+                                            댓글
+                                        </span>
 
-                                    <p className="font-p-mj text-[16px] text-gray-900">
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit. Sed cursus, nisl vitae
-                                        sagittis mollis, magna urna posuere
-                                        ipsum, non aliquet massa nisl nec dui.
-                                        Curabitur vitae nunc molestie, vehicula
-                                        odio sed, gravida lacus. Donec ac urna
-                                        libero. Suspendisse sit amet sapien et
-                                        mi commodo elementum. Phasellus vitae
-                                        mauris vitae ex faucibus hendrerit in
-                                        vitae ipsum. Ut malesuada lectus ut erat
-                                        iaculis, et pellentesque nibh molestie.
-                                        Vestibulum porttitor eros tellus. Nam
-                                        volutpat magna erat, quis iaculis massa
-                                        sagittis sit amet. Pellentesque habitant
-                                        morbi tristique senectus et netus et
-                                        malesuada fames ac turpis egestas.
-                                        Pellentesque vestibulum diam lacinia
-                                        ultrices egestas. Orci varius natoque
-                                        penatibus et magnis dis parturient
-                                        montes, nascetur ridiculus mus. Ut
-                                        maximus ipsum vel mauris congue
-                                        scelerisque a quis dolor. Duis molestie,
-                                        metus sit amet convallis sodales, ante
-                                        tellus suscipit nulla, vitae aliquet
-                                        purus metus non risus. Vivamus viverra
-                                        urna libero, sed maximus nunc tristique
-                                        vitae.
-                                    </p>
+                                        <span className="font-p-gmsm text-[18px] text-gray-400 translate-y-[2px]">
+                                            {comments.length}
+                                        </span>
+                                    </div>
+
+                                    <Comments comments={comments} />
                                 </div>
                             </BottomSheet>
                         </>
