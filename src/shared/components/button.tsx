@@ -1,7 +1,7 @@
 export enum ButtonTypes {
     default = "outline-none",
 
-    md = `${ButtonTypes.default} w-full p-[16px_24px] rounded-[12px] font-p-medium text-[16px] flex justify-center items-center gap-[8px] transition-all duration-250 active:scale-95 *:transition-all *:duration-250`,
+    md = `${ButtonTypes.default} w-full p-[16px_24px] rounded-[12px] font-p-medium text-[16px] flex justify-center items-center gap-[8px] transition-all duration-100 active:scale-95 *:transition-all *:duration-100`,
 }
 
 export enum ButtonVariants {

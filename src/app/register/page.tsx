@@ -25,6 +25,7 @@ export default function Register() {
 
     const [isOpen, setIsOpen] = useState(false);
     const [isOtpOpen, setIsOtpOpen] = useState(false);
+    const [isCreating, setIsCreating] = useState(false);
 
     const [guest, setGuest] = useState<{ isFetching: boolean; data: object }>({
         isFetching: true,
@@ -86,6 +87,7 @@ export default function Register() {
                                             value=""
                                             onChange={() => {}}
                                             placeholder="이메일을 입력해 주세요."
+                                            disabled={isOpen || isOtpOpen}
                                         />
 
                                         <div className="flex flex-wrap gap-[8px]">
@@ -113,6 +115,7 @@ export default function Register() {
                                             value=""
                                             onChange={() => {}}
                                             placeholder="닉네임을 입력해 주세요."
+                                            disabled={isOpen || isOtpOpen}
                                         />
 
                                         <div className="flex flex-wrap gap-[8px]">
@@ -145,6 +148,7 @@ export default function Register() {
                                             value=""
                                             onChange={() => {}}
                                             placeholder="간단한 자기소개를 입력해 주세요."
+                                            disabled={isOpen || isOtpOpen}
                                         />
 
                                         <div className="flex flex-wrap gap-[8px]">
@@ -160,7 +164,11 @@ export default function Register() {
                                     <Button
                                         type="md"
                                         variants="black"
-                                        onClick={() => setIsOpen(true)}
+                                        onClick={() => {
+                                            setIsOpen(true);
+                                            setIsCreating(true);
+                                        }}
+                                        disabled={isCreating}
                                     >
                                         <ListCheckIcon
                                             size={20}
@@ -173,7 +181,10 @@ export default function Register() {
 
                             <BottomSheet
                                 isOpen={isOpen}
-                                onClose={() => setIsOpen(false)}
+                                onClose={() => {
+                                    setIsOpen(false);
+                                    setIsCreating(false);
+                                }}
                             >
                                 <div className="flex flex-col gap-[32px]">
                                     <div className="flex flex-col gap-[12px]">
@@ -241,7 +252,10 @@ export default function Register() {
 
                             <BottomSheet
                                 isOpen={isOtpOpen}
-                                onClose={() => setIsOtpOpen(false)}
+                                onClose={() => {
+                                    setIsOtpOpen(false);
+                                    setIsCreating(false);
+                                }}
                             >
                                 <div className="flex flex-col gap-[32px]">
                                     <div className="flex flex-col gap-[12px]">

@@ -13,9 +13,14 @@ import { fans as MockFans } from "@/mocks/fans";
 import { TypeFan } from "@/shared/types/types";
 import { OverlayHeader } from "@/shared/components/overlay-header";
 import { BottomSheet } from "@/shared/components/bottom-sheet";
+import {
+    HeartIcon,
+    MessageCircleMoreIcon,
+    MessageCircleWarningIcon,
+} from "lucide-react";
 
 export default function Moment() {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
     const [fans, setFans] = useState<{ isFetching: boolean; data: TypeFan[] }>({
         isFetching: true,
@@ -51,7 +56,65 @@ export default function Moment() {
                         <>
                             <OverlayHeader theme="dark" title="모먼트" />
 
-                            <div className="p-[48px_16px]"></div>
+                            <div className="absolute z-100 bottom-[75px] p-[16px]">
+                                <div className="flex flex-col gap-[24px]">
+                                    <div className="flex items-center gap-[10px]">
+                                        <div className="size-[24px] bg-white rounded-[4px]" />
+
+                                        <span className="font-p-medium text-[16px] text-white">
+                                            테스터
+                                        </span>
+                                    </div>
+
+                                    <div className="flex flex-col gap-[8px]">
+                                        <span className="font-p-semibold text-[24px] text-white">
+                                            제목
+                                        </span>
+
+                                        <span className="font-p-regular text-[18px] text-white">
+                                            설명입니다.
+                                            <br />
+                                            이것은 디스크립션입니다.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="absolute z-100 top-[50%] right-[24px] -translate-y-[50%]">
+                                <div className="flex flex-col gap-[48px]">
+                                    <div className="flex flex-col gap-[16px]">
+                                        <div className="flex flex-col items-center gap-[8px] transition-all duration-100 active:scale-95">
+                                            <HeartIcon
+                                                size={32}
+                                                className="stroke-white"
+                                            />
+
+                                            <span className="font-p-gmsm text-[14px] text-white">
+                                                12K
+                                            </span>
+                                        </div>
+
+                                        <div
+                                            className="flex flex-col items-center gap-[8px] transition-all duration-100 active:scale-95"
+                                            onClick={() => setIsOpen(true)}
+                                        >
+                                            <MessageCircleMoreIcon
+                                                size={32}
+                                                className="stroke-white"
+                                            />
+
+                                            <span className="font-p-gmsm text-[14px] text-white">
+                                                4M
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <MessageCircleWarningIcon
+                                        size={32}
+                                        className="stroke-white transition-all duration-100 active:scale-95"
+                                    />
+                                </div>
+                            </div>
 
                             <BottomSheet
                                 isOpen={isOpen}

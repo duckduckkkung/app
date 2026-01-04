@@ -15,6 +15,7 @@ interface InputProps {
     value: string;
     onChange: (value: string) => void;
     placeholder?: string;
+    disabled?: boolean;
 }
 
 export const Input = ({
@@ -23,13 +24,17 @@ export const Input = ({
     value,
     onChange,
     placeholder = "",
+    disabled = false,
 }: InputProps) => {
     return (
         <input
-            className={`${InputTypes[type]} ${InputVariants[variants]}`}
+            className={`${InputTypes[type]} ${InputVariants[variants]} ${
+                disabled ? "!bg-gray-50 !text-gray-600" : ""
+            }`}
             onChange={(e) => onChange(e.target.value)}
             value={value}
             placeholder={placeholder}
+            disabled={disabled}
         />
     );
 };

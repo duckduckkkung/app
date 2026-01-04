@@ -70,7 +70,7 @@ export default function Feed() {
 
                                         <div className="flex flex-col gap-[16px]">
                                             <div
-                                                className="flex flex-col gap-[4px] transition-all duration-250 active:scale-95"
+                                                className="flex flex-col gap-[4px] transition-all duration-100 active:scale-95"
                                                 onClick={() => setIsOpen(true)}
                                             >
                                                 <div className="flex justify-between items-center">
@@ -126,7 +126,7 @@ export default function Feed() {
                                             </div>
 
                                             <div
-                                                className="flex flex-col gap-[4px] transition-all duration-250 active:scale-95"
+                                                className="flex flex-col gap-[4px] transition-all duration-100 active:scale-95"
                                                 onClick={() => setIsOpen(true)}
                                             >
                                                 <div className="flex justify-between items-center">
@@ -190,7 +190,7 @@ export default function Feed() {
 
                                         <div className="flex flex-col gap-[16px]">
                                             <div
-                                                className="flex flex-col gap-[4px] transition-all duration-250 active:scale-95"
+                                                className="flex flex-col gap-[4px] transition-all duration-100 active:scale-95"
                                                 onClick={() => setIsOpen(true)}
                                             >
                                                 <div className="flex justify-between items-center">
@@ -219,7 +219,7 @@ export default function Feed() {
                                             </div>
 
                                             <div
-                                                className="flex flex-col gap-[4px] transition-all duration-250 active:scale-95"
+                                                className="flex flex-col gap-[4px] transition-all duration-100 active:scale-95"
                                                 onClick={() => setIsOpen(true)}
                                             >
                                                 <div className="flex justify-between items-center">
@@ -266,7 +266,7 @@ export default function Feed() {
                                                         .map((_, i) => (
                                                             <div
                                                                 key={`img-${i}`}
-                                                                className="bg-gray-200 aspect-1/1 rounded-[8px] transition-all duration-250 active:scale-95"
+                                                                className="bg-gray-200 aspect-1/1 rounded-[8px] transition-all duration-100 active:scale-95"
                                                                 onClick={() =>
                                                                     setIsOpen(
                                                                         true
@@ -288,7 +288,7 @@ export default function Feed() {
                                                         .map((_, i) => (
                                                             <div
                                                                 key={`img-${i}`}
-                                                                className="bg-gray-200 aspect-1/1 rounded-[8px] transition-all duration-250 active:scale-95"
+                                                                className="bg-gray-200 aspect-1/1 rounded-[8px] transition-all duration-100 active:scale-95"
                                                                 onClick={() =>
                                                                     setIsOpen(
                                                                         true
