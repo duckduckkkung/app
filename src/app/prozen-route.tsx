@@ -24,20 +24,6 @@ export const FrozenRoute = ({
 
     useEffect(() => {
         if (typeof window !== "undefined") {
-            const localTop = window.localStorage.getItem("top");
-            const top = localTop ? parseInt(localTop) : 0;
-
-            const localBottom = window.localStorage.getItem("bottom");
-            const bottom = localBottom ? parseInt(localBottom) : 0;
-
-            bar.set(top, bottom);
-        }
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
-        if (typeof window !== "undefined") {
             const win = window as unknown as {
                 setBarHeights: (top: number, bottom: number) => void;
             };
@@ -45,9 +31,11 @@ export const FrozenRoute = ({
             win.setBarHeights = (top, bottom) => {
                 window.localStorage.setItem("top", String(top));
                 window.localStorage.setItem("bottom", String(bottom));
+
+                bar.set(top, bottom);
             };
         }
-    }, []);
+    }, [bar]);
 
     const MODE = process.env.NEXT_PUBLIC_MODE;
 
