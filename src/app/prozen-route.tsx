@@ -29,9 +29,6 @@ export const FrozenRoute = ({
             };
 
             win.setBarHeights = (top, bottom) => {
-                window.localStorage.setItem("top", String(top));
-                window.localStorage.setItem("bottom", String(bottom));
-
                 bar.set(top, bottom);
             };
         }
