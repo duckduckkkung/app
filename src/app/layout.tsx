@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="ko">
-            <body className="w-dvw h-dvh">
+            <body className="w-dvw h-dvh overflow-hidden">
                 <Suspense>
                     <Provider>{children}</Provider>
                 </Suspense>
