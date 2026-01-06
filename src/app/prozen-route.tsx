@@ -22,17 +22,19 @@ export const FrozenRoute = ({
     const pathname = usePathname();
     const bar = useBar();
 
+    const setBarHeights = (top: number, bottom: number) => {
+        bar.set(top, bottom);
+    };
+
     useEffect(() => {
         if (typeof window !== "undefined") {
             const win = window as unknown as {
                 setBarHeights: (top: number, bottom: number) => void;
             };
 
-            win.setBarHeights = (top, bottom) => {
-                bar.set(top, bottom);
-            };
+            win.setBarHeights = setBarHeights;
         }
-    }, [bar]);
+    }, []);
 
     const MODE = process.env.NEXT_PUBLIC_MODE;
 
