@@ -130,7 +130,7 @@ export default function Search() {
             </Overlay.Parent>
 
             <Overlay.Children>
-                <Screen>
+                <Screen bf={80}>
                     <div className="h-full overflow-y-scroll">
                         <OverlayHeader
                             title="덕질 생성"

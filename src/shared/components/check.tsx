@@ -21,17 +21,19 @@ export const Check = ({
             <div className="flex items-center gap-[8px]">
                 <CheckIcon
                     size={16}
-                    className={checked ? "stroke-c-primary" : "stroke-gray-400"}
+                    className={`shrink-0 ${
+                        checked ? "stroke-c-primary" : "stroke-gray-400"
+                    }`}
                 />
 
                 <div className="flex items-center gap-[4px]">
                     {required && (
-                        <span className="font-p-medium text-[16px] text-c-primary">
+                        <span className="shrink-0 font-p-medium text-[16px] text-c-primary">
                             (필수)
                         </span>
                     )}
 
-                    <span className="font-p-medium text-[16px] text-gray-600">
+                    <span className="font-p-medium text-[16px] text-gray-600 truncate">
                         {text}
                     </span>
                 </div>

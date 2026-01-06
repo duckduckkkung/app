@@ -134,7 +134,7 @@ export const BottomSheet = ({
                             bottom: `${bar.bottom}px`,
                             touchAction: "none",
                         }}
-                        className="rounded-[24px] fixed left-[16px] right-[16px] bg-white z-200 overflow-hidden max-h-[70vh] pt-[8px] flex flex-col gap-[24px]"
+                        className="rounded-[24px] fixed left-[16px] right-[16px] bg-white z-200 overflow-hidden max-h-[70vh] pt-[8px] flex flex-col"
                     >
                         <div
                             className="absolute top-0 left-0 w-full h-[80px] z-100"
