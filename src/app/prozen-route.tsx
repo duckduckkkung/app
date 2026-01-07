@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import { useBar } from "@/stores/bar.zustand";
@@ -22,6 +22,7 @@ export const FrozenRoute = ({
     const pathname = usePathname();
     const bar = useBar();
 
+    const [flag, setFlag] = useState(false);
     useEffect(() => {
         const win = window as unknown as {
             setBarHeights: (top: number, bottom: number) => void;
@@ -34,10 +35,11 @@ export const FrozenRoute = ({
             bar.set(top, bottom);
         };
 
-        if (win.PaddingChannel) {
+        if (win.PaddingChannel && !flag) {
+            setFlag(true);
             win.PaddingChannel.postMessage("getPadding");
         }
-    }, [bar]);
+    }, [bar, flag]);
 
     const MODE = process.env.NEXT_PUBLIC_MODE;
 
