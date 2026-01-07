@@ -10,6 +10,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 
+import { BottomSheet } from "@/shared/components/bottom-sheet";
 import { Button } from "@/shared/components/button";
 import { Screen } from "@/shared/components/screen";
 import { Footer } from "@/shared/components/footer";
@@ -17,7 +18,6 @@ import { Verify } from "@/shared/components/verify";
 import { Loader } from "@/shared/components/loader";
 import { Input } from "@/shared/components/input";
 import { Empty } from "@/shared/components/empty";
-import { BottomSheet } from "@/shared/components/bottom-sheet";
 import { Check } from "@/shared/components/check";
 
 export default function Register() {

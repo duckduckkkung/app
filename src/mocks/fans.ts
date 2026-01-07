@@ -1,4 +1,4 @@
-import { TypeFan } from "@/shared/types/types";
+import { TypeFan } from "@/shared/types/data";
 
 export const fans: TypeFan[] = [
     {

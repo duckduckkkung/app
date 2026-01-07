@@ -19,7 +19,7 @@ import { Empty } from "@/shared/components/empty";
 
 import { fans as MockFans } from "@/mocks/fans";
 
-import { TypeFan } from "@/shared/types/types";
+import { TypeFan } from "@/shared/types/data";
 import { Tag } from "@/shared/components/tag";
 
 export default function Feed() {
