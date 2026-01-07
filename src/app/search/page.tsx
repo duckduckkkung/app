@@ -72,7 +72,7 @@ export default function Search() {
 
                                             <PlusIcon
                                                 size={20}
-                                                className="stroke-black"
+                                                className="stroke-gray-900"
                                                 onClick={() => setIsOpen(true)}
                                             />
                                         </div>

@@ -62,7 +62,7 @@ export const BottomSheet = ({
                                 },
                             },
                         }}
-                        className="fixed inset-0 bg-black z-100"
+                        className="fixed inset-0 bg-gray-900 z-100"
                         onClick={onClose}
                     />
 

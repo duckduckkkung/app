@@ -95,7 +95,7 @@ const Children = ({ children }: { children: React.ReactNode }) => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 0.5 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black z-200"
+                        className="fixed inset-0 bg-gray-900 z-200"
                         onClick={onClose}
                     />
 
