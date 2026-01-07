@@ -2,7 +2,6 @@
 
 import {
     ChevronLeftIcon,
-    ChevronRightIcon,
     ImageUpIcon,
     ListCheckIcon,
     LogOutIcon,
