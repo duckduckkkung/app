@@ -1,4 +1,4 @@
-import { TypeMoment } from "@/shared/types/types";
+import { TypeMoment } from "@/shared/types/data";
 
 export const moments: TypeMoment[] = [
     {

@@ -18,7 +18,7 @@ import { Empty } from "@/shared/components/empty";
 
 import { fans as MockFans } from "@/mocks/fans";
 
-import { TypeFan } from "@/shared/types/types";
+import { TypeFan } from "@/shared/types/data";
 
 export default function Moment() {
     const [isOpen, setIsOpen] = useState(false);

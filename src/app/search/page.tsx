@@ -25,7 +25,7 @@ import { Tag } from "@/shared/components/tag";
 
 import { fans as MockFans } from "@/mocks/fans";
 
-import { TypeFan } from "@/shared/types/types";
+import { TypeFan } from "@/shared/types/data";
 
 export default function Search() {
     const [isOpen, setIsOpen] = useState(false);
@@ -72,7 +72,7 @@ export default function Search() {
 
                                             <PlusIcon
                                                 size={20}
-                                                className="stroke-black"
+                                                className="stroke-gray-900"
                                                 onClick={() => setIsOpen(true)}
                                             />
                                         </div>

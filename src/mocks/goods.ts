@@ -1,4 +1,4 @@
-import { TypeGoods } from "@/shared/types/types";
+import { TypeGoods } from "@/shared/types/data";
 
 export const goods: TypeGoods[] = [
     {

@@ -1,6 +1,7 @@
 export enum ButtonTypes {
     default = "outline-none",
 
+    sm = `${ButtonTypes.default} w-full p-[14px_20px] rounded-[12px] font-p-medium text-[16px] flex justify-center items-center gap-[8px] transition-all duration-100 active:scale-95 *:transition-all *:duration-100`,
     md = `${ButtonTypes.default} w-full p-[16px_24px] rounded-[12px] font-p-medium text-[16px] flex justify-center items-center gap-[8px] transition-all duration-100 active:scale-95 *:transition-all *:duration-100`,
     sm_icon = `${ButtonTypes.md} !p-[12px] !rounded-[6px] !aspect-square`,
     md_icon = `${ButtonTypes.md} !p-[16px] !rounded-[8px] !aspect-square`,

@@ -61,7 +61,7 @@ export const BottomNavigator = ({
             {menus.map((menu, i) => (
                 <div
                     key={`menu-${i}`}
-                    className="flex-1 p-[12px] flex flex-col gap-[6px] items-center"
+                    className="flex-1 p-[12px] flex flex-col gap-[6px] items-center transition-all duration-100 active:scale-95"
                     onClick={() => router.push(menu.location)}
                 >
                     <menu.Icon
