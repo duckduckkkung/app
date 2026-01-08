@@ -131,19 +131,14 @@ export const Card = ({ bank, cardNumber }: CardProps) => {
                         }}
                     />
 
-                    <Image
-                        src={IC}
-                        alt="ic"
-                        width={36}
-                        className="translate-y-[1px]"
-                    />
+                    <Image src={IC} alt="ic" width={36} />
                 </div>
             </div>
 
             <div className="flex justify-end items-center">
                 <div className="flex items-center gap-[8px]">
                     <span
-                        className="font-p-gmsm text-[16px] translate-y-[2px]"
+                        className="font-p-gmsm text-[16px] leading-none translate-y-[2px]"
                         style={{
                             color: data.text,
                         }}
@@ -151,7 +146,7 @@ export const Card = ({ bank, cardNumber }: CardProps) => {
                         {cardNumber.slice(0, 4)}
                     </span>
 
-                    <div className="flex items-center gap-[3px]">
+                    <div className="flex items-center gap-[4px]">
                         <div
                             className="size-[4px] rounded-full"
                             style={{
@@ -178,7 +173,7 @@ export const Card = ({ bank, cardNumber }: CardProps) => {
                         />
                     </div>
 
-                    <div className="flex items-center gap-[3px]">
+                    <div className="flex items-center gap-[4px]">
                         <div
                             className="size-[4px] rounded-full"
                             style={{
@@ -205,9 +200,9 @@ export const Card = ({ bank, cardNumber }: CardProps) => {
                         />
                     </div>
 
-                    <div className="flex items-center gap-[3px]">
+                    <div className="flex items-center gap-[4px]">
                         <span
-                            className="font-p-gmsm text-[16px] translate-y-[2px]"
+                            className="font-p-gmsm text-[16px] leading-none translate-y-[2px]"
                             style={{
                                 color: data.text,
                             }}

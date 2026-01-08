@@ -191,7 +191,7 @@ export default function Moment() {
                                             댓글
                                         </span>
 
-                                        <span className="font-p-gmsm text-[18px] text-gray-400 translate-y-[2px]">
+                                        <span className="font-p-gmsm text-[18px] text-gray-400 translate-y-[2px] leading-none">
                                             {comments.length}
                                         </span>
                                     </div>

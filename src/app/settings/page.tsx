@@ -156,7 +156,7 @@ export default function Settings() {
                                         >
                                             <div className="flex items-center gap-[14px]">
                                                 <div className="size-[32px] bg-gray-100 rounded-[6px] flex justify-center items-center">
-                                                    <span className="font-p-tossface text-[18px] translate-y-[1px]">
+                                                    <span className="font-p-tossface text-[18px]">
                                                         😀
                                                     </span>
                                                 </div>
@@ -176,7 +176,7 @@ export default function Settings() {
                                         >
                                             <div className="flex items-center gap-[14px]">
                                                 <div className="size-[32px] bg-amber-100 rounded-[6px] flex justify-center items-center">
-                                                    <span className="font-p-tossface text-[18px] translate-y-[1px]">
+                                                    <span className="font-p-tossface text-[18px]">
                                                         🔑
                                                     </span>
                                                 </div>
@@ -196,7 +196,7 @@ export default function Settings() {
                                         >
                                             <div className="flex items-center gap-[14px]">
                                                 <div className="size-[32px] bg-green-100 rounded-[6px] flex justify-center items-center">
-                                                    <span className="font-p-tossface text-[18px] translate-y-[1px]">
+                                                    <span className="font-p-tossface text-[18px]">
                                                         💴
                                                     </span>
                                                 </div>
@@ -216,7 +216,7 @@ export default function Settings() {
                                         >
                                             <div className="flex items-center gap-[14px]">
                                                 <div className="size-[32px] bg-gray-100 rounded-[6px] flex justify-center items-center">
-                                                    <span className="font-p-tossface text-[18px] translate-y-[1px]">
+                                                    <span className="font-p-tossface text-[18px]">
                                                         📎
                                                     </span>
                                                 </div>
