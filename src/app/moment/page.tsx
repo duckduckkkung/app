@@ -16,19 +16,25 @@ import { Screen } from "@/shared/components/screen";
 import { Loader } from "@/shared/components/loader";
 import { Empty } from "@/shared/components/empty";
 
-import { fans as MockFans } from "@/mocks/fans";
+import { moments as MockMoments } from "@/mocks/moments";
 
-import { TypeFan } from "@/shared/types/data";
+import { TypeMoment } from "@/shared/types/data";
 
 export default function Moment() {
     const [isOpen, setIsOpen] = useState(false);
 
-    const [fans, setFans] = useState<{ isFetching: boolean; data: TypeFan[] }>({
+    const [moments, setMoments] = useState<{
+        isFetching: boolean;
+        data: TypeMoment[];
+    }>({
         isFetching: true,
         data: [],
     });
     useEffect(() => {
-        setTimeout(() => setFans({ isFetching: false, data: MockFans }), 500);
+        setTimeout(
+            () => setMoments({ isFetching: false, data: MockMoments }),
+            500
+        );
     }, []);
 
     const containerVariants = useMemo(
@@ -108,16 +114,16 @@ export default function Moment() {
         <Screen className="bg-gray-900">
             <AnimatePresence mode="popLayout">
                 <motion.div
-                    key={fans.isFetching ? "fetching" : "fetched"}
+                    key={moments.isFetching ? "fetching" : "fetched"}
                     variants={containerVariants}
                     initial="initial"
                     animate="animate"
                     exit="exit"
                     className="relative w-full h-full overflow-y-scroll"
                 >
-                    {fans.isFetching ? (
+                    {moments.isFetching ? (
                         <Loader />
-                    ) : fans.data.length > 0 ? (
+                    ) : moments.data.length > 0 ? (
                         <>
                             <OverlayHeader theme="dark" title="모먼트" />
 

@@ -26,10 +26,6 @@ import { Input } from "@/shared/components/input";
 import { Empty } from "@/shared/components/empty";
 import { Tag } from "@/shared/components/tag";
 
-import { fans as MockFans } from "@/mocks/fans";
-
-import { TypeFan } from "@/shared/types/data";
-
 import GoogleIcon from "@/assets/icons/google.png";
 import KakaoIcon from "@/assets/icons/kakao.png";
 
@@ -106,12 +102,12 @@ export default function Settings() {
         }
     };
 
-    const [fans, setFans] = useState<{ isFetching: boolean; data: TypeFan[] }>({
+    const [user, setUser] = useState<{ isFetching: boolean; data: object }>({
         isFetching: true,
-        data: [],
+        data: {},
     });
     useEffect(() => {
-        setTimeout(() => setFans({ isFetching: false, data: MockFans }), 500);
+        setTimeout(() => setUser({ isFetching: false, data: {} }), 500);
     }, []);
 
     const containerVariants = useMemo(
@@ -129,16 +125,16 @@ export default function Settings() {
                 <Screen bn>
                     <AnimatePresence mode="popLayout">
                         <motion.div
-                            key={fans.isFetching ? "fetching" : "fetched"}
+                            key={user.isFetching ? "fetching" : "fetched"}
                             variants={containerVariants}
                             initial="initial"
                             animate="animate"
                             exit="exit"
                             className="relative w-full h-full overflow-y-scroll"
                         >
-                            {fans.isFetching ? (
+                            {user.isFetching ? (
                                 <Loader />
-                            ) : fans.data.length > 0 ? (
+                            ) : user.data ? (
                                 <>
                                     <div className="p-[48px_16px]">
                                         <p className="font-p-medium text-[24px] text-gray-900">
