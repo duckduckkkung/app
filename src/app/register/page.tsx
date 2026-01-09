@@ -6,10 +6,10 @@ import {
     KeyRoundIcon,
     ListCheckIcon,
 } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+import { PullToRefresh } from "@/shared/components/pull-to-refresh";
 import { BottomSheet } from "@/shared/components/bottom-sheet";
 import { Button } from "@/shared/components/button";
 import { Screen } from "@/shared/components/screen";
@@ -35,140 +35,132 @@ export default function Register() {
         setTimeout(() => setGuest({ isFetching: false, data: {} }), 500);
     }, []);
 
-    const containerVariants = useMemo(
-        () => ({
-            initial: { opacity: 0 },
-            animate: { opacity: 1, transition: { duration: 0.1 } },
-            exit: { opacity: 0, transition: { duration: 0.1 } },
-        }),
-        []
-    );
-
     return (
         <Screen bf={80}>
-            <AnimatePresence mode="popLayout">
-                <motion.div
-                    key={guest.isFetching ? "fetching" : "fetched"}
-                    variants={containerVariants}
-                    initial="initial"
-                    animate="animate"
-                    exit="exit"
-                    className="relative w-full h-full overflow-y-scroll"
-                >
-                    {guest.isFetching ? (
-                        <Loader />
-                    ) : guest.data ? (
-                        <>
-                            <div className="p-[48px_16px] flex flex-col gap-[48px]">
-                                <div className="flex justify-center">
-                                    <div className="size-[100px] bg-gray-100 rounded-[12px] flex justify-center items-center">
-                                        <ImageUpIcon
-                                            size={48}
-                                            className="stroke-gray-400"
+            <PullToRefresh
+                motionKey={guest.isFetching ? "fetching" : "fetched"}
+                onRefresh={async () => {
+                    setGuest({ isFetching: true, data: {} });
+                    setTimeout(
+                        () =>
+                            setGuest({
+                                isFetching: false,
+                                data: {},
+                            }),
+                        500
+                    );
+                }}
+            >
+                {guest.isFetching ? (
+                    <Loader />
+                ) : guest.data ? (
+                    <>
+                        <div className="p-[48px_16px] flex flex-col gap-[48px]">
+                            <div className="flex justify-center">
+                                <div className="size-[100px] bg-gray-100 rounded-[12px] flex justify-center items-center">
+                                    <ImageUpIcon
+                                        size={48}
+                                        className="stroke-gray-400"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="flex flex-col gap-[32px]">
+                                <div className="flex flex-col gap-[8px]">
+                                    <div className="flex items-center gap-[4px]">
+                                        <span className="font-p-medium text-[16px] text-c-primary">
+                                            *
+                                        </span>
+
+                                        <span className="font-p-medium text-[16px] text-gray-600">
+                                            이메일
+                                        </span>
+                                    </div>
+
+                                    <Input
+                                        type="md"
+                                        variants="outline"
+                                        value=""
+                                        onChange={() => {}}
+                                        placeholder="이메일을 입력해 주세요."
+                                        disabled={isOpen || isOtpOpen}
+                                    />
+
+                                    <div className="flex flex-wrap gap-[8px]">
+                                        <Verify
+                                            label="유효한 이메일"
+                                            checked={false}
                                         />
                                     </div>
                                 </div>
 
-                                <div className="flex flex-col gap-[32px]">
-                                    <div className="flex flex-col gap-[8px]">
-                                        <div className="flex items-center gap-[4px]">
-                                            <span className="font-p-medium text-[16px] text-c-primary">
-                                                *
-                                            </span>
+                                <div className="flex flex-col gap-[8px]">
+                                    <div className="flex items-center gap-[4px]">
+                                        <span className="font-p-medium text-[16px] text-c-primary">
+                                            *
+                                        </span>
 
-                                            <span className="font-p-medium text-[16px] text-gray-600">
-                                                이메일
-                                            </span>
-                                        </div>
-
-                                        <Input
-                                            type="md"
-                                            variants="outline"
-                                            value=""
-                                            onChange={() => {}}
-                                            placeholder="이메일을 입력해 주세요."
-                                            disabled={isOpen || isOtpOpen}
-                                        />
-
-                                        <div className="flex flex-wrap gap-[8px]">
-                                            <Verify
-                                                label="유효한 이메일"
-                                                checked={false}
-                                            />
-                                        </div>
+                                        <span className="font-p-medium text-[16px] text-gray-600">
+                                            닉네임
+                                        </span>
                                     </div>
 
-                                    <div className="flex flex-col gap-[8px]">
-                                        <div className="flex items-center gap-[4px]">
-                                            <span className="font-p-medium text-[16px] text-c-primary">
-                                                *
-                                            </span>
+                                    <Input
+                                        type="md"
+                                        variants="outline"
+                                        value=""
+                                        onChange={() => {}}
+                                        placeholder="닉네임을 입력해 주세요."
+                                        disabled={isOpen || isOtpOpen}
+                                    />
 
-                                            <span className="font-p-medium text-[16px] text-gray-600">
-                                                닉네임
-                                            </span>
-                                        </div>
-
-                                        <Input
-                                            type="md"
-                                            variants="outline"
-                                            value=""
-                                            onChange={() => {}}
-                                            placeholder="닉네임을 입력해 주세요."
-                                            disabled={isOpen || isOtpOpen}
+                                    <div className="flex flex-wrap gap-[8px]">
+                                        <Verify
+                                            label="한영 대소문자 (띄어쓰기 가능)"
+                                            checked={false}
                                         />
 
-                                        <div className="flex flex-wrap gap-[8px]">
-                                            <Verify
-                                                label="한영 대소문자 (띄어쓰기 가능)"
-                                                checked={false}
-                                            />
+                                        <Verify
+                                            label="3-20자"
+                                            checked={false}
+                                        />
+                                    </div>
+                                </div>
 
-                                            <Verify
-                                                label="3-20자"
-                                                checked={false}
-                                            />
-                                        </div>
+                                <div className="flex flex-col gap-[8px]">
+                                    <div className="flex items-center gap-[4px]">
+                                        <span className="font-p-medium text-[16px] text-gray-400">
+                                            (선택)
+                                        </span>
+
+                                        <span className="font-p-medium text-[16px] text-gray-600">
+                                            자기소개
+                                        </span>
                                     </div>
 
-                                    <div className="flex flex-col gap-[8px]">
-                                        <div className="flex items-center gap-[4px]">
-                                            <span className="font-p-medium text-[16px] text-gray-400">
-                                                (선택)
-                                            </span>
+                                    <Input
+                                        type="md"
+                                        variants="outline"
+                                        value=""
+                                        onChange={() => {}}
+                                        placeholder="간단한 자기소개를 입력해 주세요."
+                                        disabled={isOpen || isOtpOpen}
+                                    />
 
-                                            <span className="font-p-medium text-[16px] text-gray-600">
-                                                자기소개
-                                            </span>
-                                        </div>
-
-                                        <Input
-                                            type="md"
-                                            variants="outline"
-                                            value=""
-                                            onChange={() => {}}
-                                            placeholder="간단한 자기소개를 입력해 주세요."
-                                            disabled={isOpen || isOtpOpen}
+                                    <div className="flex flex-wrap gap-[8px]">
+                                        <Verify
+                                            label="0-40자"
+                                            checked={false}
                                         />
-
-                                        <div className="flex flex-wrap gap-[8px]">
-                                            <Verify
-                                                label="0-40자"
-                                                checked={false}
-                                            />
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </>
-                    ) : (
-                        <Empty
-                            title="Not Found"
-                            text="결과를 찾지 못했습니다."
-                        />
-                    )}
-                </motion.div>
-            </AnimatePresence>
+                        </div>
+                    </>
+                ) : (
+                    <Empty title="Not Found" text="결과를 찾지 못했습니다." />
+                )}
+            </PullToRefresh>
 
             <Footer bp>
                 <Button
