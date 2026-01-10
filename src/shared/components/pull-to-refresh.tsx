@@ -100,7 +100,10 @@ export const PullToRefresh = ({
     const size = pullProgress * 20;
 
     return (
-        <div ref={containerRef} className="relative w-full h-full">
+        <div
+            ref={containerRef}
+            className="relative w-full h-full overflow-y-scroll"
+        >
             <AnimatePresence mode="popLayout">
                 <motion.div
                     key={motionKey}
