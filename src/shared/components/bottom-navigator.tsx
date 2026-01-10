@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-import { useBar } from "@/stores/bar.zustand";
+import { useBar } from "@/shared/stores/bar.zustand";
 
 interface BottomNavigatorProps {
     theme?: "white" | "dark";

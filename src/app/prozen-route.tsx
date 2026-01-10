@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-import { useBar } from "@/stores/bar.zustand";
+import { useBar } from "@/shared/stores/bar.zustand";
 
 import SignalIcon from "@/assets/icons/Mobile Signal.png";
 import WifiIcon from "@/assets/icons/Wifi.png";

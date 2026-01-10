@@ -8,7 +8,7 @@ import {
     useDragControls,
 } from "framer-motion";
 
-import { useBar } from "@/stores/bar.zustand";
+import { useBar } from "@/shared/stores/bar.zustand";
 
 interface BottomSheetProps {
     isOpen: boolean;
