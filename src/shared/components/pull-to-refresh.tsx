@@ -14,8 +14,8 @@ interface PullToRefreshProps {
     onRefresh?: () => Promise<void>;
 }
 
-const MAX_PULL_LENGTH = 80;
-const REFRESH_THRESHOLD = 40;
+const MAX_PULL_LENGTH = 240;
+const REFRESH_THRESHOLD = 200;
 
 export const PullToRefresh = ({
     motionKey,
