@@ -8,10 +8,10 @@ import {
     SearchIcon,
     XIcon,
 } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { BottomNavigator } from "@/shared/components/bottom-navigator";
+import { PullToRefresh } from "@/shared/components/pull-to-refresh";
 import { OverlayHeader } from "@/shared/components/overlay-header";
 import { Overlay } from "@/shared/components/overlay";
 import { Footer } from "@/shared/components/footer";
@@ -38,92 +38,87 @@ export default function Search() {
         setTimeout(() => setFans({ isFetching: false, data: MockFans }), 500);
     }, []);
 
-    const containerVariants = useMemo(
-        () => ({
-            initial: { opacity: 0 },
-            animate: { opacity: 1, transition: { duration: 0.1 } },
-            exit: { opacity: 0, transition: { duration: 0.1 } },
-        }),
-        []
-    );
-
     return (
         <Overlay isOpen={isOpen} onClose={() => setIsOpen(false)}>
             <Overlay.Parent>
                 <Screen bn>
-                    <AnimatePresence mode="popLayout">
-                        <motion.div
-                            key={fans.isFetching ? "fetching" : "fetched"}
-                            variants={containerVariants}
-                            initial="initial"
-                            animate="animate"
-                            exit="exit"
-                            className="relative w-full h-full overflow-y-scroll"
-                        >
-                            {fans.isFetching ? (
-                                <Loader />
-                            ) : fans.data.length > 0 ? (
-                                <>
-                                    <div className="p-[48px_16px] flex flex-col gap-[24px]">
-                                        <div className="flex justify-between items-center">
-                                            <p className="font-p-medium text-[24px] text-gray-900">
-                                                검색
-                                            </p>
+                    <PullToRefresh
+                        motionKey={fans.isFetching ? "fetching" : "fetched"}
+                        onRefresh={async () => {
+                            setFans({ isFetching: true, data: [] });
+                            setTimeout(
+                                () =>
+                                    setFans({
+                                        isFetching: false,
+                                        data: MockFans,
+                                    }),
+                                500
+                            );
+                        }}
+                    >
+                        {fans.isFetching ? (
+                            <Loader />
+                        ) : fans.data.length > 0 ? (
+                            <>
+                                <div className="p-[48px_16px] flex flex-col gap-[24px]">
+                                    <div className="flex justify-between items-center">
+                                        <p className="font-p-medium text-[24px] text-gray-900">
+                                            검색
+                                        </p>
 
-                                            <PlusIcon
-                                                size={20}
-                                                className="stroke-gray-900"
-                                                onClick={() => setIsOpen(true)}
-                                            />
-                                        </div>
-
-                                        <div className="flex items-center gap-[12px]">
-                                            <Input
-                                                type="md"
-                                                variants="outline"
-                                                value=""
-                                                onChange={() => {}}
-                                                placeholder="검색어 입력..."
-                                            />
-
-                                            <div className="w-fit">
-                                                <Button
-                                                    type="md_icon"
-                                                    variants="black"
-                                                >
-                                                    <SearchIcon
-                                                        size={16}
-                                                        className="stroke-white"
-                                                    />
-                                                </Button>
-                                            </div>
-                                        </div>
+                                        <PlusIcon
+                                            size={20}
+                                            className="stroke-gray-900"
+                                            onClick={() => setIsOpen(true)}
+                                        />
                                     </div>
 
-                                    <div className="p-[16px] grid grid-cols-2 gap-[16px]">
-                                        {fans.data.map((fan, i) => (
-                                            <div
-                                                key={`img-${i}`}
-                                                className="bg-gray-200 aspect-square rounded-[16px] transition-all duration-100 active:scale-95 overflow-hidden"
+                                    <div className="flex items-center gap-[12px]">
+                                        <Input
+                                            type="md"
+                                            variants="outline"
+                                            value=""
+                                            onChange={() => {}}
+                                            placeholder="검색어 입력..."
+                                        />
+
+                                        <div className="w-fit">
+                                            <Button
+                                                type="md_icon"
+                                                variants="black"
                                             >
-                                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                <img
-                                                    src={fan.imageUrl[0]}
-                                                    alt="fan"
-                                                    className="size-full object-cover"
+                                                <SearchIcon
+                                                    size={16}
+                                                    className="stroke-white"
                                                 />
-                                            </div>
-                                        ))}
+                                            </Button>
+                                        </div>
                                     </div>
-                                </>
-                            ) : (
-                                <Empty
-                                    title="Not Found"
-                                    text="결과를 찾지 못했습니다."
-                                />
-                            )}
-                        </motion.div>
-                    </AnimatePresence>
+                                </div>
+
+                                <div className="p-[16px] grid grid-cols-2 gap-[16px]">
+                                    {fans.data.map((fan, i) => (
+                                        <div
+                                            key={`img-${i}`}
+                                            className="bg-gray-200 aspect-square rounded-[16px] transition-all duration-100 active:scale-95 overflow-hidden"
+                                        >
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
+                                                src={fan.imageUrl[0]}
+                                                alt="fan"
+                                                className="size-full object-cover"
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            </>
+                        ) : (
+                            <Empty
+                                title="Not Found"
+                                text="결과를 찾지 못했습니다."
+                            />
+                        )}
+                    </PullToRefresh>
 
                     <BottomNavigator theme="white" focus="search" />
                 </Screen>

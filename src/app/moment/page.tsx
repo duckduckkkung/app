@@ -5,10 +5,10 @@ import {
     MessageCircleMoreIcon,
     MessageCircleWarningIcon,
 } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { BottomNavigator } from "@/shared/components/bottom-navigator";
+import { PullToRefresh } from "@/shared/components/pull-to-refresh";
 import { OverlayHeader } from "@/shared/components/overlay-header";
 import { BottomSheet } from "@/shared/components/bottom-sheet";
 import { Comments } from "@/shared/components/comments";
@@ -16,29 +16,26 @@ import { Screen } from "@/shared/components/screen";
 import { Loader } from "@/shared/components/loader";
 import { Empty } from "@/shared/components/empty";
 
-import { fans as MockFans } from "@/mocks/fans";
+import { moments as MockMoments } from "@/mocks/moments";
 
-import { TypeFan } from "@/shared/types/data";
+import { TypeMoment } from "@/shared/types/data";
 
 export default function Moment() {
     const [isOpen, setIsOpen] = useState(false);
 
-    const [fans, setFans] = useState<{ isFetching: boolean; data: TypeFan[] }>({
+    const [moments, setMoments] = useState<{
+        isFetching: boolean;
+        data: TypeMoment[];
+    }>({
         isFetching: true,
         data: [],
     });
     useEffect(() => {
-        setTimeout(() => setFans({ isFetching: false, data: MockFans }), 500);
+        setTimeout(
+            () => setMoments({ isFetching: false, data: MockMoments }),
+            500
+        );
     }, []);
-
-    const containerVariants = useMemo(
-        () => ({
-            initial: { opacity: 0 },
-            animate: { opacity: 1, transition: { duration: 0.1 } },
-            exit: { opacity: 0, transition: { duration: 0.1 } },
-        }),
-        []
-    );
 
     const comments = [
         {
@@ -105,109 +102,110 @@ export default function Moment() {
     ];
 
     return (
-        <Screen className="bg-gray-900">
-            <AnimatePresence mode="popLayout">
-                <motion.div
-                    key={fans.isFetching ? "fetching" : "fetched"}
-                    variants={containerVariants}
-                    initial="initial"
-                    animate="animate"
-                    exit="exit"
-                    className="relative w-full h-full overflow-y-scroll"
-                >
-                    {fans.isFetching ? (
-                        <Loader />
-                    ) : fans.data.length > 0 ? (
-                        <>
-                            <OverlayHeader theme="dark" title="모먼트" />
+        <Screen className="bg-gray-900" bn>
+            <PullToRefresh
+                motionKey={moments.isFetching ? "fetching" : "fetched"}
+                onRefresh={async () => {
+                    setMoments({ isFetching: true, data: [] });
+                    setTimeout(
+                        () =>
+                            setMoments({
+                                isFetching: false,
+                                data: MockMoments,
+                            }),
+                        500
+                    );
+                }}
+            >
+                {moments.isFetching ? (
+                    <Loader />
+                ) : moments.data.length > 0 ? (
+                    <>
+                        <OverlayHeader theme="dark" title="모먼트" />
 
-                            <div className="absolute z-100 bottom-[75px] p-[16px]">
-                                <div className="flex flex-col gap-[24px]">
-                                    <div className="flex items-center gap-[10px]">
-                                        <div className="size-[24px] bg-white rounded-[4px]" />
+                        <div className="absolute z-100 bottom-0 p-[16px]">
+                            <div className="flex flex-col gap-[24px]">
+                                <div className="flex items-center gap-[10px]">
+                                    <div className="size-[24px] bg-white rounded-[4px]" />
 
-                                        <span className="font-p-medium text-[16px] text-white">
-                                            테스터
-                                        </span>
-                                    </div>
+                                    <span className="font-p-medium text-[16px] text-white">
+                                        테스터
+                                    </span>
+                                </div>
 
-                                    <div className="flex flex-col gap-[8px]">
-                                        <span className="font-p-semibold text-[24px] text-white">
-                                            제목
-                                        </span>
+                                <div className="flex flex-col gap-[8px]">
+                                    <span className="font-p-semibold text-[24px] text-white">
+                                        제목
+                                    </span>
 
-                                        <span className="font-p-regular text-[18px] text-white">
-                                            설명입니다.
-                                            <br />
-                                            이것은 디스크립션입니다.
-                                        </span>
-                                    </div>
+                                    <span className="font-p-regular text-[18px] text-white">
+                                        설명입니다.
+                                        <br />
+                                        이것은 디스크립션입니다.
+                                    </span>
                                 </div>
                             </div>
+                        </div>
 
-                            <div className="absolute z-100 top-[50%] right-[24px] -translate-y-[50%]">
-                                <div className="flex flex-col gap-[48px]">
-                                    <div className="flex flex-col gap-[16px]">
-                                        <div className="flex flex-col items-center gap-[8px] transition-all duration-100 active:scale-95">
-                                            <HeartIcon
-                                                size={32}
-                                                className="stroke-white"
-                                            />
+                        <div className="absolute z-100 top-[50%] right-[24px] -translate-y-[50%]">
+                            <div className="flex flex-col gap-[48px]">
+                                <div className="flex flex-col gap-[16px]">
+                                    <div className="flex flex-col items-center gap-[8px] transition-all duration-100 active:scale-95">
+                                        <HeartIcon
+                                            size={32}
+                                            className="stroke-white"
+                                        />
 
-                                            <span className="font-p-gmsm text-[14px] text-white">
-                                                12K
-                                            </span>
-                                        </div>
-
-                                        <div
-                                            className="flex flex-col items-center gap-[8px] transition-all duration-100 active:scale-95"
-                                            onClick={() => setIsOpen(true)}
-                                        >
-                                            <MessageCircleMoreIcon
-                                                size={32}
-                                                className="stroke-white"
-                                            />
-
-                                            <span className="font-p-gmsm text-[14px] text-white">
-                                                4M
-                                            </span>
-                                        </div>
+                                        <span className="font-p-gmsm text-[14px] text-white">
+                                            12K
+                                        </span>
                                     </div>
 
-                                    <MessageCircleWarningIcon
-                                        size={32}
-                                        className="stroke-white transition-all duration-100 active:scale-95"
-                                    />
+                                    <div
+                                        className="flex flex-col items-center gap-[8px] transition-all duration-100 active:scale-95"
+                                        onClick={() => setIsOpen(true)}
+                                    >
+                                        <MessageCircleMoreIcon
+                                            size={32}
+                                            className="stroke-white"
+                                        />
+
+                                        <span className="font-p-gmsm text-[14px] text-white">
+                                            4M
+                                        </span>
+                                    </div>
                                 </div>
+
+                                <MessageCircleWarningIcon
+                                    size={32}
+                                    className="stroke-white transition-all duration-100 active:scale-95"
+                                />
                             </div>
+                        </div>
 
-                            <BottomSheet
-                                isOpen={isOpen}
-                                onClose={() => setIsOpen(false)}
-                            >
-                                <div className="flex flex-col gap-[24px]">
-                                    <div className="flex items-center gap-[8px]">
-                                        <span className="font-p-semibold text-[20px] text-gray-900">
-                                            댓글
-                                        </span>
+                        <BottomSheet
+                            isOpen={isOpen}
+                            onClose={() => setIsOpen(false)}
+                        >
+                            <div className="flex flex-col gap-[24px]">
+                                <div className="flex items-center gap-[8px]">
+                                    <span className="font-p-semibold text-[20px] text-gray-900">
+                                        댓글
+                                    </span>
 
-                                        <span className="font-p-gmsm text-[18px] text-gray-400 translate-y-[2px]">
-                                            {comments.length}
-                                        </span>
-                                    </div>
-
-                                    <Comments comments={comments} />
+                                    <span className="font-p-gmsm text-[18px] text-gray-400 translate-y-[2px] leading-none">
+                                        {comments.length}
+                                    </span>
                                 </div>
-                            </BottomSheet>
-                        </>
-                    ) : (
-                        <Empty
-                            title="Not Found"
-                            text="결과를 찾지 못했습니다."
-                        />
-                    )}
-                </motion.div>
-            </AnimatePresence>
+
+                                <Comments comments={comments} />
+                            </div>
+                        </BottomSheet>
+                    </>
+                ) : (
+                    <Empty title="Not Found" text="결과를 찾지 못했습니다." />
+                )}
+            </PullToRefresh>
 
             <BottomNavigator theme="dark" focus="moment" />
         </Screen>

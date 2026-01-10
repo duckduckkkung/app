@@ -14,6 +14,7 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 
 import { BottomNavigator } from "@/shared/components/bottom-navigator";
+import { PullToRefresh } from "@/shared/components/pull-to-refresh";
 import { OverlayHeader } from "@/shared/components/overlay-header";
 import { Card, TypeCard } from "@/shared/components/card";
 import { Overlay } from "@/shared/components/overlay";
@@ -25,10 +26,6 @@ import { Button } from "@/shared/components/button";
 import { Input } from "@/shared/components/input";
 import { Empty } from "@/shared/components/empty";
 import { Tag } from "@/shared/components/tag";
-
-import { fans as MockFans } from "@/mocks/fans";
-
-import { TypeFan } from "@/shared/types/data";
 
 import GoogleIcon from "@/assets/icons/google.png";
 import KakaoIcon from "@/assets/icons/kakao.png";
@@ -106,12 +103,12 @@ export default function Settings() {
         }
     };
 
-    const [fans, setFans] = useState<{ isFetching: boolean; data: TypeFan[] }>({
+    const [user, setUser] = useState<{ isFetching: boolean; data: object }>({
         isFetching: true,
-        data: [],
+        data: {},
     });
     useEffect(() => {
-        setTimeout(() => setFans({ isFetching: false, data: MockFans }), 500);
+        setTimeout(() => setUser({ isFetching: false, data: {} }), 500);
     }, []);
 
     const containerVariants = useMemo(
@@ -127,115 +124,119 @@ export default function Settings() {
         <Overlay isOpen={isOpen} onClose={() => setIsOpen(false)}>
             <Overlay.Parent>
                 <Screen bn>
-                    <AnimatePresence mode="popLayout">
-                        <motion.div
-                            key={fans.isFetching ? "fetching" : "fetched"}
-                            variants={containerVariants}
-                            initial="initial"
-                            animate="animate"
-                            exit="exit"
-                            className="relative w-full h-full overflow-y-scroll"
-                        >
-                            {fans.isFetching ? (
-                                <Loader />
-                            ) : fans.data.length > 0 ? (
-                                <>
-                                    <div className="p-[48px_16px]">
-                                        <p className="font-p-medium text-[24px] text-gray-900">
-                                            설정
-                                        </p>
-                                    </div>
+                    <PullToRefresh
+                        motionKey={user.isFetching ? "fetching" : "fetched"}
+                        onRefresh={async () => {
+                            setUser({ isFetching: true, data: {} });
+                            setTimeout(
+                                () =>
+                                    setUser({
+                                        isFetching: false,
+                                        data: {},
+                                    }),
+                                500
+                            );
+                        }}
+                    >
+                        {user.isFetching ? (
+                            <Loader />
+                        ) : user.data ? (
+                            <>
+                                <div className="p-[48px_16px]">
+                                    <p className="font-p-medium text-[24px] text-gray-900">
+                                        설정
+                                    </p>
+                                </div>
 
-                                    <div className="flex flex-col">
-                                        <div
-                                            className="p-[10px_16px] transition-all duration-100 active:scale-95"
-                                            onClick={() => {
-                                                setAction("profile");
-                                                setIsOpen(true);
-                                            }}
-                                        >
-                                            <div className="flex items-center gap-[14px]">
-                                                <div className="size-[32px] bg-gray-100 rounded-[6px] flex justify-center items-center">
-                                                    <span className="font-p-tossface text-[18px] translate-y-[1px]">
-                                                        😀
-                                                    </span>
-                                                </div>
-
-                                                <span className="font-p-medium text-[16px] text-gray-900">
-                                                    프로필
+                                <div className="flex flex-col">
+                                    <div
+                                        className="p-[10px_16px] transition-all duration-100 active:scale-95"
+                                        onClick={() => {
+                                            setAction("profile");
+                                            setIsOpen(true);
+                                        }}
+                                    >
+                                        <div className="flex items-center gap-[14px]">
+                                            <div className="size-[32px] bg-gray-100 rounded-[6px] flex justify-center items-center">
+                                                <span className="font-p-tossface text-[18px]">
+                                                    😀
                                                 </span>
                                             </div>
-                                        </div>
 
-                                        <div
-                                            className="p-[10px_16px] transition-all duration-100 active:scale-95"
-                                            onClick={() => {
-                                                setAction("security");
-                                                setIsOpen(true);
-                                            }}
-                                        >
-                                            <div className="flex items-center gap-[14px]">
-                                                <div className="size-[32px] bg-amber-100 rounded-[6px] flex justify-center items-center">
-                                                    <span className="font-p-tossface text-[18px] translate-y-[1px]">
-                                                        🔑
-                                                    </span>
-                                                </div>
-
-                                                <span className="font-p-medium text-[16px] text-gray-900">
-                                                    보안
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div
-                                            className="p-[10px_16px] transition-all duration-100 active:scale-95"
-                                            onClick={() => {
-                                                setAction("billing");
-                                                setIsOpen(true);
-                                            }}
-                                        >
-                                            <div className="flex items-center gap-[14px]">
-                                                <div className="size-[32px] bg-green-100 rounded-[6px] flex justify-center items-center">
-                                                    <span className="font-p-tossface text-[18px] translate-y-[1px]">
-                                                        💴
-                                                    </span>
-                                                </div>
-
-                                                <span className="font-p-medium text-[16px] text-gray-900">
-                                                    청구
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div
-                                            className="p-[10px_16px] transition-all duration-100 active:scale-95"
-                                            onClick={() => {
-                                                setAction("etc");
-                                                setIsOpen(true);
-                                            }}
-                                        >
-                                            <div className="flex items-center gap-[14px]">
-                                                <div className="size-[32px] bg-gray-100 rounded-[6px] flex justify-center items-center">
-                                                    <span className="font-p-tossface text-[18px] translate-y-[1px]">
-                                                        📎
-                                                    </span>
-                                                </div>
-
-                                                <span className="font-p-medium text-[16px] text-gray-900">
-                                                    기타
-                                                </span>
-                                            </div>
+                                            <span className="font-p-medium text-[16px] text-gray-900">
+                                                프로필
+                                            </span>
                                         </div>
                                     </div>
-                                </>
-                            ) : (
-                                <Empty
-                                    title="Not Found"
-                                    text="결과를 찾지 못했습니다."
-                                />
-                            )}
-                        </motion.div>
-                    </AnimatePresence>
+
+                                    <div
+                                        className="p-[10px_16px] transition-all duration-100 active:scale-95"
+                                        onClick={() => {
+                                            setAction("security");
+                                            setIsOpen(true);
+                                        }}
+                                    >
+                                        <div className="flex items-center gap-[14px]">
+                                            <div className="size-[32px] bg-amber-100 rounded-[6px] flex justify-center items-center">
+                                                <span className="font-p-tossface text-[18px]">
+                                                    🔑
+                                                </span>
+                                            </div>
+
+                                            <span className="font-p-medium text-[16px] text-gray-900">
+                                                보안
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        className="p-[10px_16px] transition-all duration-100 active:scale-95"
+                                        onClick={() => {
+                                            setAction("billing");
+                                            setIsOpen(true);
+                                        }}
+                                    >
+                                        <div className="flex items-center gap-[14px]">
+                                            <div className="size-[32px] bg-green-100 rounded-[6px] flex justify-center items-center">
+                                                <span className="font-p-tossface text-[18px]">
+                                                    💴
+                                                </span>
+                                            </div>
+
+                                            <span className="font-p-medium text-[16px] text-gray-900">
+                                                청구
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        className="p-[10px_16px] transition-all duration-100 active:scale-95"
+                                        onClick={() => {
+                                            setAction("etc");
+                                            setIsOpen(true);
+                                        }}
+                                    >
+                                        <div className="flex items-center gap-[14px]">
+                                            <div className="size-[32px] bg-gray-100 rounded-[6px] flex justify-center items-center">
+                                                <span className="font-p-tossface text-[18px]">
+                                                    📎
+                                                </span>
+                                            </div>
+
+                                            <span className="font-p-medium text-[16px] text-gray-900">
+                                                기타
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        ) : (
+                            <Empty
+                                title="Not Found"
+                                text="결과를 찾지 못했습니다."
+                            />
+                        )}
+                    </PullToRefresh>
 
                     <BottomNavigator theme="white" focus="settings" />
                 </Screen>
