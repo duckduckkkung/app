@@ -1,7 +1,12 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useMemo, useRef, useState, useCallback } from "react";
+import { usePullToRefresh } from "use-pull-to-refresh";
+import { useRouter } from "next/navigation";
+import { useMemo } from "react";
+import Image from "next/image";
+
+import Logo from "@/assets/icons/logo.png";
 
 interface PullToRefreshProps {
     motionKey: string;
@@ -9,21 +14,22 @@ interface PullToRefreshProps {
     onRefresh?: () => Promise<void>;
 }
 
+const MAX_PULL_LENGTH = 80;
+const REFRESH_THRESHOLD = 40;
+
 export const PullToRefresh = ({
     motionKey,
     children,
     onRefresh,
 }: PullToRefreshProps) => {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [pullDistance, setPullDistance] = useState(0);
-    const [isRefreshing, setIsRefreshing] = useState(false);
-    const [isPulling, setIsPulling] = useState(false);
+    const router = useRouter();
 
-    const startY = useRef(0);
-    const currentY = useRef(0);
-
-    const PULL_THRESHOLD = 60;
-    const MAX_PULL = 100;
+    const { isRefreshing, pullPosition } = usePullToRefresh({
+        onRefresh: onRefresh || router.refresh,
+        maximumPullLength: MAX_PULL_LENGTH,
+        refreshThreshold: REFRESH_THRESHOLD,
+        isDisabled: false,
+    });
 
     const containerVariants = useMemo(
         () => ({
@@ -34,123 +40,57 @@ export const PullToRefresh = ({
         []
     );
 
-    const handleTouchStart = useCallback((e: React.TouchEvent) => {
-        if (containerRef.current && containerRef.current.scrollTop === 0) {
-            startY.current = e.touches[0].clientY;
-            setIsPulling(true);
-        }
-    }, []);
-
-    const handleTouchMove = useCallback(
-        async (e: React.TouchEvent) => {
-            if (!isPulling || !containerRef.current) return;
-
-            currentY.current = e.touches[0].clientY;
-            const distance = currentY.current - startY.current;
-
-            if (containerRef.current.scrollTop === 0 && distance > 0) {
-                const pull = Math.min(distance * 0.5, MAX_PULL);
-                setPullDistance(pull);
-
-                if (pull > 10) {
-                    e.preventDefault();
-                }
-
-                if (pullDistance > PULL_THRESHOLD + 20) {
-                    setIsPulling(false);
-
-                    setIsRefreshing(true);
-
-                    if (onRefresh) {
-                        await onRefresh();
-                    }
-
-                    setTimeout(() => {
-                        setIsRefreshing(false);
-                        setPullDistance(0);
-                    }, 500);
-                }
-            }
-        },
-        [isPulling, pullDistance, onRefresh]
-    );
-
-    const handleTouchEnd = useCallback(async () => {
-        if (!isPulling) return;
-
-        setIsPulling(false);
-
-        if (pullDistance >= PULL_THRESHOLD + 20) {
-            setIsRefreshing(true);
-
-            if (onRefresh) {
-                await onRefresh();
-            }
-
-            setTimeout(() => {
-                setIsRefreshing(false);
-                setPullDistance(0);
-            }, 500);
-        } else {
-            setPullDistance(0);
-        }
-    }, [isPulling, pullDistance, PULL_THRESHOLD, onRefresh]);
-
-    const pullProgress = Math.min(pullDistance / PULL_THRESHOLD, 1);
-    const size = pullProgress * 20;
-
     return (
-        <div
-            ref={containerRef}
-            className="relative w-full h-full overflow-y-scroll"
-        >
-            <AnimatePresence mode="popLayout">
-                <motion.div
-                    key={motionKey}
-                    variants={containerVariants}
-                    initial="initial"
-                    animate="animate"
-                    exit="exit"
-                    className="relative w-full h-full"
-                    onTouchStart={handleTouchStart}
-                    onTouchMove={handleTouchMove}
-                    onTouchEnd={handleTouchEnd}
+        <AnimatePresence mode="popLayout">
+            <motion.div
+                key={motionKey}
+                variants={containerVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                className="relative w-full h-full overflow-y-scroll"
+            >
+                <div
+                    className="absolute h-[60px] top-0 left-0 w-full flex justify-center items-center overflow-hidden"
                     style={{
-                        transition: isPulling
-                            ? "none"
-                            : "transform 0.3s ease-out",
+                        opacity: isRefreshing
+                            ? 1
+                            : Math.min(pullPosition, REFRESH_THRESHOLD) /
+                              REFRESH_THRESHOLD,
+                        transition:
+                            isRefreshing && pullPosition < REFRESH_THRESHOLD
+                                ? "all 0.1s ease-in-out"
+                                : "none",
                     }}
                 >
-                    <div
-                        className="absolute top-0 left-0 right-0 flex items-center justify-center"
-                        style={{
-                            height: `${Math.max(
-                                pullDistance,
-                                isRefreshing ? PULL_THRESHOLD : 0
-                            )}px`,
-                            transition: isPulling
-                                ? "none"
-                                : "height 0.3s ease-out, transform 0.3s ease-out",
-                        }}
-                    >
-                        <span
-                            className="font-p-medium text-gray-900"
-                            style={{
-                                fontSize: size,
-                                opacity: pullProgress,
-                                transform: `scale(${pullProgress})`,
-                                transition: isPulling
-                                    ? "none"
-                                    : "font-size 0.3s ease-out, opacity 0.3s ease-out, transform 0.3s ease-out",
-                            }}
-                        >
-                            덕덕쿵
-                        </span>
-                    </div>
+                    <Image
+                        src={Logo}
+                        alt="덕덕쿵"
+                        height={32}
+                        style={
+                            pullPosition > REFRESH_THRESHOLD
+                                ? undefined
+                                : {
+                                      transform: `rotate(${
+                                          (Math.min(
+                                              pullPosition,
+                                              REFRESH_THRESHOLD
+                                          ) /
+                                              REFRESH_THRESHOLD) *
+                                          360
+                                      }deg)`,
+                                  }
+                        }
+                        className={
+                            isRefreshing || pullPosition > REFRESH_THRESHOLD
+                                ? "animate-spin"
+                                : ""
+                        }
+                    />
+                </div>
 
-                    {children}
-                </motion.div>
-            </AnimatePresence>
-        </div>
+                {children}
+            </motion.div>
+        </AnimatePresence>
     );
 };
