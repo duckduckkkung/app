@@ -22,8 +22,8 @@ export const PullToRefresh = ({
     const startY = useRef(0);
     const currentY = useRef(0);
 
-    const PULL_THRESHOLD = 80;
-    const MAX_PULL = 120;
+    const PULL_THRESHOLD = 60;
+    const MAX_PULL = 100;
 
     const containerVariants = useMemo(
         () => ({
@@ -100,10 +100,7 @@ export const PullToRefresh = ({
     const size = pullProgress * 20;
 
     return (
-        <div
-            ref={containerRef}
-            className="relative w-full h-full overflow-y-scroll"
-        >
+        <div ref={containerRef} className="relative w-full h-full">
             <AnimatePresence mode="popLayout">
                 <motion.div
                     key={motionKey}
@@ -116,9 +113,6 @@ export const PullToRefresh = ({
                     onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
                     style={{
-                        transform: `translateY(${
-                            isRefreshing ? PULL_THRESHOLD : pullDistance
-                        }px)`,
                         transition: isPulling
                             ? "none"
                             : "transform 0.3s ease-out",
@@ -131,10 +125,6 @@ export const PullToRefresh = ({
                                 pullDistance,
                                 isRefreshing ? PULL_THRESHOLD : 0
                             )}px`,
-                            transform: `translateY(-${Math.max(
-                                pullDistance,
-                                isRefreshing ? PULL_THRESHOLD : 0
-                            )}px)`,
                             transition: isPulling
                                 ? "none"
                                 : "height 0.3s ease-out, transform 0.3s ease-out",

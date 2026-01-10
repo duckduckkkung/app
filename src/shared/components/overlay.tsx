@@ -151,9 +151,7 @@ const Children = ({ children }: { children: React.ReactNode }) => {
                             style={{ touchAction: "none" }}
                         />
 
-                        <div className="w-full h-full overflow-y-scroll">
-                            {children}
-                        </div>
+                        <div className="w-full h-full">{children}</div>
                     </motion.div>
                 </>
             )}

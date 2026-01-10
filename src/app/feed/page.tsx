@@ -338,7 +338,7 @@ export default function Feed() {
 
                         <div className="w-full h-[8px] bg-gray-100" />
 
-                        <div className="p-[16px] overflow-y-scroll flex flex-col gap-[36px]">
+                        <div className="p-[16px] flex flex-col gap-[36px]">
                             <p className="font-p-semibold text-[18px] text-gray-900">
                                 댓글
                             </p>
