@@ -1,8 +1,10 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
+
+import { Toast } from "@/shared/components/toast";
 
 import { useBar } from "@/shared/stores/bar.zustand";
 
@@ -22,7 +24,7 @@ export const FrozenRoute = ({
     const pathname = usePathname();
     const bar = useBar();
 
-    const [flag, setFlag] = useState(false);
+    const [flag, setFlag] = useState<boolean>(false);
     useEffect(() => {
         const win = window as unknown as {
             setBarHeights: (top: number, bottom: number) => void;
@@ -128,6 +130,7 @@ export const FrozenRoute = ({
             )}
 
             {children}
+            <Toast />
 
             {MODE === "test" && (
                 <div

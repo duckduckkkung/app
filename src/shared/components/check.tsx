@@ -1,27 +1,27 @@
-import { ArrowUpRightIcon, CheckIcon } from "lucide-react";
+import { CheckIcon } from "lucide-react";
 
 interface CheckProps {
     required?: boolean;
-    link?: string;
+    onChange?: (checked: boolean) => void;
     text: string;
     checked: boolean;
 }
 
 export const Check = ({
     required = false,
-    link,
+    onChange,
     text,
     checked,
 }: CheckProps) => {
     return (
         <div
             className="flex justify-between items-center"
-            onClick={() => link && window.open(link)}
+            onClick={() => onChange?.(!checked)}
         >
             <div className="flex items-center gap-[8px]">
                 <CheckIcon
                     size={16}
-                    className={`shrink-0 ${
+                    className={`shrink-0 transition-all duration-100 ${
                         checked ? "stroke-c-primary" : "stroke-gray-400"
                     }`}
                 />
@@ -38,8 +38,6 @@ export const Check = ({
                     </span>
                 </div>
             </div>
-
-            {link && <ArrowUpRightIcon size={16} className="stroke-gray-300" />}
         </div>
     );
 };

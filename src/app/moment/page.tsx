@@ -21,7 +21,7 @@ import { moments as MockMoments } from "@/mocks/moments";
 import { TypeMoment } from "@/shared/types/data";
 
 export default function Moment() {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const [moments, setMoments] = useState<{
         isFetching: boolean;

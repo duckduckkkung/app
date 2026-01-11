@@ -23,7 +23,7 @@ import { fans as MockFans } from "@/mocks/fans";
 import { TypeFan } from "@/shared/types/data";
 
 export default function Feed() {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const [fans, setFans] = useState<{ isFetching: boolean; data: TypeFan[] }>({
         isFetching: true,

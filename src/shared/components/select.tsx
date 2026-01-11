@@ -35,7 +35,7 @@ export const Select = ({
     onChange,
     placeholder = "",
 }: SelectProps) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     return (
         <>
