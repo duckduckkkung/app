@@ -16,7 +16,7 @@ import { Loader } from "@/shared/components/loader";
 import { Empty } from "@/shared/components/empty";
 import { Tag } from "@/shared/components/tag";
 
-import { DetailComponent } from "./components/detail";
+import { Fans } from "../fans/page";
 
 import { fans as MockFans } from "@/mocks/fans";
 
@@ -113,9 +113,7 @@ export default function Feed() {
                                             <div className="w-full overflow-x-scroll">
                                                 <div className="flex gap-[8px]">
                                                     <Tag text="새로운 굿즈" />
-
                                                     <Tag text="인기 7% 상승" />
-
                                                     <Tag text="업데이트된 정보" />
                                                 </div>
                                             </div>
@@ -169,9 +167,7 @@ export default function Feed() {
                                             <div className="w-full overflow-x-scroll">
                                                 <div className="flex gap-[8px]">
                                                     <Tag text="새로운 공연 일정" />
-
                                                     <Tag text="인기 4% 상승" />
-
                                                     <Tag text="업데이트된 정보" />
                                                 </div>
                                             </div>
@@ -301,12 +297,12 @@ export default function Feed() {
                         )}
                     </PullToRefresh>
 
-                    <BottomNavigator theme="white" focus="feed" />
+                    <BottomNavigator theme="light" focus="feed" />
                 </Screen>
             </Overlay.Parent>
 
             <Overlay.Children>
-                <DetailComponent onClose={() => setIsOpen(false)} />
+                <Fans />
             </Overlay.Children>
         </Overlay>
     );

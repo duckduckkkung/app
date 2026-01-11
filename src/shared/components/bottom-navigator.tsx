@@ -11,12 +11,12 @@ import { useRouter } from "next/navigation";
 import { useBar } from "@/shared/stores/bar.zustand";
 
 interface BottomNavigatorProps {
-    theme?: "white" | "dark";
+    theme?: "light" | "dark";
     focus?: "feed" | "moment" | "search" | "settings";
 }
 
 export const BottomNavigator = ({
-    theme = "white",
+    theme = "light",
     focus = "feed",
 }: BottomNavigatorProps) => {
     const router = useRouter();
@@ -55,7 +55,7 @@ export const BottomNavigator = ({
             className="absolute px-[16px] w-full bottom-0 left-0 flex justfiy-between gap-0"
             style={{
                 paddingBottom: `${bar.bottom}px`,
-                background: theme === "white" ? "white" : "transparent",
+                background: theme === "light" ? "white" : "transparent",
             }}
         >
             {menus.map((menu, i) => (
@@ -67,7 +67,7 @@ export const BottomNavigator = ({
                     <menu.Icon
                         size={24}
                         className={
-                            theme === "white"
+                            theme === "light"
                                 ? menu.id === focus
                                     ? "stroke-gray-900"
                                     : "stroke-gray-400"
@@ -79,7 +79,7 @@ export const BottomNavigator = ({
 
                     <span
                         className={`font-p-medium text-[14px] ${
-                            theme === "white"
+                            theme === "light"
                                 ? menu.id === focus
                                     ? "text-gray-900"
                                     : "text-gray-400"

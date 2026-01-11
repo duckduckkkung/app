@@ -56,8 +56,9 @@ export const FrozenRoute = ({
                         <span
                             className="font-[Pretendard] font-medium text-[18px]"
                             style={{
-                                color:
-                                    pathname === "/moment" ? "white" : "black",
+                                color: ["/moment", "/fans"].includes(pathname)
+                                    ? "white"
+                                    : "black",
                             }}
                         >
                             9:41
@@ -70,7 +71,7 @@ export const FrozenRoute = ({
                             height: `${bar.top}px`,
                         }}
                     >
-                        {pathname === "/moment" ? (
+                        {["/moment", "/fans"].includes(pathname) ? (
                             <>
                                 <Image
                                     src={SignalWhiteIcon}

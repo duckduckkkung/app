@@ -33,9 +33,7 @@ export const DetailComponent = ({ onClose }: DetailComponentProps) => {
 
                     <div className="flex flex-wrap gap-[8px]">
                         <Tag text="태그하나만" />
-
                         <Tag text="태그두개" />
-
                         <Tag text="tag셋" />
                     </div>
                 </div>

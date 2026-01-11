@@ -3,11 +3,14 @@ import Image from "next/image";
 import NotFoundIcon from "@/assets/icons/not-found.png";
 
 interface EmptyProps {
-    title: string;
-    text: string;
+    title?: string;
+    text?: string;
 }
 
-export const Empty = ({ title, text }: EmptyProps) => {
+export const Empty = ({
+    title = "Not Found",
+    text = "결과를 찾지 못했습니다.",
+}: EmptyProps) => {
     return (
         <div className="py-[128px] flex flex-col justify-center items-center gap-[24px]">
             <Image src={NotFoundIcon} alt="Not Found" />

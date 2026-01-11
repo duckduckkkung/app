@@ -135,14 +135,11 @@ export default function Settings() {
                                 </div>
                             </>
                         ) : (
-                            <Empty
-                                title="Not Found"
-                                text="결과를 찾지 못했습니다."
-                            />
+                            <Empty />
                         )}
                     </PullToRefresh>
 
-                    <BottomNavigator theme="white" focus="settings" />
+                    <BottomNavigator theme="light" focus="settings" />
                 </Screen>
             </Overlay.Parent>
 
