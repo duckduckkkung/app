@@ -55,14 +55,17 @@ export const BillingComponent = () => {
     const handleCardScroll = (e: React.UIEvent<HTMLDivElement>) => {
         const container = e.currentTarget;
         const scrollLeft = container.scrollLeft;
+        const containerWidth = container.clientWidth;
         const cardWidth =
             container.querySelector('div[class*="snap-center"]')?.clientWidth ||
             0;
         const gap = 16;
         const padding = 24;
 
+        const centerPosition = scrollLeft + containerWidth / 2;
+
         const index = Math.round(
-            (scrollLeft - padding + cardWidth / 2) / (cardWidth + gap)
+            (centerPosition - padding - cardWidth / 2) / (cardWidth + gap)
         );
         const clampedIndex = Math.max(0, Math.min(index, cards.length - 1));
         const card = cards[clampedIndex];
