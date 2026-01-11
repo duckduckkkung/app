@@ -44,7 +44,7 @@ export const FansComponent = () => {
     );
 
     return (
-        <Screen className="!pt-0" bf={171}>
+        <Screen className="!pt-0" bf={169}>
             <div className="w-full h-full overflow-y-scroll">
                 <div
                     className="relative w-full h-[375px] bg-gray-700 overflow-hidden rounded-b-[8px]"

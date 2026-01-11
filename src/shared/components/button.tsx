@@ -10,7 +10,7 @@ export enum ButtonTypes {
 
 export enum ButtonVariants {
     ghost = "bg-white text-gray-900",
-    outline = "bg-white border border-gray-300 text-gray-900",
+    outline = "bg-white ring ring-inset ring-gray-300 text-gray-900",
     black = "bg-gray-900 text-white",
     primary = "bg-c-primary text-white",
     kakao = "bg-[#FEE500] text-[#191919]",
