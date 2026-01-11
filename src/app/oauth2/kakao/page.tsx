@@ -15,7 +15,7 @@ export default function Oauth2Kakao() {
 
             if (code) {
                 try {
-                    const response = await signWithKakao({ code });
+                    const response = await signWithKakao({ code, type: "app" });
 
                     if (response.data.type === "register")
                         router.push(
