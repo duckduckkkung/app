@@ -44,7 +44,7 @@ export const FansComponent = () => {
     );
 
     return (
-        <Screen className="!pt-0" bf={171}>
+        <Screen className="!pt-0" bf={169}>
             <div className="w-full h-full overflow-y-scroll">
                 <div
                     className="relative w-full h-[375px] bg-gray-700 overflow-hidden rounded-b-[8px]"
@@ -158,8 +158,8 @@ export const FansComponent = () => {
                                                 대표 색상
                                             </p>
 
-                                            <div className="w-fit p-[3px_10px] bg-[#ce651f] rounded-[4px]">
-                                                <span className="font-p-gmsm text-[14px] text-white">
+                                            <div className="w-fit p-[4px_12px] bg-[#ce651f] rounded-[8px]">
+                                                <span className="font-[Consolas] text-[14px] text-white">
                                                     #ce651f
                                                 </span>
                                             </div>
