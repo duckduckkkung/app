@@ -158,8 +158,8 @@ export const FansComponent = () => {
                                                 대표 색상
                                             </p>
 
-                                            <div className="w-fit p-[3px_10px] bg-[#ce651f] rounded-[4px]">
-                                                <span className="font-p-gmsm text-[14px] text-white">
+                                            <div className="w-fit p-[4px_12px] bg-[#ce651f] rounded-[8px]">
+                                                <span className="font-[Consolas] text-[14px] text-white">
                                                     #ce651f
                                                 </span>
                                             </div>
