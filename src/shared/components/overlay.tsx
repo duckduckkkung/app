@@ -37,7 +37,7 @@ interface OverlayProps {
 
 export const Overlay = ({ children, isOpen, onClose }: OverlayProps) => {
     const x = useMotionValue(0);
-    const [isDragging, setIsDragging] = useState(false);
+    const [isDragging, setIsDragging] = useState<boolean>(false);
     const value = useMemo(
         () => ({ x, isOpen, onClose, isDragging, setIsDragging }),
         [x, isOpen, onClose, isDragging, setIsDragging]

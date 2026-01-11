@@ -9,7 +9,10 @@ interface TabProps {
 }
 
 export const Tab = ({ options, tab, onChange }: TabProps) => {
-    const [indicatorStyle, setIndicatorStyle] = useState({ width: 0, left: 0 });
+    const [indicatorStyle, setIndicatorStyle] = useState<{
+        width: number;
+        left: number;
+    }>({ width: 0, left: 0 });
     const tabRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
     const bar = useBar();
