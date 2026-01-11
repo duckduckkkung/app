@@ -82,6 +82,11 @@
     src: url("/fonts/TossFaceFontWeb.otf");
 }
 
+@font-face {
+    font-family: "FiraCode";
+    src: url("/fonts/FiraCode-Medium.ttf");
+}
+
 @theme {
     --color-c-primary: #313e97;
 
@@ -102,6 +107,8 @@
     --font-p-mj: "GyeonggiMillenniumBackground";
 
     --font-p-tossface: "Tossface";
+
+    --font-p-fira-code: "FiraCode";
 }
 
 html {
