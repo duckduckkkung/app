@@ -12,8 +12,8 @@ import { Loader } from "@/shared/components/loader";
 import { Input } from "@/shared/components/input";
 import { Empty } from "@/shared/components/empty";
 
+import { FansComponent } from "../fans/components/fans";
 import { CreateComponent } from "./components/create";
-import { Fans } from "../fans/page";
 
 import { fans as MockFans } from "@/mocks/fans";
 
@@ -130,7 +130,7 @@ export default function Search() {
             </Overlay.Parent>
 
             <Overlay.Children>
-                <Fans />
+                <FansComponent />
             </Overlay.Children>
         </Overlay>
     );

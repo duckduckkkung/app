@@ -16,7 +16,7 @@ import { Loader } from "@/shared/components/loader";
 import { Empty } from "@/shared/components/empty";
 import { Tag } from "@/shared/components/tag";
 
-import { Fans } from "../fans/page";
+import { FansComponent } from "../fans/components/fans";
 
 import { fans as MockFans } from "@/mocks/fans";
 
@@ -302,7 +302,7 @@ export default function Feed() {
             </Overlay.Parent>
 
             <Overlay.Children>
-                <Fans />
+                <FansComponent />
             </Overlay.Children>
         </Overlay>
     );
