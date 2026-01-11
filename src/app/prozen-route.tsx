@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-import { useBar } from "@/stores/bar.zustand";
+import { useBar } from "@/shared/stores/bar.zustand";
 
 import SignalIcon from "@/assets/icons/Mobile Signal.png";
 import WifiIcon from "@/assets/icons/Wifi.png";
@@ -56,8 +56,9 @@ export const FrozenRoute = ({
                         <span
                             className="font-[Pretendard] font-medium text-[18px]"
                             style={{
-                                color:
-                                    pathname === "/moment" ? "white" : "black",
+                                color: ["/moment", "/fans"].includes(pathname)
+                                    ? "white"
+                                    : "black",
                             }}
                         >
                             9:41
@@ -70,7 +71,7 @@ export const FrozenRoute = ({
                             height: `${bar.top}px`,
                         }}
                     >
-                        {pathname === "/moment" ? (
+                        {["/moment", "/fans"].includes(pathname) ? (
                             <>
                                 <Image
                                     src={SignalWhiteIcon}

@@ -203,7 +203,7 @@ export default function Moment() {
                         </BottomSheet>
                     </>
                 ) : (
-                    <Empty title="Not Found" text="결과를 찾지 못했습니다." />
+                    <Empty />
                 )}
             </PullToRefresh>
 

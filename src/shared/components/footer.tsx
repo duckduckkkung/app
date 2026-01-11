@@ -1,6 +1,6 @@
 "use client";
 
-import { useBar } from "@/stores/bar.zustand";
+import { useBar } from "@/shared/stores/bar.zustand";
 
 interface FooterProps {
     children: React.ReactNode;
