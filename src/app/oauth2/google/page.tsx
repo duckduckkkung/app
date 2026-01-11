@@ -25,12 +25,12 @@ export default function Oauth2Google() {
                         );
                     else {
                         Storage.setAccessToken(response.data.access_token);
-                        router.push("/fans");
+                        router.push("/feed");
                     }
 
                     return;
                 } catch {
-                    router.push("/");
+                    router.push("/signin");
                 }
             }
         })();
