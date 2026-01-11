@@ -1,5 +1,5 @@
 import { FansComponent } from "./components/fans";
 
-export const Fans = () => {
+export default function Fans() {
     return <FansComponent />;
-};
+}
