@@ -88,7 +88,7 @@ export default function Register() {
     );
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [isOtpOpen, setIsOtpOpen] = useState<boolean>(false);
+    const [isOtpOpen, setIsOtpOpen] = useState<boolean>(true);
     const [isCreating, setIsCreating] = useState<boolean>(false);
 
     const { data: guestInfo, isFetching: isGuestInfoFetching } = useGuestInfo({
@@ -103,7 +103,7 @@ export default function Register() {
         if (!guestInfo) {
             setMessage("정보가 존재하지 않습니다.");
             setIsToastOpen(true);
-            router.push("/signin");
+            // router.push("/signin");
             return;
         }
 
@@ -396,20 +396,12 @@ export default function Register() {
                     setAgrees([false, false, false, false]);
                 }}
             >
-                <div className="flex flex-col gap-[32px]">
-                    <div className="flex flex-col gap-[8px]">
-                        <p className="font-p-semibold text-[24px] text-gray-900 leading-[32px]">
-                            서비스 이용을 위해
-                            <br />
-                            동의가 필요해요.
-                        </p>
-
-                        <p className="font-p-regular text-[18px] text-gray-400 leading-[28px]">
-                            안전하고 편리한 서비스 이용을 위해
-                            <br />
-                            아래 항목에 동의해 주세요.
-                        </p>
-                    </div>
+                <div className="flex flex-col gap-[24px]">
+                    <p className="font-p-semibold text-[22px] text-gray-900 leading-[32px]">
+                        서비스 이용을 위해
+                        <br />
+                        동의가 필요해요.
+                    </p>
 
                     <div className="flex flex-col gap-[24px]">
                         <div className="flex flex-col gap-[18px]">
@@ -515,18 +507,12 @@ export default function Register() {
                     setAgrees([false, false, false, false]);
                 }}
             >
-                <div className="flex flex-col gap-[32px]">
-                    <div className="flex flex-col gap-[8px]">
-                        <p className="font-p-semibold text-[24px] text-gray-900 leading-[32px]">
-                            입력한 이메일로
-                            <br />
-                            인증번호를 보냈어요.
-                        </p>
-
-                        <p className="font-p-regular text-[18px] text-gray-400 leading-[28px]">
-                            6자리 인증번호를 붙여넣어 주세요.
-                        </p>
-                    </div>
+                <div className="flex flex-col gap-[24px]">
+                    <p className="font-p-semibold text-[22px] text-gray-900 leading-[32px]">
+                        입력한 이메일로
+                        <br />
+                        인증번호를 보냈어요.
+                    </p>
 
                     <div className="flex flex-col gap-[24px]">
                         <div className="flex flex-col gap-[8px]">

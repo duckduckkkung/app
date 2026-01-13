@@ -131,7 +131,7 @@ export const BottomSheet = ({
                         onDragEnd={handleDragEnd}
                         style={{
                             y,
-                            bottom: `${bar.bottom}px`,
+                            bottom: `${bar.bottom || 16}px`,
                             touchAction: "none",
                         }}
                         className="rounded-[24px] fixed left-[16px] right-[16px] bg-white z-200 overflow-hidden max-h-[70vh] pt-[8px] flex flex-col"
