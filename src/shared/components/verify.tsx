@@ -17,7 +17,7 @@ export const Verify = ({ checked, label }: VerifyProps) => {
 
             <span
                 className={`font-p-medium text-[14px] transition-all duration-100 ${
-                    checked ? "text-gray-700" : "text-gray-400"
+                    checked ? "text-gray-500" : "text-gray-400"
                 }`}
             >
                 {label}

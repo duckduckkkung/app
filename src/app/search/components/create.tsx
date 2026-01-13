@@ -141,9 +141,9 @@ export const CreateComponent = ({ onClose }: CreateComponentProps) => {
                                 </span>
                             </div>
 
-                            <div className="size-[100px] bg-gray-100 rounded-[12px] flex justify-center items-center">
+                            <div className="size-[128px] bg-gray-100 rounded-[12px] flex justify-center items-center">
                                 <ImageUpIcon
-                                    size={48}
+                                    size={64}
                                     className="stroke-gray-400"
                                 />
                             </div>
