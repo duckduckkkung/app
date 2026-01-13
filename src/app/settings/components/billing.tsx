@@ -10,7 +10,7 @@ import { Tag } from "@/shared/components/tag";
 import { useSettingsProps } from "../stores/props.zustand";
 
 export const BillingComponent = () => {
-    const { setAction, setIsOpen } = useSettingsProps();
+    const { setIsHistoryOpen, setIsOpen } = useSettingsProps();
 
     const cards: TypeCard[] = [
         {
@@ -161,7 +161,7 @@ export const BillingComponent = () => {
                 <Button
                     type="md"
                     variants="black"
-                    onClick={() => setAction("billing_history")}
+                    onClick={() => setIsHistoryOpen(true)}
                 >
                     <ListCheckIcon size={20} className="stroke-white" />
                     결제 내역 보기

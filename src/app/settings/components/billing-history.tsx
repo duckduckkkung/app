@@ -7,7 +7,7 @@ import { Footer } from "@/shared/components/footer";
 import { useSettingsProps } from "../stores/props.zustand";
 
 export const BillingHistoryComponent = () => {
-    const { setAction } = useSettingsProps();
+    const { setIsHistoryOpen } = useSettingsProps();
 
     return (
         <>
@@ -16,7 +16,7 @@ export const BillingHistoryComponent = () => {
                     title="결제 내역"
                     left={{
                         Component: ChevronLeftIcon,
-                        onClick: () => setAction("billing"),
+                        onClick: () => setIsHistoryOpen(false),
                     }}
                 />
 
