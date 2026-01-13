@@ -295,15 +295,9 @@ export default function Register() {
 
                             <div className="flex flex-col gap-[32px]">
                                 <div className="flex flex-col gap-[8px]">
-                                    <div className="flex items-center gap-[4px]">
-                                        <span className="font-p-medium text-[16px] text-c-primary">
-                                            *
-                                        </span>
-
-                                        <span className="font-p-medium text-[16px] text-gray-600">
-                                            이메일
-                                        </span>
-                                    </div>
+                                    <span className="font-p-medium text-[16px] text-gray-600">
+                                        이메일
+                                    </span>
 
                                     <Input
                                         type="md"
@@ -323,15 +317,9 @@ export default function Register() {
                                 </div>
 
                                 <div className="flex flex-col gap-[8px]">
-                                    <div className="flex items-center gap-[4px]">
-                                        <span className="font-p-medium text-[16px] text-c-primary">
-                                            *
-                                        </span>
-
-                                        <span className="font-p-medium text-[16px] text-gray-600">
-                                            닉네임
-                                        </span>
-                                    </div>
+                                    <span className="font-p-medium text-[16px] text-gray-600">
+                                        닉네임
+                                    </span>
 
                                     <Input
                                         type="md"
@@ -386,24 +374,26 @@ export default function Register() {
                         </div>
                     </>
                 ) : (
-                    <Empty />
+                    <Empty full />
                 )}
             </Screen>
 
-            <Footer bp>
-                <Button
-                    type="md"
-                    variants="black"
-                    onClick={() => {
-                        setIsOpen(true);
-                        setIsCreating(true);
-                    }}
-                    disabled={isNextStepImpossible}
-                >
-                    <ListCheckIcon size={20} className="stroke-white" />
-                    필수항목 동의하기
-                </Button>
-            </Footer>
+            {guestInfo?.data && (
+                <Footer bp>
+                    <Button
+                        type="md"
+                        variants="black"
+                        onClick={() => {
+                            setIsOpen(true);
+                            setIsCreating(true);
+                        }}
+                        disabled={isNextStepImpossible}
+                    >
+                        <ListCheckIcon size={20} className="stroke-white" />
+                        필수항목 동의하기
+                    </Button>
+                </Footer>
+            )}
 
             <BottomSheet
                 isOpen={isOpen}
