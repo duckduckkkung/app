@@ -87,7 +87,7 @@ export default function Register() {
         [otp]
     );
 
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState<boolean>(true);
     const [isOtpOpen, setIsOtpOpen] = useState<boolean>(false);
     const [isCreating, setIsCreating] = useState<boolean>(false);
 
@@ -103,7 +103,7 @@ export default function Register() {
         if (!guestInfo) {
             setMessage("정보가 존재하지 않습니다.");
             setIsToastOpen(true);
-            router.push("/signin");
+            // router.push("/signin");
             return;
         }
 
@@ -418,7 +418,7 @@ export default function Register() {
                                     }
                                 />
 
-                                <div className="absolute w-[1px] h-[20px] bg-gray-200 top-[100%] left-[6.5px]" />
+                                <div className="absolute w-[1px] h-[20px] bg-gray-200 top-[100%] left-[7px]" />
                             </div>
 
                             <div className="relative">
@@ -434,7 +434,7 @@ export default function Register() {
                                     }
                                 />
 
-                                <div className="absolute w-[1px] h-[20px] bg-gray-200 top-[100%] left-[6.5px]" />
+                                <div className="absolute w-[1px] h-[20px] bg-gray-200 top-[100%] left-[7px]" />
                             </div>
 
                             <div className="relative">
@@ -450,7 +450,7 @@ export default function Register() {
                                     }
                                 />
 
-                                <div className="absolute w-[1px] h-[20px] bg-gray-200 top-[100%] left-[6.5px]" />
+                                <div className="absolute w-[1px] h-[20px] bg-gray-200 top-[100%] left-[7px]" />
                             </div>
 
                             <Check

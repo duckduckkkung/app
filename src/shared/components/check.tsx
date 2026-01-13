@@ -30,7 +30,7 @@ export const Check = ({
                             {required ? (
                                 <div className="size-[6px] bg-gray-300 rounded-full" />
                             ) : (
-                                <div className="size-[6px] border-1 border-gray-400 rounded-full" />
+                                <div className="size-[6px] border-1 border-gray-300 rounded-full" />
                             )}
                         </div>
                     )}
