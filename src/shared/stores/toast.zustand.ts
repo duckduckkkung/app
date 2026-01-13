@@ -10,6 +10,6 @@ export const useToast = create<{
     isOpen: false,
     setIsOpen: (isOpen) => set((state) => ({ ...state, isOpen })),
 
-    message: "Typography",
+    message: "It is a Test Driven Typography.",
     setMessage: (message) => set((state) => ({ ...state, message })),
 }));
