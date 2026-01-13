@@ -5,7 +5,6 @@ import { useMemo } from "react";
 
 import { Screen } from "@/shared/components/screen";
 
-import { BillingHistoryComponent } from "./billing-history";
 import { SecurityComponent } from "./security";
 import { ProfileComponent } from "./profile";
 import { BillingComponent } from "./billing";
@@ -19,21 +18,15 @@ export const Layout = () => {
     const containerVariants = useMemo(
         () => ({
             initial: { opacity: 0 },
-            animate: { opacity: 1, transition: { duration: 0.1 } },
-            exit: { opacity: 0, transition: { duration: 0.1 } },
+            animate: { opacity: 1, transition: { duration: 0.15 } },
+            exit: { opacity: 0, transition: { duration: 0.15 } },
         }),
         []
     );
 
     return (
         <Screen
-            bf={
-                ["profile", "billing_history"].includes(action)
-                    ? 80
-                    : action === "billing"
-                    ? 144
-                    : 0
-            }
+            bf={action === "profile" ? 80 : action === "billing" ? 144 : 0}
             className="!overflow-y-auto"
         >
             <AnimatePresence mode="wait">
@@ -50,10 +43,6 @@ export const Layout = () => {
                     {action === "security" && <SecurityComponent />}
 
                     {action === "billing" && <BillingComponent />}
-
-                    {action === "billing_history" && (
-                        <BillingHistoryComponent />
-                    )}
 
                     {action === "etc" && <EtcComponent />}
                 </motion.div>

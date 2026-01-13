@@ -8,10 +8,17 @@ export const useSettingsProps = create<{
 
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
+
+    isHistoryOpen: boolean;
+    setIsHistoryOpen: (isHistoryOpen: boolean) => void;
 }>((set) => ({
     action: "profile",
     setAction: (action) => set((state) => ({ ...state, action })),
 
     isOpen: false,
     setIsOpen: (isOpen) => set((state) => ({ ...state, isOpen })),
+
+    isHistoryOpen: false,
+    setIsHistoryOpen: (isHistoryOpen) =>
+        set((state) => ({ ...state, isHistoryOpen })),
 }));

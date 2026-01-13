@@ -22,7 +22,7 @@ import { moments as MockMoments } from "@/mocks/moments";
 import { TypeMoment } from "@/shared/types/data";
 
 export default function Moment() {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isCommentOpen, setIsCommentOpen] = useState<boolean>(false);
     const [isMoreOpen, setIsMoreOpen] = useState<boolean>(false);
 
     const [moments, setMoments] = useState<{
@@ -179,7 +179,9 @@ export default function Moment() {
 
                                         <div
                                             className="flex flex-col items-center gap-[10px] transition-all duration-100 active:scale-95"
-                                            onClick={() => setIsOpen(true)}
+                                            onClick={() =>
+                                                setIsCommentOpen(true)
+                                            }
                                         >
                                             <MessageCircleMoreIcon
                                                 size={32}
@@ -208,7 +210,10 @@ export default function Moment() {
                 <BottomNavigator theme="dark" focus="moment" />
             </Screen>
 
-            <BottomSheet isOpen={isOpen} onClose={() => setIsOpen(false)}>
+            <BottomSheet
+                isOpen={isCommentOpen}
+                onClose={() => setIsCommentOpen(false)}
+            >
                 <div className="flex flex-col gap-[24px]">
                     <div className="flex items-center gap-[8px]">
                         <span className="font-p-semibold text-[20px] text-gray-900">

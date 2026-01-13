@@ -23,7 +23,7 @@ import { fans as MockFans } from "@/mocks/fans";
 import { TypeFan } from "@/shared/types/data";
 
 export default function Feed() {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isFanOpen, setIsFanOpen] = useState<boolean>(false);
 
     const [fans, setFans] = useState<{ isFetching: boolean; data: TypeFan[] }>({
         isFetching: true,
@@ -34,7 +34,7 @@ export default function Feed() {
     }, []);
 
     return (
-        <Overlay isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <Overlay isOpen={isFanOpen} onClose={() => setIsFanOpen(false)}>
             <Overlay.Parent>
                 <Screen bn>
                     <PullToRefresh
@@ -67,7 +67,7 @@ export default function Feed() {
                                     <div className="flex flex-col gap-[16px]">
                                         <div
                                             className="flex flex-col gap-[4px] transition-all duration-100 active:scale-95"
-                                            onClick={() => setIsOpen(true)}
+                                            onClick={() => setIsFanOpen(true)}
                                         >
                                             <div className="flex justify-between items-center">
                                                 <p className="truncate flex-1 font-p-medium text-[20px] text-gray-900">
@@ -121,7 +121,7 @@ export default function Feed() {
 
                                         <div
                                             className="flex flex-col gap-[4px] transition-all duration-100 active:scale-95"
-                                            onClick={() => setIsOpen(true)}
+                                            onClick={() => setIsFanOpen(true)}
                                         >
                                             <div className="flex justify-between items-center">
                                                 <p className="truncate font-p-medium text-[20px] text-gray-900">
@@ -183,7 +183,7 @@ export default function Feed() {
                                     <div className="flex flex-col gap-[16px]">
                                         <div
                                             className="flex flex-col gap-[4px] transition-all duration-100 active:scale-95"
-                                            onClick={() => setIsOpen(true)}
+                                            onClick={() => setIsFanOpen(true)}
                                         >
                                             <div className="flex justify-between items-center">
                                                 <p className="truncate flex-1 font-p-medium text-[20px] text-gray-900">
@@ -212,7 +212,7 @@ export default function Feed() {
 
                                         <div
                                             className="flex flex-col gap-[4px] transition-all duration-100 active:scale-95"
-                                            onClick={() => setIsOpen(true)}
+                                            onClick={() => setIsFanOpen(true)}
                                         >
                                             <div className="flex justify-between items-center">
                                                 <p className="truncate flex-1 font-p-medium text-[20px] text-gray-900">
@@ -260,7 +260,9 @@ export default function Feed() {
                                                             key={`img-${i}`}
                                                             className="bg-gray-200 aspect-square rounded-[8px] transition-all duration-100 active:scale-95"
                                                             onClick={() =>
-                                                                setIsOpen(true)
+                                                                setIsFanOpen(
+                                                                    true
+                                                                )
                                                             }
                                                         />
                                                     ))}
@@ -280,7 +282,9 @@ export default function Feed() {
                                                             key={`img-${i}`}
                                                             className="bg-gray-200 aspect-square rounded-[8px] transition-all duration-100 active:scale-95"
                                                             onClick={() =>
-                                                                setIsOpen(true)
+                                                                setIsFanOpen(
+                                                                    true
+                                                                )
                                                             }
                                                         />
                                                     ))}
