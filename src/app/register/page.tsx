@@ -165,8 +165,6 @@ export default function Register() {
     };
 
     const otpSubmit = async () => {
-        if (isCreating) return;
-
         if (!(agrees[0] && agrees[1] && agrees[2])) {
             return;
         }
