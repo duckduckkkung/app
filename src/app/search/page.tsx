@@ -20,7 +20,7 @@ import { fans as MockFans } from "@/mocks/fans";
 import { TypeFan } from "@/shared/types/data";
 
 export default function Search() {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isCreateOpen, setIsCreateOpen] = useState<boolean>(false);
     const [isFanOpen, setIsFanOpen] = useState<boolean>(false);
 
     const [fans, setFans] = useState<{ isFetching: boolean; data: TypeFan[] }>({
@@ -34,7 +34,10 @@ export default function Search() {
     return (
         <Overlay isOpen={isFanOpen} onClose={() => setIsFanOpen(false)}>
             <Overlay.Parent>
-                <Overlay isOpen={isOpen} onClose={() => setIsOpen(false)}>
+                <Overlay
+                    isOpen={isCreateOpen}
+                    onClose={() => setIsCreateOpen(false)}
+                >
                     <Overlay.Parent>
                         <Screen bn>
                             <PullToRefresh
@@ -67,7 +70,7 @@ export default function Search() {
                                                     size={20}
                                                     className="stroke-gray-900"
                                                     onClick={() =>
-                                                        setIsOpen(true)
+                                                        setIsCreateOpen(true)
                                                     }
                                                 />
                                             </div>
@@ -124,7 +127,9 @@ export default function Search() {
                     </Overlay.Parent>
 
                     <Overlay.Children>
-                        <CreateComponent onClose={() => setIsOpen(false)} />
+                        <CreateComponent
+                            onClose={() => setIsCreateOpen(false)}
+                        />
                     </Overlay.Children>
                 </Overlay>
             </Overlay.Parent>

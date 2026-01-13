@@ -87,7 +87,7 @@ export default function Register() {
         [otp]
     );
 
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isAgreeOpen, setIsAgreeOpen] = useState<boolean>(false);
     const [isOtpOpen, setIsOtpOpen] = useState<boolean>(false);
     const [isCreating, setIsCreating] = useState<boolean>(false);
 
@@ -147,7 +147,7 @@ export default function Register() {
     );
 
     const submit = async () => {
-        setIsOpen(false);
+        setIsAgreeOpen(false);
 
         try {
             await sendOtp({
@@ -377,7 +377,7 @@ export default function Register() {
                         type="md"
                         variants="black"
                         onClick={() => {
-                            setIsOpen(true);
+                            setIsAgreeOpen(true);
                             setIsCreating(true);
                         }}
                         disabled={isNextStepImpossible}
@@ -389,9 +389,9 @@ export default function Register() {
             )}
 
             <BottomSheet
-                isOpen={isOpen}
+                isOpen={isAgreeOpen}
                 onClose={() => {
-                    setIsOpen(false);
+                    setIsAgreeOpen(false);
                     setIsCreating(false);
                     setAgrees([false, false, false, false]);
                 }}
@@ -484,7 +484,7 @@ export default function Register() {
                             <div
                                 className="py-[8px] w-full flex justify-center items-center transition-all duration-100 active:scale-95"
                                 onClick={() => {
-                                    setIsOpen(false);
+                                    setIsAgreeOpen(false);
                                     setIsCreating(false);
                                     setAgrees([false, false, false, false]);
                                 }}
