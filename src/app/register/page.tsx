@@ -158,6 +158,7 @@ export default function Register() {
             setIsOtpOpen(true);
         } catch {
             setIsCreating(false);
+            setAgrees([false, false, false, false]);
             setMessage("인증번호 발송에 실패하였습니다.");
             setIsToastOpen(true);
         }
@@ -195,7 +196,6 @@ export default function Register() {
         });
 
         if (!otpResponse.data.result) {
-            setIsCreating(false);
             setMessage("OTP가 일치하지 않습니다.");
             setIsToastOpen(true);
             setOtp("");
@@ -228,25 +228,17 @@ export default function Register() {
             }
 
             setIsCreating(false);
-            setMessage("회원가입에 실패하였습니다.");
-            setIsToastOpen(true);
+            setIsOtpOpen(false);
+            setOtp("");
+            setAgrees([false, false, false, false]);
 
             const response = error.response
                 ?.data as unknown as ResponseTemplate<SocialLoginResponse>;
 
-            if (response.errorCode === ErrorCode.USER_IS_EXISTS_NAME) {
+            if (response.errorCode === ErrorCode.USER_IS_EXISTS_NAME)
                 setMessage("중복된 닉네임 입니다.");
-                setIsToastOpen(true);
-                setIsOtpOpen(false);
-                setOtp("");
-
-                return;
-            } else {
-                setMessage("회원가입에 실패하였습니다.");
-                setIsToastOpen(true);
-                setIsOtpOpen(false);
-                setOtp("");
-            }
+            else setMessage("회원가입에 실패하였습니다.");
+            setIsToastOpen(true);
 
             return;
         }
