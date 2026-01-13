@@ -90,7 +90,7 @@ export const BillingHistoryComponent = () => {
             </div>
 
             <Footer bp>
-                <Button type="md" variants="primary">
+                <Button type="md" variants="black">
                     <RefreshCwIcon size={20} className="stroke-white" />
                     갱신하기
                 </Button>
