@@ -270,7 +270,7 @@ export default function Register() {
                         <div className="p-[48px_16px] flex flex-col gap-[48px]">
                             <div className="flex justify-center">
                                 <div
-                                    className="size-[100px] bg-gray-100 rounded-[12px] flex justify-center items-center overflow-hidden"
+                                    className="size-[128px] bg-gray-100 rounded-[12px] flex justify-center items-center overflow-hidden"
                                     onClick={() =>
                                         fileInputRef.current?.click()
                                     }
@@ -286,7 +286,7 @@ export default function Register() {
                                         </>
                                     ) : (
                                         <ImageUpIcon
-                                            size={48}
+                                            size={64}
                                             className="stroke-gray-400"
                                         />
                                     )}
