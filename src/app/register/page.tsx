@@ -150,6 +150,9 @@ export default function Register() {
         setIsAgreeOpen(false);
 
         try {
+            setMessage("잠시만 기다려 주세요...");
+            setIsToastOpen(true);
+
             await sendOtp({
                 token,
                 email,
@@ -197,6 +200,7 @@ export default function Register() {
             setMessage("OTP가 일치하지 않습니다.");
             setIsToastOpen(true);
             setOtp("");
+            setIsOtpOpen(true);
 
             return;
         }
@@ -208,6 +212,9 @@ export default function Register() {
         ) {
             profileImage = fileInputRef.current.files[0];
         }
+
+        setMessage("잠시만 기다려 주세요...");
+        setIsToastOpen(true);
 
         try {
             await register({
