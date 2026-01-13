@@ -137,7 +137,7 @@ export default function Moment() {
                                             </span>
                                         </div>
 
-                                        <div className="p-[6px_8px] border border-white rounded-[6px] flex items-center gap-[6px]">
+                                        <div className="p-[6px_8px] border border-white rounded-[6px] flex items-center gap-[8px] transition-all duration-100 active:scale-95">
                                             <PlusIcon
                                                 size={14}
                                                 className="stroke-white"
@@ -168,11 +168,11 @@ export default function Moment() {
                                     <div className="flex flex-col gap-[24px]">
                                         <div className="flex flex-col items-center gap-[10px] transition-all duration-100 active:scale-95">
                                             <HeartIcon
-                                                size={36}
+                                                size={32}
                                                 className="stroke-white"
                                             />
 
-                                            <span className="font-p-gmsm text-[16px] text-white">
+                                            <span className="font-p-gmsm text-[14px] text-white">
                                                 12K
                                             </span>
                                         </div>
@@ -182,11 +182,11 @@ export default function Moment() {
                                             onClick={() => setIsOpen(true)}
                                         >
                                             <MessageCircleMoreIcon
-                                                size={36}
+                                                size={32}
                                                 className="stroke-white"
                                             />
 
-                                            <span className="font-p-gmsm text-[16px] text-white">
+                                            <span className="font-p-gmsm text-[14px] text-white">
                                                 4M
                                             </span>
                                         </div>
@@ -228,50 +228,56 @@ export default function Moment() {
                 isOpen={isMoreOpen}
                 onClose={() => setIsMoreOpen(false)}
             >
-                <div className="flex flex-col">
-                    <div className="py-[10px] transition-all duration-100 active:scale-95">
-                        <div className="flex items-center gap-[12px]">
-                            <div className="size-[28px] bg-blue-100 rounded-[6px] flex justify-center items-center">
-                                <span className="font-p-tossface text-[16px]">
-                                    📤
+                <div className="flex flex-col gap-[24px]">
+                    <span className="font-p-semibold text-[20px] text-gray-900">
+                        메뉴
+                    </span>
+
+                    <div className="flex flex-col">
+                        <div className="py-[10px] transition-all duration-100 active:scale-95">
+                            <div className="flex items-center gap-[12px]">
+                                <div className="size-[28px] bg-blue-100 rounded-[6px] flex justify-center items-center">
+                                    <span className="font-p-tossface text-[16px]">
+                                        📤
+                                    </span>
+                                </div>
+
+                                <span className="font-p-medium text-[16px] text-gray-900">
+                                    공유
                                 </span>
                             </div>
-
-                            <span className="font-p-medium text-[16px] text-gray-900">
-                                공유
-                            </span>
                         </div>
-                    </div>
 
-                    <div className="py-[10px] transition-all duration-100 active:scale-95">
-                        <div className="flex items-center gap-[12px]">
-                            <div className="size-[28px] bg-gray-100 rounded-[6px] flex justify-center items-center">
-                                <span className="font-p-tossface text-[16px]">
-                                    ⛓
+                        <div className="py-[10px] transition-all duration-100 active:scale-95">
+                            <div className="flex items-center gap-[12px]">
+                                <div className="size-[28px] bg-gray-100 rounded-[6px] flex justify-center items-center">
+                                    <span className="font-p-tossface text-[16px]">
+                                        ⛓
+                                    </span>
+                                </div>
+
+                                <span className="font-p-medium text-[16px] text-gray-900">
+                                    링크 복사
                                 </span>
                             </div>
-
-                            <span className="font-p-medium text-[16px] text-gray-900">
-                                링크 복사
-                            </span>
                         </div>
-                    </div>
 
-                    <div className="py-[10px]">
-                        <div className="w-full h-[1px] bg-gray-200" />
-                    </div>
+                        <div className="py-[10px]">
+                            <div className="w-full h-[1px] bg-gray-200" />
+                        </div>
 
-                    <div className="py-[10px] transition-all duration-100 active:scale-95">
-                        <div className="flex items-center gap-[12px]">
-                            <div className="size-[28px] bg-red-100 rounded-[6px] flex justify-center items-center">
-                                <span className="font-p-tossface text-[16px]">
-                                    🚨
+                        <div className="py-[10px] transition-all duration-100 active:scale-95">
+                            <div className="flex items-center gap-[12px]">
+                                <div className="size-[28px] bg-red-100 rounded-[6px] flex justify-center items-center">
+                                    <span className="font-p-tossface text-[16px]">
+                                        🚨
+                                    </span>
+                                </div>
+
+                                <span className="font-p-medium text-[16px] text-gray-900">
+                                    신고
                                 </span>
                             </div>
-
-                            <span className="font-p-medium text-[16px] text-gray-900">
-                                신고
-                            </span>
                         </div>
                     </div>
                 </div>
