@@ -11,7 +11,7 @@ interface TagProps {
 export const Tag = ({ text, icon, onClick, hash = false }: TagProps) => {
     return (
         <div
-            className="shrink-0 w-fit p-[2px_8px] bg-gray-100 rounded-[4px] flex items-center gap-[4px] border border-gray-300"
+            className="shrink-0 w-fit p-[4px_12px] bg-gray-100 rounded-[8px] flex items-center gap-[6px] border border-gray-300"
             onClick={onClick}
         >
             {hash && <HashIcon size={14} className="stroke-gray-400" />}
