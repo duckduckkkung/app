@@ -397,55 +397,69 @@ export default function Register() {
                 }}
             >
                 <div className="flex flex-col gap-[32px]">
-                    <div className="flex flex-col gap-[12px]">
-                        <p className="font-p-semibold text-[20px] text-gray-900">
-                            서비스 이용을 위해 동의가 필요해요.
+                    <div className="flex flex-col gap-[8px]">
+                        <p className="font-p-semibold text-[24px] text-gray-900 leading-[32px]">
+                            서비스 이용을 위해
+                            <br />
+                            동의가 필요해요.
                         </p>
 
-                        <p className="font-p-regular text-[16px] text-gray-600">
+                        <p className="font-p-regular text-[18px] text-gray-400 leading-[28px]">
                             안전하고 편리한 서비스 이용을 위해
                             <br />
                             아래 항목에 동의해 주세요.
                         </p>
                     </div>
 
-                    <div className="flex flex-col gap-[16px]">
-                        <div className="flex flex-col gap-[10px]">
-                            <Check
-                                text="이용약관에 동의합니다"
-                                required
-                                checked={agrees[0]}
-                                onChange={(e) =>
-                                    setAgrees(([a, b, c, d]) => {
-                                        a = e;
-                                        return [a, b, c, d];
-                                    })
-                                }
-                            />
+                    <div className="flex flex-col gap-[24px]">
+                        <div className="flex flex-col gap-[18px]">
+                            <div className="relative">
+                                <Check
+                                    text="이용약관에 동의합니다"
+                                    required
+                                    checked={agrees[0]}
+                                    onChange={(e) =>
+                                        setAgrees(([a, b, c, d]) => {
+                                            a = e;
+                                            return [a, b, c, d];
+                                        })
+                                    }
+                                />
 
-                            <Check
-                                text="개인정보 수집 및 이용에 동의합니다."
-                                required
-                                checked={agrees[1]}
-                                onChange={(e) =>
-                                    setAgrees(([a, b, c, d]) => {
-                                        b = e;
-                                        return [a, b, c, d];
-                                    })
-                                }
-                            />
+                                <div className="absolute w-[1px] h-[20px] bg-gray-200 top-[100%] left-[6.5px]" />
+                            </div>
 
-                            <Check
-                                text="개인정보 처리 위탁에 동의합니다."
-                                required
-                                checked={agrees[2]}
-                                onChange={(e) =>
-                                    setAgrees(([a, b, c, d]) => {
-                                        c = e;
-                                        return [a, b, c, d];
-                                    })
-                                }
-                            />
+                            <div className="relative">
+                                <Check
+                                    text="개인정보 수집 및 이용에 동의합니다."
+                                    required
+                                    checked={agrees[1]}
+                                    onChange={(e) =>
+                                        setAgrees(([a, b, c, d]) => {
+                                            b = e;
+                                            return [a, b, c, d];
+                                        })
+                                    }
+                                />
+
+                                <div className="absolute w-[1px] h-[20px] bg-gray-200 top-[100%] left-[6.5px]" />
+                            </div>
+
+                            <div className="relative">
+                                <Check
+                                    text="개인정보 처리 위탁에 동의합니다."
+                                    required
+                                    checked={agrees[2]}
+                                    onChange={(e) =>
+                                        setAgrees(([a, b, c, d]) => {
+                                            c = e;
+                                            return [a, b, c, d];
+                                        })
+                                    }
+                                />
+
+                                <div className="absolute w-[1px] h-[20px] bg-gray-200 top-[100%] left-[6.5px]" />
+                            </div>
 
                             <Check
                                 text="마케팅 수신에 동의합니다."
@@ -459,15 +473,35 @@ export default function Register() {
                             />
                         </div>
 
-                        <Button
-                            type="md"
-                            variants="black"
-                            onClick={submit}
-                            disabled={!(agrees[0] && agrees[1] && agrees[2])}
-                        >
-                            <KeyRoundIcon size={20} className="stroke-white" />
-                            2차 인증하기
-                        </Button>
+                        <div className="flex flex-col gap-[6px]">
+                            <Button
+                                type="md"
+                                variants="black"
+                                onClick={submit}
+                                disabled={
+                                    !(agrees[0] && agrees[1] && agrees[2])
+                                }
+                            >
+                                <KeyRoundIcon
+                                    size={20}
+                                    className="stroke-white"
+                                />
+                                2차 인증하기
+                            </Button>
+
+                            <div
+                                className="py-[8px] w-full flex justify-center items-center transition-all duration-100 active:scale-95"
+                                onClick={() => {
+                                    setIsOpen(false);
+                                    setIsCreating(false);
+                                    setAgrees([false, false, false, false]);
+                                }}
+                            >
+                                <span className="font-p-medium text-[14px] text-gray-600">
+                                    취소하기
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </BottomSheet>
@@ -482,17 +516,19 @@ export default function Register() {
                 }}
             >
                 <div className="flex flex-col gap-[32px]">
-                    <div className="flex flex-col gap-[12px]">
-                        <p className="font-p-semibold text-[20px] text-gray-900">
-                            입력한 이메일로 인증번호를 보냈어요.
+                    <div className="flex flex-col gap-[8px]">
+                        <p className="font-p-semibold text-[24px] text-gray-900 leading-[32px]">
+                            입력한 이메일로
+                            <br />
+                            인증번호를 보냈어요.
                         </p>
 
-                        <p className="font-p-regular text-[16px] text-gray-600">
+                        <p className="font-p-regular text-[18px] text-gray-400 leading-[28px]">
                             6자리 인증번호를 붙여넣어 주세요.
                         </p>
                     </div>
 
-                    <div className="flex flex-col gap-[16px]">
+                    <div className="flex flex-col gap-[24px]">
                         <div className="flex flex-col gap-[8px]">
                             <div className="flex items-center gap-[4px]">
                                 <span className="font-p-medium text-[16px] text-c-primary">
@@ -522,18 +558,34 @@ export default function Register() {
                             </div>
                         </div>
 
-                        <Button
-                            type="md"
-                            variants="primary"
-                            onClick={otpSubmit}
-                            disabled={!otpVerify.one || !otpVerify.two}
-                        >
-                            <ArrowUpRightIcon
-                                size={20}
-                                className="stroke-white"
-                            />
-                            덕질 시작하기
-                        </Button>
+                        <div className="flex flex-col gap-[6px]">
+                            <Button
+                                type="md"
+                                variants="primary"
+                                onClick={otpSubmit}
+                                disabled={!otpVerify.one || !otpVerify.two}
+                            >
+                                <ArrowUpRightIcon
+                                    size={20}
+                                    className="stroke-white"
+                                />
+                                덕질 시작하기
+                            </Button>
+
+                            <div
+                                className="py-[8px] w-full flex justify-center items-center transition-all duration-100 active:scale-95"
+                                onClick={() => {
+                                    setIsOtpOpen(false);
+                                    setIsCreating(false);
+                                    setOtp("");
+                                    setAgrees([false, false, false, false]);
+                                }}
+                            >
+                                <span className="font-p-medium text-[14px] text-gray-600">
+                                    취소하기
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </BottomSheet>
