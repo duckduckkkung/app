@@ -521,15 +521,9 @@ export default function Register() {
 
                     <div className="flex flex-col gap-[24px]">
                         <div className="flex flex-col gap-[8px]">
-                            <div className="flex items-center gap-[4px]">
-                                <span className="font-p-medium text-[16px] text-c-primary">
-                                    *
-                                </span>
-
-                                <span className="font-p-medium text-[16px] text-gray-600">
-                                    인증번호
-                                </span>
-                            </div>
+                            <span className="font-p-medium text-[16px] text-gray-600">
+                                인증번호
+                            </span>
 
                             <Input
                                 type="md"
