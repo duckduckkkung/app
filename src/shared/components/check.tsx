@@ -15,13 +15,13 @@ export const Check = ({
 }: CheckProps) => {
     return (
         <div
-            className="flex justify-between items-center"
+            className="flex justify-between items-center group"
             onClick={() => onChange?.(!checked)}
         >
             <div className="flex items-center gap-[4px]">
                 <CheckIcon
                     size={16}
-                    className={`shrink-0 transition-all duration-100 ${
+                    className={`shrink-0 transition-all duration-100 group-active:scale-75 ${
                         checked ? "stroke-gray-900" : "stroke-gray-400"
                     }`}
                 />

@@ -151,7 +151,7 @@ export const BottomSheet = ({
                             <div className="w-[40px] h-[6px] bg-gray-200 rounded-[100px]" />
                         </div>
 
-                        <div className="p-[16px] w-full h-full overflow-y-auto">
+                        <div className="p-[24px_16px] pb-[16px] w-full h-full overflow-y-auto">
                             {children}
                         </div>
                     </motion.div>

@@ -5,7 +5,7 @@ export const Loader = () => {
         <div className="w-full h-full flex justify-center items-center">
             <LoaderCircleIcon
                 size={18}
-                className="stroke-gray-400 animate-spin"
+                className="stroke-gray-300 animate-spin"
             />
         </div>
     );
