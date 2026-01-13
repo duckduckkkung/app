@@ -19,12 +19,22 @@ export const Check = ({
             onClick={() => onChange?.(!checked)}
         >
             <div className="flex items-center gap-[4px]">
-                <CheckIcon
-                    size={16}
-                    className={`shrink-0 transition-all duration-100 group-active:scale-75 ${
-                        checked ? "stroke-gray-900" : "stroke-gray-400"
-                    }`}
-                />
+                <div className="transition-all duration-100 group-active:scale-75">
+                    {checked ? (
+                        <CheckIcon
+                            size={16}
+                            className="shrink-0 stroke-gray-900"
+                        />
+                    ) : (
+                        <div className="size-[16px] flex justify-center items-center">
+                            {required ? (
+                                <div className="size-[6px] bg-gray-300 rounded-full" />
+                            ) : (
+                                <div className="size-[6px] border-1 border-gray-400 rounded-full" />
+                            )}
+                        </div>
+                    )}
+                </div>
 
                 <div className="flex items-center gap-[4px]">
                     {required && (

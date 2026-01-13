@@ -88,7 +88,7 @@ export default function Register() {
     );
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [isOtpOpen, setIsOtpOpen] = useState<boolean>(true);
+    const [isOtpOpen, setIsOtpOpen] = useState<boolean>(false);
     const [isCreating, setIsCreating] = useState<boolean>(false);
 
     const { data: guestInfo, isFetching: isGuestInfoFetching } = useGuestInfo({
@@ -103,7 +103,7 @@ export default function Register() {
         if (!guestInfo) {
             setMessage("정보가 존재하지 않습니다.");
             setIsToastOpen(true);
-            // router.push("/signin");
+            router.push("/signin");
             return;
         }
 
