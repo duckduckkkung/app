@@ -271,9 +271,10 @@ export default function Register() {
                             <div className="flex justify-center">
                                 <div
                                     className="size-[128px] bg-gray-100 rounded-[12px] flex justify-center items-center overflow-hidden"
-                                    onClick={() =>
-                                        fileInputRef.current?.click()
-                                    }
+                                    onClick={() => {
+                                        if (isCreating) return;
+                                        fileInputRef.current?.click();
+                                    }}
                                 >
                                     {profileImage ? (
                                         <>
@@ -305,7 +306,7 @@ export default function Register() {
                                         value={email}
                                         onChange={setEmail}
                                         placeholder="이메일을 입력해 주세요."
-                                        disabled={isOpen || isOtpOpen}
+                                        disabled={isCreating}
                                     />
 
                                     <div className="flex flex-wrap gap-[8px]">
@@ -327,7 +328,7 @@ export default function Register() {
                                         value={name}
                                         onChange={setName}
                                         placeholder="닉네임을 입력해 주세요."
-                                        disabled={isOpen || isOtpOpen}
+                                        disabled={isCreating}
                                     />
 
                                     <div className="flex flex-wrap gap-[8px]">
@@ -360,7 +361,7 @@ export default function Register() {
                                         value={bio}
                                         onChange={setBio}
                                         placeholder="간단한 자기소개를 입력해 주세요."
-                                        disabled={isOpen || isOtpOpen}
+                                        disabled={isCreating}
                                     />
 
                                     <div className="flex flex-wrap gap-[8px]">

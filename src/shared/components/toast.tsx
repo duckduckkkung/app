@@ -29,7 +29,7 @@ export const Toast = () => {
                         duration: 0.3,
                         ease: [0.4, 0, 0.2, 1],
                     }}
-                    className="fixed left-1/2 -translate-x-1/2 bg-gray-900 p-[12px_24px] rounded-[8px] z-1000 w-max flex justify-center items-center"
+                    className="fixed left-1/2 -translate-x-1/2 bg-gray-900 p-[8px_12px] rounded-[8px] z-1000 w-max flex justify-center items-center"
                     style={{
                         bottom: `${bar.bottom + 128}px`,
                     }}
