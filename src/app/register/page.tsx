@@ -147,6 +147,8 @@ export default function Register() {
     );
 
     const submit = async () => {
+        setIsOpen(false);
+
         try {
             await sendOtp({
                 token,
@@ -184,6 +186,8 @@ export default function Register() {
             return;
         }
 
+        setIsOtpOpen(false);
+
         const otpResponse = await verifyOtp({
             token,
             email,
@@ -198,8 +202,6 @@ export default function Register() {
 
             return;
         }
-
-        setIsOtpOpen(false);
 
         let profileImage: File | undefined;
         if (

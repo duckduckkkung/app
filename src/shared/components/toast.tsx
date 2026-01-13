@@ -1,5 +1,4 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { XIcon } from "lucide-react";
 import { useEffect } from "react";
 
 import { useToast } from "../stores/toast.zustand";
@@ -30,22 +29,15 @@ export const Toast = () => {
                         duration: 0.3,
                         ease: [0.4, 0, 0.2, 1],
                     }}
-                    className="fixed left-1/2 -translate-x-1/2 bg-gray-900 p-[12px_16px] rounded-[8px] shadow-lg max-w-lg z-1000"
+                    className="fixed left-1/2 -translate-x-1/2 bg-gray-900 p-[12px_24px] rounded-[8px] z-1000 w-max flex justify-center items-center"
                     style={{
-                        bottom: `${bar.bottom + 24}px`,
+                        bottom: `${bar.bottom + 128}px`,
                     }}
+                    onClick={() => setIsOpen(false)}
                 >
-                    <div className="flex items-center gap-3">
-                        <span className="font-p-medium text-[14px] text-white">
-                            {message}
-                        </span>
-
-                        <XIcon
-                            size={16}
-                            className="stroke-gray-300"
-                            onClick={() => setIsOpen(false)}
-                        />
-                    </div>
+                    <span className="font-p-medium text-[16px] text-white text-center">
+                        {message}
+                    </span>
                 </motion.div>
             )}
         </AnimatePresence>
