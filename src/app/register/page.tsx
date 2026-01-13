@@ -267,7 +267,7 @@ export default function Register() {
                     <Loader />
                 ) : guestInfo?.data ? (
                     <>
-                        <div className="p-[48px_16px] flex flex-col gap-[48px]">
+                        <div className="p-[48px_16px] flex flex-col gap-[48px] h-full overflow-y-scroll">
                             <div className="flex justify-center">
                                 <div
                                     className="size-[128px] bg-gray-100 rounded-[12px] flex justify-center items-center overflow-hidden"
@@ -388,180 +388,172 @@ export default function Register() {
                 ) : (
                     <Empty />
                 )}
-
-                <Footer bp>
-                    <Button
-                        type="md"
-                        variants="black"
-                        onClick={() => {
-                            setIsOpen(true);
-                            setIsCreating(true);
-                        }}
-                        disabled={isNextStepImpossible}
-                    >
-                        <ListCheckIcon size={20} className="stroke-white" />
-                        필수항목 동의하기
-                    </Button>
-                </Footer>
-
-                <BottomSheet
-                    isOpen={isOpen}
-                    onClose={() => {
-                        setIsOpen(false);
-                        setIsCreating(false);
-                        setAgrees([false, false, false, false]);
-                    }}
-                >
-                    <div className="flex flex-col gap-[32px]">
-                        <div className="flex flex-col gap-[12px]">
-                            <p className="font-p-semibold text-[20px] text-gray-900">
-                                서비스 이용을 위해 동의가 필요해요.
-                            </p>
-
-                            <p className="font-p-regular text-[16px] text-gray-600">
-                                안전하고 편리한 서비스 이용을 위해
-                                <br />
-                                아래 항목에 동의해 주세요.
-                            </p>
-                        </div>
-
-                        <div className="flex flex-col gap-[16px]">
-                            <div className="flex flex-col gap-[10px]">
-                                <Check
-                                    text="이용약관에 동의합니다"
-                                    required
-                                    checked={agrees[0]}
-                                    onChange={(e) =>
-                                        setAgrees(([a, b, c, d]) => {
-                                            a = e;
-                                            return [a, b, c, d];
-                                        })
-                                    }
-                                />
-
-                                <Check
-                                    text="개인정보 수집 및 이용에 동의합니다."
-                                    required
-                                    checked={agrees[1]}
-                                    onChange={(e) =>
-                                        setAgrees(([a, b, c, d]) => {
-                                            b = e;
-                                            return [a, b, c, d];
-                                        })
-                                    }
-                                />
-
-                                <Check
-                                    text="개인정보 처리 위탁에 동의합니다."
-                                    required
-                                    checked={agrees[2]}
-                                    onChange={(e) =>
-                                        setAgrees(([a, b, c, d]) => {
-                                            c = e;
-                                            return [a, b, c, d];
-                                        })
-                                    }
-                                />
-
-                                <Check
-                                    text="마케팅 수신에 동의합니다."
-                                    checked={agrees[3]}
-                                    onChange={(e) =>
-                                        setAgrees(([a, b, c, d]) => {
-                                            d = e;
-                                            return [a, b, c, d];
-                                        })
-                                    }
-                                />
-                            </div>
-
-                            <Button
-                                type="md"
-                                variants="black"
-                                onClick={submit}
-                                disabled={
-                                    !(agrees[0] && agrees[1] && agrees[2])
-                                }
-                            >
-                                <KeyRoundIcon
-                                    size={20}
-                                    className="stroke-white"
-                                />
-                                2차 인증하기
-                            </Button>
-                        </div>
-                    </div>
-                </BottomSheet>
-
-                <BottomSheet
-                    isOpen={isOtpOpen}
-                    onClose={() => {
-                        setIsOtpOpen(false);
-                        setIsCreating(false);
-                        setOtp("");
-                        setAgrees([false, false, false, false]);
-                    }}
-                >
-                    <div className="flex flex-col gap-[32px]">
-                        <div className="flex flex-col gap-[12px]">
-                            <p className="font-p-semibold text-[20px] text-gray-900">
-                                입력한 이메일로 인증번호를 보냈어요.
-                            </p>
-
-                            <p className="font-p-regular text-[16px] text-gray-600">
-                                6자리 인증번호를 붙여넣어 주세요.
-                            </p>
-                        </div>
-
-                        <div className="flex flex-col gap-[16px]">
-                            <div className="flex flex-col gap-[8px]">
-                                <div className="flex items-center gap-[4px]">
-                                    <span className="font-p-medium text-[16px] text-c-primary">
-                                        *
-                                    </span>
-
-                                    <span className="font-p-medium text-[16px] text-gray-600">
-                                        인증번호
-                                    </span>
-                                </div>
-
-                                <Input
-                                    type="md"
-                                    variants="outline"
-                                    value={otp}
-                                    onChange={setOtp}
-                                    placeholder="6자리 인증번호를 입력해 주세요."
-                                />
-
-                                <div className="flex flex-wrap gap-[8px]">
-                                    <Verify
-                                        label="숫자만"
-                                        checked={otpVerify.one}
-                                    />
-
-                                    <Verify
-                                        label="6자"
-                                        checked={otpVerify.two}
-                                    />
-                                </div>
-                            </div>
-
-                            <Button
-                                type="md"
-                                variants="primary"
-                                onClick={otpSubmit}
-                                disabled={!otpVerify.one || !otpVerify.two}
-                            >
-                                <ArrowUpRightIcon
-                                    size={20}
-                                    className="stroke-white"
-                                />
-                                덕질 시작하기
-                            </Button>
-                        </div>
-                    </div>
-                </BottomSheet>
             </Screen>
+
+            <Footer bp>
+                <Button
+                    type="md"
+                    variants="black"
+                    onClick={() => {
+                        setIsOpen(true);
+                        setIsCreating(true);
+                    }}
+                    disabled={isNextStepImpossible}
+                >
+                    <ListCheckIcon size={20} className="stroke-white" />
+                    필수항목 동의하기
+                </Button>
+            </Footer>
+
+            <BottomSheet
+                isOpen={isOpen}
+                onClose={() => {
+                    setIsOpen(false);
+                    setIsCreating(false);
+                    setAgrees([false, false, false, false]);
+                }}
+            >
+                <div className="flex flex-col gap-[32px]">
+                    <div className="flex flex-col gap-[12px]">
+                        <p className="font-p-semibold text-[20px] text-gray-900">
+                            서비스 이용을 위해 동의가 필요해요.
+                        </p>
+
+                        <p className="font-p-regular text-[16px] text-gray-600">
+                            안전하고 편리한 서비스 이용을 위해
+                            <br />
+                            아래 항목에 동의해 주세요.
+                        </p>
+                    </div>
+
+                    <div className="flex flex-col gap-[16px]">
+                        <div className="flex flex-col gap-[10px]">
+                            <Check
+                                text="이용약관에 동의합니다"
+                                required
+                                checked={agrees[0]}
+                                onChange={(e) =>
+                                    setAgrees(([a, b, c, d]) => {
+                                        a = e;
+                                        return [a, b, c, d];
+                                    })
+                                }
+                            />
+
+                            <Check
+                                text="개인정보 수집 및 이용에 동의합니다."
+                                required
+                                checked={agrees[1]}
+                                onChange={(e) =>
+                                    setAgrees(([a, b, c, d]) => {
+                                        b = e;
+                                        return [a, b, c, d];
+                                    })
+                                }
+                            />
+
+                            <Check
+                                text="개인정보 처리 위탁에 동의합니다."
+                                required
+                                checked={agrees[2]}
+                                onChange={(e) =>
+                                    setAgrees(([a, b, c, d]) => {
+                                        c = e;
+                                        return [a, b, c, d];
+                                    })
+                                }
+                            />
+
+                            <Check
+                                text="마케팅 수신에 동의합니다."
+                                checked={agrees[3]}
+                                onChange={(e) =>
+                                    setAgrees(([a, b, c, d]) => {
+                                        d = e;
+                                        return [a, b, c, d];
+                                    })
+                                }
+                            />
+                        </div>
+
+                        <Button
+                            type="md"
+                            variants="black"
+                            onClick={submit}
+                            disabled={!(agrees[0] && agrees[1] && agrees[2])}
+                        >
+                            <KeyRoundIcon size={20} className="stroke-white" />
+                            2차 인증하기
+                        </Button>
+                    </div>
+                </div>
+            </BottomSheet>
+
+            <BottomSheet
+                isOpen={isOtpOpen}
+                onClose={() => {
+                    setIsOtpOpen(false);
+                    setIsCreating(false);
+                    setOtp("");
+                    setAgrees([false, false, false, false]);
+                }}
+            >
+                <div className="flex flex-col gap-[32px]">
+                    <div className="flex flex-col gap-[12px]">
+                        <p className="font-p-semibold text-[20px] text-gray-900">
+                            입력한 이메일로 인증번호를 보냈어요.
+                        </p>
+
+                        <p className="font-p-regular text-[16px] text-gray-600">
+                            6자리 인증번호를 붙여넣어 주세요.
+                        </p>
+                    </div>
+
+                    <div className="flex flex-col gap-[16px]">
+                        <div className="flex flex-col gap-[8px]">
+                            <div className="flex items-center gap-[4px]">
+                                <span className="font-p-medium text-[16px] text-c-primary">
+                                    *
+                                </span>
+
+                                <span className="font-p-medium text-[16px] text-gray-600">
+                                    인증번호
+                                </span>
+                            </div>
+
+                            <Input
+                                type="md"
+                                variants="outline"
+                                value={otp}
+                                onChange={setOtp}
+                                placeholder="6자리 인증번호를 입력해 주세요."
+                            />
+
+                            <div className="flex flex-wrap gap-[8px]">
+                                <Verify
+                                    label="숫자만"
+                                    checked={otpVerify.one}
+                                />
+
+                                <Verify label="6자" checked={otpVerify.two} />
+                            </div>
+                        </div>
+
+                        <Button
+                            type="md"
+                            variants="primary"
+                            onClick={otpSubmit}
+                            disabled={!otpVerify.one || !otpVerify.two}
+                        >
+                            <ArrowUpRightIcon
+                                size={20}
+                                className="stroke-white"
+                            />
+                            덕질 시작하기
+                        </Button>
+                    </div>
+                </div>
+            </BottomSheet>
         </>
     );
 }
