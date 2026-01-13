@@ -18,22 +18,22 @@ export const Check = ({
             className="flex justify-between items-center"
             onClick={() => onChange?.(!checked)}
         >
-            <div className="flex items-center gap-[8px]">
+            <div className="flex items-center gap-[4px]">
                 <CheckIcon
                     size={16}
                     className={`shrink-0 transition-all duration-100 ${
-                        checked ? "stroke-c-primary" : "stroke-gray-400"
+                        checked ? "stroke-gray-900" : "stroke-gray-400"
                     }`}
                 />
 
                 <div className="flex items-center gap-[4px]">
                     {required && (
-                        <span className="shrink-0 font-p-medium text-[16px] text-c-primary">
+                        <span className="shrink-0 font-p-semibold text-[16px] text-gray-600">
                             (필수)
                         </span>
                     )}
 
-                    <span className="font-p-medium text-[16px] text-gray-600 truncate">
+                    <span className="font-p-medium text-[16px] text-gray-500 truncate">
                         {text}
                     </span>
                 </div>
