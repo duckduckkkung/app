@@ -46,7 +46,7 @@ export default function Search() {
             animate: { opacity: 1, transition: { duration: 0.15 } },
             exit: { opacity: 0, transition: { duration: 0.15 } },
         }),
-        []
+        [],
     );
 
     const [action, setAction] = useState<"select" | "tag" | "goods">("select");
@@ -73,7 +73,7 @@ export default function Search() {
                                                     isFetching: false,
                                                     data: MockFans,
                                                 }),
-                                            500
+                                            500,
                                         );
                                     }}
                                 >
@@ -92,7 +92,7 @@ export default function Search() {
                                                         className="stroke-gray-900"
                                                         onClick={() =>
                                                             setIsCreateOpen(
-                                                                true
+                                                                true,
                                                             )
                                                         }
                                                     />
@@ -105,7 +105,7 @@ export default function Search() {
                                                             variants="outline"
                                                             onClick={() =>
                                                                 setIsFilterOpen(
-                                                                    true
+                                                                    true,
                                                                 )
                                                             }
                                                         >
@@ -177,7 +177,7 @@ export default function Search() {
                 </Overlay.Parent>
 
                 <Overlay.Children>
-                    <FansComponent />
+                    <FansComponent onClose={() => setIsFanOpen(false)} />
                 </Overlay.Children>
             </Overlay>
 

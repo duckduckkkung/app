@@ -47,7 +47,7 @@ export default function Feed() {
                                         isFetching: false,
                                         data: MockFans,
                                     }),
-                                500
+                                500,
                             );
                         }}
                     >
@@ -261,7 +261,7 @@ export default function Feed() {
                                                             className="bg-gray-200 aspect-square rounded-[8px] transition-all duration-100 active:scale-95"
                                                             onClick={() =>
                                                                 setIsFanOpen(
-                                                                    true
+                                                                    true,
                                                                 )
                                                             }
                                                         />
@@ -283,7 +283,7 @@ export default function Feed() {
                                                             className="bg-gray-200 aspect-square rounded-[8px] transition-all duration-100 active:scale-95"
                                                             onClick={() =>
                                                                 setIsFanOpen(
-                                                                    true
+                                                                    true,
                                                                 )
                                                             }
                                                         />
@@ -306,7 +306,7 @@ export default function Feed() {
             </Overlay.Parent>
 
             <Overlay.Children>
-                <FansComponent />
+                <FansComponent onClose={() => setIsFanOpen(false)} />
             </Overlay.Children>
         </Overlay>
     );

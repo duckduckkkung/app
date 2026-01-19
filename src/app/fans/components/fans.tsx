@@ -12,21 +12,25 @@ import { useState, useMemo } from "react";
 
 import { OverlayHeader } from "@/shared/components/overlay-header";
 import { Screen } from "@/shared/components/screen";
+import { Button } from "@/shared/components/button";
+import { Footer } from "@/shared/components/footer";
+import { Empty } from "@/shared/components/empty";
+import { Tag } from "@/shared/components/tag";
+import { Tab } from "@/shared/components/tab";
 
 import { useBar } from "@/shared/stores/bar.zustand";
 
 import { fans as MockFans } from "@/mocks/fans";
-import { Tag } from "@/shared/components/tag";
-import { Tab } from "@/shared/components/tab";
-import { Button } from "@/shared/components/button";
-import { Footer } from "@/shared/components/footer";
-import { Empty } from "@/shared/components/empty";
 
 type TypeTab = "정보" | "굿즈" | "모먼트";
 
 const tabs: TypeTab[] = ["정보", "굿즈", "모먼트"];
 
-export const FansComponent = () => {
+interface FansComponentProps {
+    onClose: () => void;
+}
+
+export const FansComponent = ({ onClose }: FansComponentProps) => {
     const router = useRouter();
     const bar = useBar();
 
@@ -40,7 +44,7 @@ export const FansComponent = () => {
             animate: { opacity: 1, transition: { duration: 0.15 } },
             exit: { opacity: 0, transition: { duration: 0.15 } },
         }),
-        []
+        [],
     );
 
     return (
@@ -75,7 +79,7 @@ export const FansComponent = () => {
                         title="송하영"
                         left={{
                             Component: ChevronLeftIcon,
-                            onClick: () => router.push("/search"),
+                            onClick: onClose,
                         }}
                         right={{
                             Component: HardDriveDownloadIcon,
