@@ -90,15 +90,15 @@
 @theme {
     --color-c-primary: #313e97;
 
-    --font-p-black: "p-black";
-    --font-p-bold: "p-bold";
-    --font-p-extrabold: "p-extrabold";
-    --font-p-extralight: "p-extralight";
-    --font-p-light: "p-light";
-    --font-p-medium: "p-medium";
-    --font-p-regular: "p-regular";
-    --font-p-semibold: "p-semibold";
-    --font-p-thin: "p-thin";
+    --font-p-black: "p-black", "Tossface";
+    --font-p-bold: "p-bold", "Tossface";
+    --font-p-extrabold: "p-extrabold", "Tossface";
+    --font-p-extralight: "p-extralight", "Tossface";
+    --font-p-light: "p-light", "Tossface";
+    --font-p-medium: "p-medium", "Tossface";
+    --font-p-regular: "p-regular", "Tossface";
+    --font-p-semibold: "p-semibold", "Tossface";
+    --font-p-thin: "p-thin", "Tossface";
 
     --font-p-gmsl: "GMarketSansLight";
     --font-p-gmsm: "GMarketSansMedium";

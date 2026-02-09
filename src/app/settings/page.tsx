@@ -10,9 +10,9 @@ import { Loader } from "@/shared/components/loader";
 import { Empty } from "@/shared/components/empty";
 
 import { Layout } from "./components/layout";
+import { BillingHistoryComponent } from "./components/billing-history";
 
 import { useSettingsProps } from "./stores/props.zustand";
-import BillingHistoryComponent from "./components/billing-history";
 
 export default function Settings() {
     const { setAction, isOpen, setIsOpen, isHistoryOpen, setIsHistoryOpen } =
@@ -27,10 +27,18 @@ export default function Settings() {
     }, []);
 
     return (
-        <Overlay isOpen={isHistoryOpen} onClose={() => setIsHistoryOpen(false)}>
-            <Overlay.Parent>
-                <Overlay isOpen={isOpen} onClose={() => setIsOpen(false)}>
-                    <Overlay.Parent>
+        <Overlay
+            id="history"
+            isOpen={isHistoryOpen}
+            onClose={() => setIsHistoryOpen(false)}
+        >
+            <Overlay.Parent targetId="history">
+                <Overlay
+                    id="settings"
+                    isOpen={isOpen}
+                    onClose={() => setIsOpen(false)}
+                >
+                    <Overlay.Parent targetId="settings">
                         <Screen bn>
                             <PullToRefresh
                                 motionKey={
@@ -44,7 +52,7 @@ export default function Settings() {
                                                 isFetching: false,
                                                 data: {},
                                             }),
-                                        500
+                                        500,
                                     );
                                 }}
                             >

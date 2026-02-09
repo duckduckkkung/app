@@ -20,16 +20,20 @@ import { Loader } from "@/shared/components/loader";
 import { Input } from "@/shared/components/input";
 import { Empty } from "@/shared/components/empty";
 
-import { FansComponent } from "../fans/components/fans";
 import { CreateComponent } from "./components/create";
+
+import { Layout } from "../fans/components/layout";
+
+import { useSettingsProps } from "../fans/stores/props.zustand";
 
 import { fans as MockFans } from "@/mocks/fans";
 
 import { TypeFan } from "@/shared/types/data";
 
 export default function Search() {
+    const { setIsOpen } = useSettingsProps();
+
     const [isCreateOpen, setIsCreateOpen] = useState<boolean>(false);
-    const [isFanOpen, setIsFanOpen] = useState<boolean>(false);
     const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
     const [fans, setFans] = useState<{ isFetching: boolean; data: TypeFan[] }>({
@@ -46,20 +50,21 @@ export default function Search() {
             animate: { opacity: 1, transition: { duration: 0.15 } },
             exit: { opacity: 0, transition: { duration: 0.15 } },
         }),
-        []
+        [],
     );
 
     const [action, setAction] = useState<"select" | "tag" | "goods">("select");
 
     return (
         <>
-            <Overlay isOpen={isFanOpen} onClose={() => setIsFanOpen(false)}>
-                <Overlay.Parent>
+            <Layout>
+                <Overlay.Parent targetId="fan">
                     <Overlay
+                        id="fans"
                         isOpen={isCreateOpen}
                         onClose={() => setIsCreateOpen(false)}
                     >
-                        <Overlay.Parent>
+                        <Overlay.Parent targetId="fans">
                             <Screen bn>
                                 <PullToRefresh
                                     motionKey={
@@ -73,7 +78,7 @@ export default function Search() {
                                                     isFetching: false,
                                                     data: MockFans,
                                                 }),
-                                            500
+                                            500,
                                         );
                                     }}
                                 >
@@ -92,7 +97,7 @@ export default function Search() {
                                                         className="stroke-gray-900"
                                                         onClick={() =>
                                                             setIsCreateOpen(
-                                                                true
+                                                                true,
                                                             )
                                                         }
                                                     />
@@ -105,7 +110,7 @@ export default function Search() {
                                                             variants="outline"
                                                             onClick={() =>
                                                                 setIsFilterOpen(
-                                                                    true
+                                                                    true,
                                                                 )
                                                             }
                                                         >
@@ -144,7 +149,7 @@ export default function Search() {
                                                         key={`img-${i}`}
                                                         className="bg-gray-200 aspect-square rounded-[16px] transition-all duration-100 active:scale-95 overflow-hidden"
                                                         onClick={() =>
-                                                            setIsFanOpen(true)
+                                                            setIsOpen(true)
                                                         }
                                                     >
                                                         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -175,11 +180,7 @@ export default function Search() {
                         </Overlay.Children>
                     </Overlay>
                 </Overlay.Parent>
-
-                <Overlay.Children>
-                    <FansComponent />
-                </Overlay.Children>
-            </Overlay>
+            </Layout>
 
             <BottomSheet
                 isOpen={isFilterOpen}

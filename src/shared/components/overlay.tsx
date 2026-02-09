@@ -12,6 +12,7 @@ import {
 import { createContext, useContext, useMemo, useState } from "react";
 
 interface OverlayContextValue {
+    id: string;
     x: MotionValue<number>;
     isOpen: boolean;
     onClose: () => void;
@@ -30,17 +31,19 @@ const useOverlayContext = () => {
 };
 
 interface OverlayProps {
+    id: string;
     children: React.ReactNode;
     isOpen: boolean;
     onClose: () => void;
 }
 
-export const Overlay = ({ children, isOpen, onClose }: OverlayProps) => {
+export const Overlay = ({ id, children, isOpen, onClose }: OverlayProps) => {
     const x = useMotionValue(0);
     const [isDragging, setIsDragging] = useState<boolean>(false);
+
     const value = useMemo(
-        () => ({ x, isOpen, onClose, isDragging, setIsDragging }),
-        [x, isOpen, onClose, isDragging, setIsDragging]
+        () => ({ id, x, isOpen, onClose, isDragging, setIsDragging }),
+        [id, x, isOpen, onClose, isDragging],
     );
 
     return (
@@ -50,20 +53,32 @@ export const Overlay = ({ children, isOpen, onClose }: OverlayProps) => {
     );
 };
 
-const Parent = ({ children }: { children: React.ReactNode }) => {
-    const { x, isOpen, isDragging } = useOverlayContext();
+interface ParentProps {
+    targetId: string;
+    children: React.ReactNode;
+}
+
+const Parent = ({ targetId, children }: ParentProps) => {
+    const context = useOverlayContext();
+
+    // targetId와 현재 오버레이의 id가 일치할 때만 애니메이션 적용
+    const shouldAnimate = context.id === targetId;
+    const { x, isOpen, isDragging } = context;
 
     const innerWidth = typeof window !== "undefined" ? window.innerWidth : 400;
     const parentX = useTransform(x, [0, innerWidth], ["-30%", "0%"]);
 
     return (
         <motion.div
-            key="overlay-parent"
+            key={`overlay-parent-${targetId}`}
             initial={{ x: "0%" }}
             exit={{ x: "0%" }}
             style={{
-                x: isOpen ? parentX : 0,
-                transition: isDragging ? undefined : "all 0.25s ease-out",
+                x: isOpen && shouldAnimate ? parentX : 0,
+                transition:
+                    isDragging && shouldAnimate
+                        ? undefined
+                        : "all 0.25s ease-out",
             }}
             className="fixed inset-0 z-100"
         >
@@ -73,12 +88,12 @@ const Parent = ({ children }: { children: React.ReactNode }) => {
 };
 
 const Children = ({ children }: { children: React.ReactNode }) => {
-    const { x, isOpen, onClose, setIsDragging } = useOverlayContext();
+    const { id, x, isOpen, onClose, setIsDragging } = useOverlayContext();
     const dragControls = useDragControls();
 
     const handleDragEnd = (
         _: MouseEvent | TouchEvent | PointerEvent,
-        info: PanInfo
+        info: PanInfo,
     ) => {
         setIsDragging(false);
 
@@ -91,7 +106,7 @@ const Children = ({ children }: { children: React.ReactNode }) => {
             {isOpen && (
                 <>
                     <motion.div
-                        key="overlay-backdrop"
+                        key={`overlay-backdrop-${id}`}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 0.5 }}
                         exit={{ opacity: 0 }}
@@ -100,7 +115,7 @@ const Children = ({ children }: { children: React.ReactNode }) => {
                     />
 
                     <motion.div
-                        key="overlay-children"
+                        key={`overlay-children-${id}`}
                         initial="initial"
                         animate="animate"
                         exit="exit"

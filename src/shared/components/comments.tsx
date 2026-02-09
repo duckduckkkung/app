@@ -15,11 +15,12 @@ export interface TypeComment {
 
 interface CommentProps {
     comments: TypeComment[];
+    overflow?: boolean;
 }
 
-export const Comments = ({ comments }: CommentProps) => {
+export const Comments = ({ comments, overflow }: CommentProps) => {
     const [openComments, setOpenComments] = useState<Record<string, boolean>>(
-        {}
+        {},
     );
 
     const toggleComment = (commentId: string) => {
@@ -30,7 +31,13 @@ export const Comments = ({ comments }: CommentProps) => {
     };
 
     return (
-        <div className="flex flex-col">
+        <div
+            className={
+                overflow
+                    ? "flex flex-col max-h-[40dvh] overflow-y-scroll"
+                    : "flex flex-col"
+            }
+        >
             {comments.map((comment, i) => (
                 <div key={comment.id} className="flex flex-col">
                     <div className="flex flex-col gap-[12px] p-[20px_8px]">

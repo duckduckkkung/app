@@ -5,7 +5,7 @@ import { BottomSheet } from "./bottom-sheet";
 export enum SelectTypes {
     default = "flex justify-between items-center transition-all duration-100 active:scale-95",
 
-    md = `${SelectTypes.default} gap-[10px] p-[14px_16px] rounded-[8px] *:font-p-medium *:text-[16px]`,
+    md = `${SelectTypes.default} gap-[10px] p-[14px_16px] rounded-[12px] *:font-p-medium *:text-[16px]`,
 }
 
 export enum SelectVariants {
@@ -40,7 +40,7 @@ export const Select = ({
     return (
         <>
             <div
-                className={`${SelectTypes[type]} ${SelectVariants[variants]}`}
+                className={`${SelectTypes[type]} ${SelectVariants[variants]} ${value.label ? "" : "*:!text-gray-400"}`}
                 onClick={() => setIsOpen(true)}
             >
                 <span>{value.label || placeholder}</span>

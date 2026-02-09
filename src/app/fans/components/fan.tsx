@@ -7,27 +7,29 @@ import {
     HardDriveDownloadIcon,
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 import { useState, useMemo } from "react";
 
 import { OverlayHeader } from "@/shared/components/overlay-header";
 import { Screen } from "@/shared/components/screen";
+import { Button } from "@/shared/components/button";
+import { Footer } from "@/shared/components/footer";
+import { Empty } from "@/shared/components/empty";
+import { Tag } from "@/shared/components/tag";
+import { Tab } from "@/shared/components/tab";
+
+import { useSettingsProps } from "../stores/props.zustand";
 
 import { useBar } from "@/shared/stores/bar.zustand";
 
 import { fans as MockFans } from "@/mocks/fans";
-import { Tag } from "@/shared/components/tag";
-import { Tab } from "@/shared/components/tab";
-import { Button } from "@/shared/components/button";
-import { Footer } from "@/shared/components/footer";
-import { Empty } from "@/shared/components/empty";
 
 type TypeTab = "정보" | "굿즈" | "모먼트";
 
 const tabs: TypeTab[] = ["정보", "굿즈", "모먼트"];
 
-export const FansComponent = () => {
-    const router = useRouter();
+export const FanComponent = () => {
+    const { setIsOpen, setIsCommunityOpen } = useSettingsProps();
+
     const bar = useBar();
 
     const fan = MockFans[0];
@@ -40,7 +42,7 @@ export const FansComponent = () => {
             animate: { opacity: 1, transition: { duration: 0.15 } },
             exit: { opacity: 0, transition: { duration: 0.15 } },
         }),
-        []
+        [],
     );
 
     return (
@@ -75,7 +77,7 @@ export const FansComponent = () => {
                         title="송하영"
                         left={{
                             Component: ChevronLeftIcon,
-                            onClick: () => router.push("/search"),
+                            onClick: () => setIsOpen(false),
                         }}
                         right={{
                             Component: HardDriveDownloadIcon,
@@ -112,6 +114,16 @@ export const FansComponent = () => {
                                     <div className="flex flex-col gap-[16px]">
                                         <div className="flex flex-col gap-[4px]">
                                             <p className="font-p-regular text-[16px] text-gray-400">
+                                                이름
+                                            </p>
+
+                                            <span className="font-p-medium text-[18px] text-gray-900">
+                                                송하영
+                                            </span>
+                                        </div>
+
+                                        <div className="flex flex-col gap-[4px]">
+                                            <p className="font-p-regular text-[16px] text-gray-400">
                                                 소속
                                             </p>
 
@@ -131,16 +143,6 @@ export const FansComponent = () => {
                                                     fromis_9
                                                 </span>
                                             </div>
-                                        </div>
-
-                                        <div className="flex flex-col gap-[4px]">
-                                            <p className="font-p-regular text-[16px] text-gray-400">
-                                                이름
-                                            </p>
-
-                                            <span className="font-p-medium text-[18px] text-gray-900">
-                                                송하영
-                                            </span>
                                         </div>
 
                                         <div className="flex flex-col gap-[4px]">
@@ -197,7 +199,11 @@ export const FansComponent = () => {
                     정보 업데이트 요청하기
                 </Button>
 
-                <Button type="md" variants="black">
+                <Button
+                    type="md"
+                    variants="black"
+                    onClick={() => setIsCommunityOpen(true)}
+                >
                     <ArrowUpRightIcon size={20} className="stroke-white" />
                     커뮤니티 바로가기
                 </Button>
@@ -206,4 +212,4 @@ export const FansComponent = () => {
     );
 };
 
-export default FansComponent;
+export default FanComponent;
