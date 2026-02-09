@@ -7,7 +7,6 @@ import {
     HardDriveDownloadIcon,
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 import { useState, useMemo } from "react";
 
 import { OverlayHeader } from "@/shared/components/overlay-header";
@@ -18,6 +17,8 @@ import { Empty } from "@/shared/components/empty";
 import { Tag } from "@/shared/components/tag";
 import { Tab } from "@/shared/components/tab";
 
+import { useSettingsProps } from "../stores/props.zustand";
+
 import { useBar } from "@/shared/stores/bar.zustand";
 
 import { fans as MockFans } from "@/mocks/fans";
@@ -26,12 +27,9 @@ type TypeTab = "정보" | "굿즈" | "모먼트";
 
 const tabs: TypeTab[] = ["정보", "굿즈", "모먼트"];
 
-interface FansComponentProps {
-    onClose: () => void;
-}
+export const FanComponent = () => {
+    const { setIsOpen, setIsCommunityOpen } = useSettingsProps();
 
-export const FansComponent = ({ onClose }: FansComponentProps) => {
-    const router = useRouter();
     const bar = useBar();
 
     const fan = MockFans[0];
@@ -79,7 +77,7 @@ export const FansComponent = ({ onClose }: FansComponentProps) => {
                         title="송하영"
                         left={{
                             Component: ChevronLeftIcon,
-                            onClick: onClose,
+                            onClick: () => setIsOpen(false),
                         }}
                         right={{
                             Component: HardDriveDownloadIcon,
@@ -116,6 +114,16 @@ export const FansComponent = ({ onClose }: FansComponentProps) => {
                                     <div className="flex flex-col gap-[16px]">
                                         <div className="flex flex-col gap-[4px]">
                                             <p className="font-p-regular text-[16px] text-gray-400">
+                                                이름
+                                            </p>
+
+                                            <span className="font-p-medium text-[18px] text-gray-900">
+                                                송하영
+                                            </span>
+                                        </div>
+
+                                        <div className="flex flex-col gap-[4px]">
+                                            <p className="font-p-regular text-[16px] text-gray-400">
                                                 소속
                                             </p>
 
@@ -135,16 +143,6 @@ export const FansComponent = ({ onClose }: FansComponentProps) => {
                                                     fromis_9
                                                 </span>
                                             </div>
-                                        </div>
-
-                                        <div className="flex flex-col gap-[4px]">
-                                            <p className="font-p-regular text-[16px] text-gray-400">
-                                                이름
-                                            </p>
-
-                                            <span className="font-p-medium text-[18px] text-gray-900">
-                                                송하영
-                                            </span>
                                         </div>
 
                                         <div className="flex flex-col gap-[4px]">
@@ -201,7 +199,11 @@ export const FansComponent = ({ onClose }: FansComponentProps) => {
                     정보 업데이트 요청하기
                 </Button>
 
-                <Button type="md" variants="black">
+                <Button
+                    type="md"
+                    variants="black"
+                    onClick={() => setIsCommunityOpen(true)}
+                >
                     <ArrowUpRightIcon size={20} className="stroke-white" />
                     커뮤니티 바로가기
                 </Button>
@@ -210,4 +212,4 @@ export const FansComponent = ({ onClose }: FansComponentProps) => {
     );
 };
 
-export default FansComponent;
+export default FanComponent;

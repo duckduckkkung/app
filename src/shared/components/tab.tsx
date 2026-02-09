@@ -40,7 +40,7 @@ export const Tab = ({ options, tab, onChange }: TabProps) => {
 
     return (
         <div
-            className="w-full sticky flex px-[16px] border-b border-b-gray-300"
+            className="bg-white z-10 w-full sticky flex px-[16px] border-b border-b-gray-300"
             style={{
                 top: `${bar.top}px`,
             }}

@@ -1,15 +1,23 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-import { FansComponent } from "./components/fans";
+import { Layout } from "./components/layout";
+
+import { useSettingsProps } from "./stores/props.zustand";
 
 export default function Fans() {
-    const router = useRouter();
+    const { setIsOpen } = useSettingsProps();
 
-    const onClose = () => {
-        router.push("/feed");
-    };
+    useEffect(() => {
+        setIsOpen(true);
 
-    return <FansComponent onClose={onClose} />;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return (
+        <Layout>
+            <div />
+        </Layout>
+    );
 }
