@@ -5,6 +5,7 @@ import {
     HeartIcon,
     MessageCircleMoreIcon,
     PlusIcon,
+    SendIcon,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -14,8 +15,10 @@ import { OverlayHeader } from "@/shared/components/overlay-header";
 import { BottomSheet } from "@/shared/components/bottom-sheet";
 import { Comments } from "@/shared/components/comments";
 import { Screen } from "@/shared/components/screen";
+import { Button } from "@/shared/components/button";
 import { Loader } from "@/shared/components/loader";
 import { Empty } from "@/shared/components/empty";
+import { Input } from "@/shared/components/input";
 
 import { moments as MockMoments } from "@/mocks/moments";
 
@@ -35,7 +38,7 @@ export default function Moment() {
     useEffect(() => {
         setTimeout(
             () => setMoments({ isFetching: false, data: MockMoments }),
-            500
+            500,
         );
     }, []);
 
@@ -116,7 +119,7 @@ export default function Moment() {
                                     isFetching: false,
                                     data: MockMoments,
                                 }),
-                            500
+                            500,
                         );
                     }}
                 >
@@ -225,7 +228,23 @@ export default function Moment() {
                         </span>
                     </div>
 
-                    <Comments comments={comments} />
+                    <Comments comments={comments} overflow />
+
+                    <div className="flex items-center gap-[12px]">
+                        <Input
+                            type="md"
+                            variants="outline"
+                            value=""
+                            onChange={() => {}}
+                            placeholder="댓글 입력..."
+                        />
+
+                        <div className="w-fit">
+                            <Button type="md_icon" variants="black">
+                                <SendIcon size={16} className="stroke-white" />
+                            </Button>
+                        </div>
+                    </div>
                 </div>
             </BottomSheet>
 

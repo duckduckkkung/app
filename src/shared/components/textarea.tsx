@@ -1,13 +1,11 @@
 export enum TextareaTypes {
     default = "outline-none min-h-[120px]",
 
-    sm = `${TextareaTypes.default} p-[8px] rounded-[6px] *:font-p-regular placeholder:font-p-regular *:text-[14px]`,
-    md = `${TextareaTypes.default} p-[16px] rounded-[8px] *:font-p-medium placeholder:font-p-regular *:text-[16px]`,
-    lg = `${TextareaTypes.default} p-[18px] rounded-[10px] *:font-p-medium placeholder:font-p-medium *:text-[18px]`,
+    md = `${TextareaTypes.default} p-[14px] rounded-[12px] *:font-p-medium placeholder:font-p-regular *:text-[16px]`,
 }
 
 export enum TextareaVariants {
-    outline = "bg-gray-100 border border-gray-300 *:text-gray-600 placeholder:text-gray-400",
+    outline = "bg-white border border-gray-300 *:text-gray-600 placeholder:text-gray-400",
 }
 
 interface TextareaProps {

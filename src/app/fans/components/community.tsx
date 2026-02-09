@@ -23,7 +23,8 @@ import { useSettingsProps } from "../stores/props.zustand";
 import { fans as MockFans } from "@/mocks/fans";
 
 export const CommunityComponent = () => {
-    const { setIsCommunityOpen } = useSettingsProps();
+    const { setIsCommunityOpen, setIsSubOpen, setSubAction } =
+        useSettingsProps();
 
     const fan = MockFans[0];
 
@@ -136,15 +137,15 @@ export const CommunityComponent = () => {
 
                         <div className="p-[16px]">
                             <div className="flex flex-col gap-[32px]">
-                                <div className="flex flex-col gap-[8px] transition-all duration-150 active:scale-95">
+                                <div
+                                    className="flex flex-col gap-[8px] transition-all duration-150 active:scale-95"
+                                    onClick={() => {
+                                        setSubAction("detail");
+                                        setIsSubOpen(true);
+                                    }}
+                                >
                                     <div className="flex flex-col gap-[4px]">
-                                        <span
-                                            className="text-[16px] text-gray-600"
-                                            style={{
-                                                fontFamily:
-                                                    "var(--font-p-regular), var(--font-p-tossface)",
-                                            }}
-                                        >
+                                        <span className="font-p-regular text-[16px] text-gray-600">
                                             🖼️ 사진관
                                         </span>
 
@@ -168,15 +169,15 @@ export const CommunityComponent = () => {
                                     </div>
                                 </div>
 
-                                <div className="flex flex-col gap-[8px] transition-all duration-150 active:scale-95">
+                                <div
+                                    className="flex flex-col gap-[8px] transition-all duration-150 active:scale-95"
+                                    onClick={() => {
+                                        setSubAction("detail");
+                                        setIsSubOpen(true);
+                                    }}
+                                >
                                     <div className="flex flex-col gap-[4px]">
-                                        <span
-                                            className="text-[16px] text-gray-600"
-                                            style={{
-                                                fontFamily:
-                                                    "var(--font-p-regular), var(--font-p-tossface)",
-                                            }}
-                                        >
+                                        <span className="font-p-regular text-[16px] text-gray-600">
                                             🤖 AI 코딩 대회
                                         </span>
 
@@ -200,15 +201,15 @@ export const CommunityComponent = () => {
                                     </div>
                                 </div>
 
-                                <div className="flex flex-col gap-[8px] transition-all duration-150 active:scale-95">
+                                <div
+                                    className="flex flex-col gap-[8px] transition-all duration-150 active:scale-95"
+                                    onClick={() => {
+                                        setSubAction("detail");
+                                        setIsSubOpen(true);
+                                    }}
+                                >
                                     <div className="flex flex-col gap-[4px]">
-                                        <span
-                                            className="text-[16px] text-gray-600"
-                                            style={{
-                                                fontFamily:
-                                                    "var(--font-p-regular), var(--font-p-tossface)",
-                                            }}
-                                        >
+                                        <span className="font-p-regular text-[16px] text-gray-600">
                                             🌍 월드에는
                                         </span>
 
@@ -232,15 +233,15 @@ export const CommunityComponent = () => {
                                     </div>
                                 </div>
 
-                                <div className="flex flex-col gap-[8px] transition-all duration-150 active:scale-95">
+                                <div
+                                    className="flex flex-col gap-[8px] transition-all duration-150 active:scale-95"
+                                    onClick={() => {
+                                        setSubAction("detail");
+                                        setIsSubOpen(true);
+                                    }}
+                                >
                                     <div className="flex flex-col gap-[4px]">
-                                        <span
-                                            className="text-[16px] text-gray-600"
-                                            style={{
-                                                fontFamily:
-                                                    "var(--font-p-regular), var(--font-p-tossface)",
-                                            }}
-                                        >
+                                        <span className="font-p-regular text-[16px] text-gray-600">
                                             💼 회사원들
                                         </span>
 
@@ -269,7 +270,14 @@ export const CommunityComponent = () => {
                 </div>
 
                 <Footer bp>
-                    <Button type="md" variants="black">
+                    <Button
+                        type="md"
+                        variants="black"
+                        onClick={() => {
+                            setSubAction("write");
+                            setIsSubOpen(true);
+                        }}
+                    >
                         <PlusIcon size={20} className="stroke-white" />
                         게시글 쓰기
                     </Button>
