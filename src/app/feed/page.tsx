@@ -34,8 +34,12 @@ export default function Feed() {
     }, []);
 
     return (
-        <Overlay isOpen={isFanOpen} onClose={() => setIsFanOpen(false)}>
-            <Overlay.Parent>
+        <Overlay
+            id="feed"
+            isOpen={isFanOpen}
+            onClose={() => setIsFanOpen(false)}
+        >
+            <Overlay.Parent targetId="feed">
                 <Screen bn>
                     <PullToRefresh
                         motionKey={fans.isFetching ? "fetching" : "fetched"}

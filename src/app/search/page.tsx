@@ -53,13 +53,18 @@ export default function Search() {
 
     return (
         <>
-            <Overlay isOpen={isFanOpen} onClose={() => setIsFanOpen(false)}>
-                <Overlay.Parent>
+            <Overlay
+                id="fan"
+                isOpen={isFanOpen}
+                onClose={() => setIsFanOpen(false)}
+            >
+                <Overlay.Parent targetId="fan">
                     <Overlay
+                        id="fans"
                         isOpen={isCreateOpen}
                         onClose={() => setIsCreateOpen(false)}
                     >
-                        <Overlay.Parent>
+                        <Overlay.Parent targetId="fans">
                             <Screen bn>
                                 <PullToRefresh
                                     motionKey={
